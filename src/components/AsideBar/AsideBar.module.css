@@ -4,16 +4,15 @@
   flex-direction: column;
   position: fixed;
   background: #333A3D;
-  width: 300px;
+  width: 250px;
   padding: 15px;
   justify-content: center;
 }
 
 .logo {
-  width: 260px;
-  height: 60px;
-  margin-bottom: 35px;
-  padding: 0;
+  width: 230px;
+  height: 50px;
+  margin-bottom: 55px;
   align-self: center;
 }
 
@@ -21,14 +20,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 50px;
+  margin-left: 30px;
+  font-size: 18px;
 }
 
 .menu a {
   text-decoration: none;
   color: white;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   align-content: center;
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 270px;
-  gap: 40px
+  gap: 30px
 }
 
 .second_menu{
