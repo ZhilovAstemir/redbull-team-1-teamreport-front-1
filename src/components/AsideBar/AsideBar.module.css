@@ -28,8 +28,21 @@
   text-decoration: none;
   color: white;
   display: flex;
-  gap: 10px;
+  gap: 5px;
   align-content: center;
+  align-items: center;
+}
+
+.menu a>button {
+  display: flex;
+  gap: 15px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #F5F7F8;
+  align-items: center;
+  align-self: center;
+  cursor: pointer;
 }
 
 .first_menu {
@@ -48,4 +61,3 @@
 .profile {
   margin-top: 30px;
 }
-
