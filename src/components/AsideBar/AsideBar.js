@@ -1,11 +1,12 @@
-import {memo, useCallback, useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
 import styles from './AsideBar.module.css';
 import logo from "../../images/main_logo.png";
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import LaunchGuide from "../LaunchGuide/LaunchGuide";
-
+import MyCompany from "../MyCompany/MyCompany";
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
 const AsideBar = () => {
   const [isGuideOpen, setIsGuideOpen] = useState(true);
@@ -28,7 +29,7 @@ const AsideBar = () => {
         <section className={styles.menu}>
           <div className={styles.first_menu}>
             <a href="">
-              <button onClick={enableGuidStatus(isGuideOpen)}>Launch Guide</button>
+              <button>Launch Guide</button>
             </a>
             <a href="">
               <button>Invite Your Team</button>
@@ -58,17 +59,12 @@ const AsideBar = () => {
             </a>
           </div>
         </section>
+        <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
+        <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
       <HeaderForGuide/>
-      {
-        !isGuideOpen &&
-        <>
-
-          <LaunchGuide/>
-        </>
-      }
-
-
+      <LaunchGuide/>
+      {/*<MyCompany />*/}
     </>
   );
 };
