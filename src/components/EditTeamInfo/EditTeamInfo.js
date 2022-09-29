@@ -1,6 +1,9 @@
 import React, {memo} from 'react';
 import styles from "./EditTeamInfo.module.css";
 import {useForm} from "react-hook-form";
+import EditMembersModal from "../EditMembersModal/EditMembersModal";
+import {Box, Modal} from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 const leaders = [
   {
@@ -55,9 +58,24 @@ const members = [
   },
 ];
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 const EditTeamInfo = () => {
   const {register, handleSubmit, watch, formState: {errors}} = useForm();
   const onSubmit = data => console.log(data);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(false);
+  const handleClose = () => setOpen(true);
 
   return (
     <div className={styles.editTeam_container}>
@@ -112,7 +130,6 @@ const EditTeamInfo = () => {
             type="submit"
             value="Save"
           />
-
         </form>
       </section>
       <section className={styles.third_section}>
@@ -133,6 +150,7 @@ const EditTeamInfo = () => {
         </div>
         <a href="">
           <button>Edit Member(s)</button>
+          <EditMembersModal props={{open, handleOpen, handleClose}}/>
         </a>
       </section>
       <section className={styles.third_section}>
@@ -141,10 +159,9 @@ const EditTeamInfo = () => {
         <p className={styles.text}>Share the following link to invite team members on Anatoliy's behalf.</p>
         <div className={styles.link_flex}>
         <textarea
-          type="text"
           readOnly>https://github.com/codemakeracademy/weekly-team-report-html
         </textarea>
-          <button className={styles.copylink}>Copy Link</button>
+          <button>Copy Link</button>
         </div>
       </section>
     </div>
