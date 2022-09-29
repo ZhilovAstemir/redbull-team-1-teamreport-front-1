@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styles from "./MyReports.module.css"
 
 const MyReports = () => {
@@ -25,4 +25,4 @@ const MyReports = () => {
     );
 };
 
-export default MyReports;
+export default memo(MyReports);

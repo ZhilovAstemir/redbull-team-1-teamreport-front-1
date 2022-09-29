@@ -7,6 +7,7 @@ import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import {useAppDispatch} from "../../redux/hooks";
 import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
+import InviteTeamMember from "../InviteTeamMember/InviteTeamMember";
 
 const AsideBar = () => {
   const dispatch = useAppDispatch();
@@ -69,6 +70,7 @@ const AsideBar = () => {
       {/*<MyCompany />*/}
       {/*<TeamMembers />*/}
       <EditTeamInfo />
+      {/*<InviteTeamMember />*/}
     </>
   );
 };

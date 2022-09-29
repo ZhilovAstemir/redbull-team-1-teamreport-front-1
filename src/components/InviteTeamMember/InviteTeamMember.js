@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {memo, useState} from "react";
 import { useForm } from "react-hook-form";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
@@ -158,4 +158,4 @@ const InviteTeamMember = () => {
   );
 };
 
-export default InviteTeamMember;
+export default memo(InviteTeamMember);
