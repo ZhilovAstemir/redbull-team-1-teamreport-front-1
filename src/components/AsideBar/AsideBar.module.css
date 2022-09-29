@@ -78,6 +78,8 @@
   height: 35px;
   cursor: pointer;
   gap: 5px;
+  padding: 0 10px;
+  font-size: 15px;
 }
 
 .feed_btn:hover {
