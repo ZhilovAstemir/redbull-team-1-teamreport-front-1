@@ -6,7 +6,6 @@ import mobile from "../../images/mobile.png";
 import laptop from "../../images/laptop.png";
 
 const LaunchGuide = () => {
-  console.log('render launch');
   return (
     <div className={styles.launchGuide_container}>
       <div className={styles.flex}>

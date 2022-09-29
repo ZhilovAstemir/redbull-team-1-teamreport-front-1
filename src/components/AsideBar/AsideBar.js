@@ -4,23 +4,25 @@ import logo from "../../images/main_logo.png";
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import LaunchGuide from "../LaunchGuide/LaunchGuide";
-import MyCompany from "../MyCompany/MyCompany";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import {useAppDispatch} from "../../redux/hooks";
+import TeamMembers from "../TeamMembers/TeamMembers";
 
 const AsideBar = () => {
-  const [isGuideOpen, setIsGuideOpen] = useState(true);
+  const dispatch = useAppDispatch();
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
 
-  useEffect(()=> {
-    function enableGuidStatus(prevState) {
-      setIsGuideOpen((prevState => !prevState))
-    }
-  },
+  function enableGuidStatus() {
+    setIsGuideOpen(true)
+  }
+
+  useEffect(() => {
+      enableGuidStatus();
+    },
     [isGuideOpen]
   );
 
   console.log(isGuideOpen);
-  console.log("render");
 
   return (
     <>
@@ -28,7 +30,7 @@ const AsideBar = () => {
         <img className={styles.logo} src={logo} alt="logo"/>
         <section className={styles.menu}>
           <div className={styles.first_menu}>
-            <a href="">
+            <a onClick={enableGuidStatus} href="">
               <button>Launch Guide</button>
             </a>
             <a href="">
@@ -63,8 +65,9 @@ const AsideBar = () => {
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
       <HeaderForGuide/>
-      <LaunchGuide/>
+      {/*<LaunchGuide/>*/}
       {/*<MyCompany />*/}
+      <TeamMembers />
     </>
   );
 };
