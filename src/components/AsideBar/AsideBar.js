@@ -67,7 +67,7 @@ const AsideBar = () => {
       <HeaderForGuide/>
       {/*<LaunchGuide/>*/}
       {/*<MyCompany />*/}
-      {/*<TeamMembers />*/}
+      <TeamMembers />
     </>
   );
 };
