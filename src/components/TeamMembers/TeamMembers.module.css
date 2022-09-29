@@ -6,7 +6,7 @@
   height: 100%;
   margin-left: 280px;
   box-sizing: border-box;
-  background: #cacaca;
+  background: #F5F7F8;
   padding: 50px 120px;
   flex-direction: column;
 }
@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  gap: 5px;
 }
 
 .circle {
@@ -57,7 +58,7 @@
   padding: 10px 35px;
   border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 10px 1px #9a9a9a;
+  box-shadow: 1px 1px 10px 1px #d6d6d6;
 }
 
 .members_flex_little {
