@@ -1,0 +1,78 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  background: #f5f7f8;
+  height: 100vh;
+}
+
+header {
+  width: 100%;
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+  background: #333a3d;
+  padding: 50px;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 20px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 5px 6px 0 #e3e6e7;
+}
+
+.card__header {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card__text {
+  margin-bottom: 20px;
+}
+
+.card__button {
+  background: #fad114;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 10px 15px;
+  width: max-content;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__inputLabel {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+input {
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #b5bdc1;
+}
+
+.card__validationMessage {
+  color: #ff3232;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
