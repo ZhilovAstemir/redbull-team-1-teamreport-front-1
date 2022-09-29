@@ -1,0 +1,101 @@
+.myCompany_container {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 280px;
+  box-sizing: border-box;
+  background: #F5F7F8;
+  padding: 40px 120px;
+}
+
+.myCompany_div {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.second_flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.second_flex > h3 {
+  margin-bottom: 0;
+}
+
+form input {
+  width: 450px;
+  height: 25px;
+  padding: 5px 10px;
+  border: 1px solid grey;
+  outline: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+hr {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+label {
+  font-weight: bold;
+}
+
+form input {
+  display: flex;
+  flex-direction: column;
+}
+
+form > button {
+  cursor: pointer;
+  height: 35px;
+  padding: 0 15px;
+  font-weight: bold;
+  background: #fff;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+form > input:hover {
+  border: 1px solid #f4db5a;
+}
+
+.third_flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.third_flex > h3 {
+  margin-bottom: 0;
+}
+
+.third_flex > hr {
+  margin-top: 0;
+}
+
+.third_flex > a > button {
+  cursor: pointer;
+  height: 35px;
+  padding: 0 15px;
+  font-weight: bold;
+  background: #fff;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #F5F7F8;
+}
+
+.third_flex > a > button:hover {
+  background: #F5F7F8;
+}
+
+
+
+
+
+

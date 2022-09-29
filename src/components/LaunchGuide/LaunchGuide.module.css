@@ -1,0 +1,69 @@
+.launchGuide_container {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 280px;
+  box-sizing: border-box;
+  background: #F5F7F8;
+  padding: 80px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invite {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invite_flex {
+  width: 550px;
+}
+
+.invite p {
+  width: 380px;
+  font-size: 16px;
+}
+
+.invite a > button {
+  padding: 10px;
+  background: #F8D214;
+  border: none;
+  border-radius:5px;
+  font-weight: bold;
+}
+
+.invite a > button:hover {
+  background: #f4db5a;
+  cursor: pointer;
+}
+
+.encourage {
+  display: flex;
+  align-content: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.encourage_flex {
+  width: 450px;
+  margin-left: 120px;
+}
+
+.encourage p {
+  width: 380px;
+  font-size: 16px;
+}
+
+
+
