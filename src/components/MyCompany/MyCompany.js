@@ -1,17 +1,9 @@
 import React, {memo} from 'react';
 import styles from "./MyCompany.module.css";
-import {useForm} from "react-hook-form";
+import {Routes, Route, Link} from "react-router-dom";
+import TeamMembers from "../TeamMembers/TeamMembers";
 
 const MyCompany = () => {
-
-  const {handleSubmit, control, reset} = useForm({
-    defaultValues: {
-      checkbox: false,
-    }
-  });
-
-  const onSubmit = data => console.log(data);
-
   return (
     <div className={styles.myCompany_container}>
       <div className={styles.myCompany_div}>
@@ -41,11 +33,14 @@ const MyCompany = () => {
             visit their profile to
             make edits. <strong>You will not be able to see a team member's weekly report.</strong>
           </p>
-          <a href="">
+          <Link to="/all_member">
             <button>See All Team Members</button>
-          </a>
+          </Link>
         </section>
       </div>
+      <Routes>
+        <Route path="/all_member" element={<TeamMembers />}/>
+      </Routes>
     </div>
   );
 };

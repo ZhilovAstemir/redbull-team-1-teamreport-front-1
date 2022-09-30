@@ -6,6 +6,3 @@ export const store = configureStore({
     main,
   },
 });
-
-export let AppDispatch = typeof store.dispatch;
-export let RootState = typeof store.getState;
