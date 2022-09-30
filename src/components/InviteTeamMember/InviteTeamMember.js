@@ -1,23 +1,23 @@
 import React, {memo, useState} from "react";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import styles from "./InviteTeamMember.module.css";
-import { styled } from "@mui/material";
-import { ArrowForwardRounded } from "@mui/icons-material";
+import {styled} from "@mui/material";
+import {ArrowForwardRounded} from "@mui/icons-material";
 
 const InviteTeamMember = () => {
   const {
     register,
-    formState: { errors },
+    formState: {errors},
     handleSubmit,
   } = useForm();
 
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
-  ))(({ theme }) => ({
+  ))(({theme}) => ({
     width: "50%",
     margin: "0 auto",
     border: "none",
@@ -31,10 +31,10 @@ const InviteTeamMember = () => {
 
   const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
-      expandIcon={<ArrowForwardRounded sx={{ fontSize: "1rem" }} />}
+      expandIcon={<ArrowForwardRounded sx={{fontSize: "1rem"}}/>}
       {...props}
     />
-  ))(({ theme }) => ({
+  ))(({theme}) => ({
     backgroundColor: "#f5f7f8",
     color: "#000000",
     flexDirection: "row-reverse",
@@ -46,7 +46,7 @@ const InviteTeamMember = () => {
     },
   }));
 
-  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
     padding: theme.spacing(2),
     borderTop: "none",
     background: "#f5f7f8",
@@ -84,7 +84,6 @@ const InviteTeamMember = () => {
 
   return (
     <div className={styles.content}>
-      <header>Invite Your Team</header>
       <div className={styles.container}>
         {isInviteSuccessful && (
           <div>
@@ -98,7 +97,7 @@ const InviteTeamMember = () => {
                 their reports.
               </div>
             </div>
-            <CustomizedAccordion />
+            <CustomizedAccordion/>
           </div>
         )}
         <div className={styles.card}>
@@ -111,7 +110,7 @@ const InviteTeamMember = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <label className={styles.card__inputLabel}>First Name</label>
             <input
-              {...register("firstName", { required: "Firstname is required" })}
+              {...register("firstName", {required: "Firstname is required"})}
               aria-invalid={errors.firstName ? "true" : "false"}
             />
             {errors.firstName?.type === "required" && (
@@ -121,7 +120,7 @@ const InviteTeamMember = () => {
             )}
             <label className={styles.card__inputLabel}>Last Name</label>
             <input
-              {...register("lastname", { required: "Lastname is required" })}
+              {...register("lastname", {required: "Lastname is required"})}
               aria-invalid={errors.lastname ? "true" : "false"}
             />
             {errors.lastname?.type === "required" && (

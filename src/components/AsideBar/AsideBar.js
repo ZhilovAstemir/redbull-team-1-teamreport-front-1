@@ -1,29 +1,19 @@
-import {memo, useEffect, useState} from "react";
+import {memo} from "react";
 import styles from './AsideBar.module.css';
 import logo from "../../images/main_logo.png";
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import {useAppDispatch} from "../../redux/hooks";
-import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
+import {Route, Routes} from "react-router-dom";
+import LaunchGuide from "../LaunchGuide/LaunchGuide";
 import InviteTeamMember from "../InviteTeamMember/InviteTeamMember";
+import MyCompany from "../MyCompany/MyCompany";
+import MyReports from "../MyReports/MyReports";
+import TeamMembers from "../TeamMembers/TeamMembers";
+import {Link} from "react-router-dom";
 
 const AsideBar = () => {
-  const dispatch = useAppDispatch();
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-
-  function enableGuidStatus() {
-    setIsGuideOpen(true)
-  }
-
-  useEffect(() => {
-      enableGuidStatus();
-    },
-    [isGuideOpen]
-  );
-
-  console.log(isGuideOpen);
 
   return (
     <>
@@ -31,46 +21,49 @@ const AsideBar = () => {
         <img className={styles.logo} src={logo} alt="logo"/>
         <section className={styles.menu}>
           <div className={styles.first_menu}>
-            <a onClick={enableGuidStatus} href="">
+            <Link to="/lauch">
               <button>Launch Guide</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/invite_member">
               <button>Invite Your Team</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/team_report">
               <button>Team Reports</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/my_reports">
               <button>My Reports</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/fill_out_report">
               <button>Fill out a Report</button>
-            </a>
+            </Link>
           </div>
           <div className={styles.second_menu}>
-            <a href="">
+            <Link to="">
               <button>Back to Elite</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/my_company">
               <button>My Company</button>
-            </a>
-            <a className={styles.profile} href="">
+            </Link>
+            <Link className={styles.profile} href="">
               <button><SettingsIcon/> My Profile</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="">
               <button><LogoutIcon/>Sign In</button>
-            </a>
+            </Link>
           </div>
         </section>
         <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
       <HeaderForGuide/>
-      {/*<LaunchGuide/>*/}
-      {/*<MyCompany />*/}
-      {/*<TeamMembers />*/}
-      <EditTeamInfo />
-      {/*<InviteTeamMember />*/}
+      <Routes>
+        <Route path="/lauch" element={<LaunchGuide/>}/>
+        <Route path="/invite_member" element={<InviteTeamMember/>}/>
+        <Route path="/team_report" element={<TeamMembers/>}/>
+        <Route path="/my_reports" element={<MyReports/>}/>
+        <Route path="/fill_out_report" element={<TeamMembers/>}/>
+        <Route path="/my_company" element={<MyCompany/>}/>
+      </Routes>
     </>
   );
 };

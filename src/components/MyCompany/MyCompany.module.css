@@ -25,6 +25,11 @@
   margin-bottom: 0;
 }
 
+
+.second_flex > form > button {
+  width: 200px;
+}
+
 form input {
   width: 450px;
   height: 25px;
