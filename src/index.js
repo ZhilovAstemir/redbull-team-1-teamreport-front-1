@@ -4,11 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-import {store} from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
+import {createStore} from "@reduxjs/toolkit";
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+const reducers = (state, action) => {
+
+  if(action.type === "TITLE") {
+    return {
+      ...state,
+      title: "newTitle",
+    }
+  }
+
+  return {
+    title: "ANKO Technologies Corp",
+  }
+}
+const store = createStore(reducers);
+
 
 root.render(
   // <React.StrictMode>

@@ -19,8 +19,6 @@ const AsideBar = () => {
   const [isInviteYourTeam, setIsInviteYourTeam] = useState(false);
   const [isMyReports, setIsMyReports] = useState(false);
 
-  console.log("render");
-
   const openLaunchGuide = useCallback(
     () => {
       setIsLaunchGuide(true);

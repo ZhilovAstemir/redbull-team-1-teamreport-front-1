@@ -1,9 +1,16 @@
 import React, {memo} from 'react';
 import styles from "./MyCompany.module.css";
-import {Routes, Route, Link} from "react-router-dom";
-import TeamMembers from "../TeamMembers/TeamMembers";
+import {connect} from "react-redux";
 
-const MyCompany = () => {
+const MyCompany = (props) => {
+  function handleEntailmentRequest(e) {
+    e.preventDefault();
+  }
+
+  const getTitle = (e) => {
+    props.title = e.target.value
+  }
+
   return (
     <div className={styles.myCompany_container}>
       <div className={styles.myCompany_div}>
@@ -18,11 +25,11 @@ const MyCompany = () => {
         </section>
         <section className={styles.second_flex}>
           <h3>RENAME ANKO TECHNOLOGIES CORP</h3>
-          <form action="">
+          <form action="" onClick={(e) => handleEntailmentRequest(e)}>
             <hr/>
             <label>Change company name</label>
-            <input type="text"/>
-            <button>Save name change</button>
+            <input onChange={getTitle} type="text"/>
+            <button onClick={props.changeTitle}>Save name change</button>
           </form>
         </section>
         <section className={styles.third_flex}>
@@ -33,16 +40,17 @@ const MyCompany = () => {
             visit their profile to
             make edits. <strong>You will not be able to see a team member's weekly report.</strong>
           </p>
-          <Link to="/all_member">
+          <a>
             <button>See All Team Members</button>
-          </Link>
+          </a>
         </section>
       </div>
-      <Routes>
-        <Route path="/all_member" element={<TeamMembers />}/>
-      </Routes>
     </div>
   );
 };
 
-export default memo(MyCompany);
+const mapDispatchToProps = (dispatch) => ({
+  changeTitle: () => dispatch({type: "TITLE"}),
+})
+
+export default connect(null, mapDispatchToProps)(memo(MyCompany));
