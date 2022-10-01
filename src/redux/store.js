@@ -5,3 +5,9 @@
 //     title: "ANKO Technologies Corp",
 //   },
 // });
+
+// actions
+
+// export const getTitle = (event) => {
+//   return event.target.value;
+// }

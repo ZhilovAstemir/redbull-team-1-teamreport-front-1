@@ -125,12 +125,10 @@ const AsideBar = (props) => {
         <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
-      <HeaderForGuide/>
       {props.isLaunchGuide && <LaunchGuide />}
       {props.isMyCompany && <MyCompany />}
       {props.isInviteYourTeam && <InviteTeamMember />}
       {props.isMyReports && <MyReports />}
-      <CompanyRegistration />
       {/*{isLaunchGuide && <LaunchGuide/>}*/}
       {/*{isMyCompany && <MyCompany/>}*/}
       {/*{isInviteYourTeam && <InviteTeamMember/>}*/}
