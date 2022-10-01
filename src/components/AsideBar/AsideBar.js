@@ -5,60 +5,62 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import {Link, Route, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
 import LaunchGuide from "../LaunchGuide/LaunchGuide";
 import InviteTeamMember from "../InviteTeamMember/InviteTeamMember";
 import MyCompany from "../MyCompany/MyCompany";
 import MyReports from "../MyReports/MyReports";
-import TeamMembers from "../TeamMembers/TeamMembers";
-import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
+import {connect} from "react-redux";
+import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
+import {mapDispatchToPropsFactory} from "react-redux/es/connect/mapDispatchToProps";
+import CompanyRegistration from "../CompanyRegistration/CompanyRegistration";
 
-const AsideBar = () => {
-  const [isLaunchGuide, setIsLaunchGuide] = useState(true);
-  const [isMyCompany, setIsMyCompany] = useState(false);
-  const [isInviteYourTeam, setIsInviteYourTeam] = useState(false);
-  const [isMyReports, setIsMyReports] = useState(false);
-
-  const openLaunchGuide = useCallback(
-    () => {
-      setIsLaunchGuide(true);
-      setIsMyCompany(false);
-      setIsInviteYourTeam(false)
-      setIsMyReports(false);
-    },
-    [],
-  );
-
-  const openMyCompany = useCallback(
-    () => {
-      setIsMyCompany(true);
-      setIsLaunchGuide(false);
-      setIsInviteYourTeam(false)
-      setIsMyReports(false);
-    },
-    [],
-  );
-
-  const openInviteYourTeam = useCallback(
-    () => {
-      setIsInviteYourTeam(true);
-      setIsMyCompany(false);
-      setIsLaunchGuide(false);
-      setIsMyReports(false);
-    },
-    [],
-  );
-
-  const openMyReports = useCallback(
-    () => {
-      setIsInviteYourTeam(false);
-      setIsMyCompany(false);
-      setIsLaunchGuide(false);
-      setIsMyReports(true);
-    },
-    [],
-  );
-
+const AsideBar = (props) => {
+  // const [isLaunchGuide, setIsLaunchGuide] = useState(true);
+  // const [isMyCompany, setIsMyCompany] = useState(false);
+  // const [isInviteYourTeam, setIsInviteYourTeam] = useState(false);
+  // const [isMyReports, setIsMyReports] = useState(false);
+  //
+  // const openLaunchGuide = useCallback(
+  //   () => {
+  //     setIsLaunchGuide(true);
+  //     setIsMyCompany(false);
+  //     setIsInviteYourTeam(false)
+  //     setIsMyReports(false);
+  //   },
+  //   [],
+  // );
+  //
+  // const openMyCompany = useCallback(
+  //   () => {
+  //     setIsMyCompany(true);
+  //     setIsLaunchGuide(false);
+  //     setIsInviteYourTeam(false)
+  //     setIsMyReports(false);
+  //   },
+  //   [],
+  // );
+  //
+  // const openInviteYourTeam = useCallback(
+  //   () => {
+  //     setIsInviteYourTeam(true);
+  //     setIsMyCompany(false);
+  //     setIsLaunchGuide(false);
+  //     setIsMyReports(false);
+  //   },
+  //   [],
+  // );
+  //
+  // const openMyReports = useCallback(
+  //   () => {
+  //     setIsInviteYourTeam(false);
+  //     setIsMyCompany(false);
+  //     setIsLaunchGuide(false);
+  //     setIsMyReports(true);
+  //   },
+  //   [],
+  // );
+  console.log(props.isLaunchGuide);
   return (
     <>
       <div className={styles.asideBar_container}>
@@ -66,17 +68,20 @@ const AsideBar = () => {
           className={styles.logo}
           src={logo}
           alt="logo"
-          onClick={openLaunchGuide}
+          // onClick={openLaunchGuide}
+          onClick={props.openLaunchGuide}
         />
         <section className={styles.menu}>
           <div className={styles.first_menu}>
             <Link
-              onClick={openLaunchGuide}
+              // onClick={openLaunchGuide}
+              onClick={props.openLaunchGuide}
               to="/">
               <button>Launch Guide</button>
             </Link>
             <Link
-              onClick={openInviteYourTeam}
+              // onClick={openInviteYourTeam}
+              onClick={props.openInviteYourTeam}
               to="/invite_member">
               <button>Invite Your Team</button>
             </Link>
@@ -85,7 +90,8 @@ const AsideBar = () => {
               <button>Team Reports</button>
             </Link>
             <Link
-              onClick={openMyReports}
+              // onClick={openMyReports}
+              onClick={props.openMyReports}
               to="/my_reports">
               <button>My Reports</button>
             </Link>
@@ -100,7 +106,8 @@ const AsideBar = () => {
               <button>Back to Elite</button>
             </Link>
             <Link
-              onClick={openMyCompany}
+              // onClick={openMyCompany}
+              onClick={props.openMyCompany}
               to="/my_company">
               <button>My Company</button>
             </Link>
@@ -119,10 +126,15 @@ const AsideBar = () => {
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
       <HeaderForGuide/>
-      {isLaunchGuide && <LaunchGuide/>}
-      {isMyCompany && <MyCompany/>}
-      {isInviteYourTeam && <InviteTeamMember/>}
-      {isMyReports && <MyReports/>}
+      {props.isLaunchGuide && <LaunchGuide />}
+      {props.isMyCompany && <MyCompany />}
+      {props.isInviteYourTeam && <InviteTeamMember />}
+      {props.isMyReports && <MyReports />}
+      <CompanyRegistration />
+      {/*{isLaunchGuide && <LaunchGuide/>}*/}
+      {/*{isMyCompany && <MyCompany/>}*/}
+      {/*{isInviteYourTeam && <InviteTeamMember/>}*/}
+      {/*{isMyReports && <MyReports/>}*/}
       {/*<Routes>*/}
       {/*  <Route path="/" element={<LaunchGuide/>}/>*/}
       {/*  <Route path="/invite_member" element={<InviteTeamMember/>}/>*/}
@@ -136,4 +148,18 @@ const AsideBar = () => {
   );
 };
 
-export default memo(AsideBar);
+const mapStateToProps = (state) => ({
+  isLaunchGuide: state.isLaunchGuide,
+  isMyCompany: state.isMyCompany,
+  isInviteYourTeam: state.isInviteYourTeam,
+  isMyReports: state.isMyReports,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  openLaunchGuide: () => dispatch({type: "LAUNCH_GUIDE"}),
+  openMyCompany: () => dispatch({type: "MY_COMPANY"}),
+  openInviteYourTeam: () => dispatch({type: "INVITE_TEAM"}),
+  openMyReports: () => dispatch({type: "MY_REPORTS"}),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));
