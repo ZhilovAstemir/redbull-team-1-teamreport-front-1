@@ -1,11 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
-import main from './models/main';
+// import {configureStore} from '@reduxjs/toolkit';
+//
+// export const store = configureStore({
+//   reducer: {
+//     title: "ANKO Technologies Corp",
+//   },
+// });
 
-export const store = configureStore({
-  reducer: {
-    main,
-  },
-});
+// actions
 
-export let AppDispatch = typeof store.dispatch;
-export let RootState = typeof store.getState;
+// export const getTitle = (event) => {
+//   return event.target.value;
+// }

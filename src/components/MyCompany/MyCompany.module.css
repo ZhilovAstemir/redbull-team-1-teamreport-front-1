@@ -25,6 +25,16 @@
   margin-bottom: 0;
 }
 
+.second_flex > form > button {
+  width: 200px;
+}
+
+.card__validationMessage {
+  color: #ff3232;
+  font-size: 14px;
+  margin: 5px 0 0 0;
+}
+
 form input {
   width: 450px;
   height: 25px;

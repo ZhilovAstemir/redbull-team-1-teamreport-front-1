@@ -1,76 +1,107 @@
-import {memo, useEffect, useState} from "react";
+import {memo} from "react";
 import styles from './AsideBar.module.css';
 import logo from "../../images/main_logo.png";
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
-import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import {useAppDispatch} from "../../redux/hooks";
-import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
+import {Link} from "react-router-dom";
+import LaunchGuide from "../LaunchGuide/LaunchGuide";
+import InviteTeamMember from "../InviteTeamMember/InviteTeamMember";
+import MyCompany from "../MyCompany/MyCompany";
+import MyReports from "../MyReports/MyReports";
+import {connect} from "react-redux";
+import FillOutReport from "../FillOutReport/FillOutReport";
 
-const AsideBar = () => {
-  const dispatch = useAppDispatch();
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-
-  function enableGuidStatus() {
-    setIsGuideOpen(true)
-  }
-
-  useEffect(() => {
-      enableGuidStatus();
-    },
-    [isGuideOpen]
-  );
-
-  console.log(isGuideOpen);
+const AsideBar = (props) => {
 
   return (
     <>
       <div className={styles.asideBar_container}>
-        <img className={styles.logo} src={logo} alt="logo"/>
+        <img
+          className={styles.logo}
+          src={logo}
+          alt="logo"
+          onClick={props.openLaunchGuide}
+        />
         <section className={styles.menu}>
           <div className={styles.first_menu}>
-            <a onClick={enableGuidStatus} href="">
+            <Link
+              onClick={props.openLaunchGuide}
+              to="/">
               <button>Launch Guide</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link
+              onClick={props.openInviteYourTeam}
+              to="/invite_member">
               <button>Invite Your Team</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link
+              to="/team_report">
               <button>Team Reports</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link
+              onClick={props.openMyReports}
+              to="/my_reports">
               <button>My Reports</button>
-            </a>
-            <a href="">
-              <button>Fill out a Report</button>
-            </a>
+            </Link>
+            <Link
+              className={styles.fill_out_report_btn}
+              to="/fill_out_report">
+              <button
+                onClick={props.openFillOutReport}
+                className={styles.fill_out_report_btn}
+              >
+                Fill out a Report
+              </button>
+            </Link>
           </div>
           <div className={styles.second_menu}>
-            <a href="">
+            <Link
+              to="">
               <button>Back to Elite</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link
+              onClick={props.openMyCompany}
+              to="/my_company">
               <button>My Company</button>
-            </a>
-            <a className={styles.profile} href="">
+            </Link>
+            <Link
+              className={styles.profile}
+              to="/my_profile">
               <button><SettingsIcon/> My Profile</button>
-            </a>
-            <a href="">
+            </Link>
+            <Link
+              to="">
               <button><LogoutIcon/>Sign In</button>
-            </a>
+            </Link>
           </div>
         </section>
         <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
-      <HeaderForGuide/>
-      {/*<LaunchGuide/>*/}
-      {/*<MyCompany />*/}
-      {/*<TeamMembers />*/}
-      <EditTeamInfo />
+      {props.isLaunchGuide && <LaunchGuide />}
+      {props.isMyCompany && <MyCompany />}
+      {props.isInviteYourTeam && <InviteTeamMember />}
+      {props.isMyReports && <MyReports />}
+      {props.isFillOutReport && <FillOutReport />}
     </>
   );
 };
 
-export default memo(AsideBar);
+const mapStateToProps = (state) => ({
+  isLaunchGuide: state.isLaunchGuide,
+  isMyCompany: state.isMyCompany,
+  isInviteYourTeam: state.isInviteYourTeam,
+  isMyReports: state.isMyReports,
+  isFillOutReport: state.isFillOutReport,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  openLaunchGuide: () => dispatch({type: "LAUNCH_GUIDE"}),
+  openMyCompany: () => dispatch({type: "MY_COMPANY"}),
+  openInviteYourTeam: () => dispatch({type: "INVITE_TEAM"}),
+  openMyReports: () => dispatch({type: "MY_REPORTS"}),
+  openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));
