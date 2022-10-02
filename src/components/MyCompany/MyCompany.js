@@ -1,9 +1,9 @@
 import React, {memo} from 'react';
 import styles from "./MyCompany.module.css";
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import {useDispatch, useSelector} from "react-redux";
 import {updateTitle} from "../../redux/actions";
+import {store} from "../../index";
 
 const MyCompany = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const MyCompany = (props) => {
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }
-
+  console.log(store);
   return (
     <>
       <HeaderForGuide/>
@@ -44,8 +44,11 @@ const MyCompany = (props) => {
               visit their profile to
               make edits. <strong>You will not be able to see a team member's weekly report.</strong>
             </p>
-            <a>
-              <button>See All Team Members</button>
+            <a onClick={(e) => handleEntailmentRequest(e)}>
+              <button
+                // onClick={props.openTeamMembers}
+              >See All Team Members
+              </button>
             </a>
           </section>
         </div>
@@ -55,7 +58,8 @@ const MyCompany = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  changeTitle: () => dispatch({type: "CHANGE_TITLE"})
+  changeTitle: () => dispatch({type: "CHANGE_TITLE"}),
+  // openTeamMembers: () => dispatch({type: "TEAM_MEMBERS"})
 })
 
 export default connect(null, mapDispatchToProps)(memo(MyCompany));

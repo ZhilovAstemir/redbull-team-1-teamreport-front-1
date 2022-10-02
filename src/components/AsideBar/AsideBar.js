@@ -11,6 +11,7 @@ import MyCompany from "../MyCompany/MyCompany";
 import MyReports from "../MyReports/MyReports";
 import {connect} from "react-redux";
 import FillOutReport from "../FillOutReport/FillOutReport";
+import TeamMembers from "../TeamMembers/TeamMembers";
 
 const AsideBar = (props) => {
 
@@ -71,7 +72,7 @@ const AsideBar = (props) => {
               <button><SettingsIcon/> My Profile</button>
             </Link>
             <Link
-              to="">
+              to="/sign_in">
               <button><LogoutIcon/>Sign In</button>
             </Link>
           </div>
@@ -79,11 +80,12 @@ const AsideBar = (props) => {
         <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
-      {props.isLaunchGuide && <LaunchGuide />}
-      {props.isMyCompany && <MyCompany />}
-      {props.isInviteYourTeam && <InviteTeamMember />}
-      {props.isMyReports && <MyReports />}
-      {props.isFillOutReport && <FillOutReport />}
+      {props.isLaunchGuide && <LaunchGuide/>}
+      {props.isMyCompany && <MyCompany/>}
+      {props.isInviteYourTeam && <InviteTeamMember/>}
+      {props.isMyReports && <MyReports/>}
+      {props.isFillOutReport && <FillOutReport/>}
+      {props.isTeamMembers && <TeamMembers />}
     </>
   );
 };
@@ -94,6 +96,7 @@ const mapStateToProps = (state) => ({
   isInviteYourTeam: state.isInviteYourTeam,
   isMyReports: state.isMyReports,
   isFillOutReport: state.isFillOutReport,
+  isTeamMembers: state.isTeamMembers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -101,7 +104,8 @@ const mapDispatchToProps = (dispatch) => ({
   openMyCompany: () => dispatch({type: "MY_COMPANY"}),
   openInviteYourTeam: () => dispatch({type: "INVITE_TEAM"}),
   openMyReports: () => dispatch({type: "MY_REPORTS"}),
-  openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"})
+  openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"}),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));

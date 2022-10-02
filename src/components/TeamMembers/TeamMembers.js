@@ -34,29 +34,32 @@ const members = [
 
 const TeamMembers = () => {
   return (
-    <div className={styles.teamMembers_container}>
-      <h2 className={styles.title}>TEAM MEMBERS</h2>
-      <div className={styles.hr}></div>
-      <section className={styles.members_box}>
-        {members.map((member) => (
-          <div className={styles.members_flex}>
-            <div className={styles.members_flex_little}>
-              <div
-                className={styles.circle}>
-                {member.name.split(" ")[0][0]}
-                {member.name.split(" ")[1][0]}
+    <>
+      <TeamMembers/>
+      <div className={styles.teamMembers_container}>
+        <h2 className={styles.title}>TEAM MEMBERS</h2>
+        <div className={styles.hr}></div>
+        <section className={styles.members_box}>
+          {members.map((member) => (
+            <div className={styles.members_flex}>
+              <div className={styles.members_flex_little}>
+                <div
+                  className={styles.circle}>
+                  {member.name.split(" ")[0][0]}
+                  {member.name.split(" ")[1][0]}
+                </div>
+                <div className={styles.members_div} key={member.id}>
+                  {member.name}
+                </div>
               </div>
-              <div className={styles.members_div} key={member.id}>
-                {member.name}
-              </div>
+              <a className={styles.btn_edit} href="">
+                <button>Edit</button>
+              </a>
             </div>
-            <a className={styles.btn_edit} href="">
-              <button>Edit</button>
-            </a>
-          </div>
-        ))}
-      </section>
-    </div>
+          ))}
+        </section>
+      </div>
+    </>
   );
 };
 
