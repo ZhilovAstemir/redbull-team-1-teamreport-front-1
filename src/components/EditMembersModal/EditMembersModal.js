@@ -15,7 +15,7 @@ const style = {
 };
 
 const EditMembersModal = ({props}) => {
-  console.log(props.open);
+
   return (
     <Modal
       open={props.open}

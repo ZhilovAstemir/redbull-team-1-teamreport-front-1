@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 
 const HeaderForGuide = (props) => {
-  console.log(props.title);
+
   return (
     <div className={styles.header}>
       <div>

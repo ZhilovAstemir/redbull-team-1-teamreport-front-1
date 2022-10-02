@@ -5,7 +5,6 @@ import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import {useDispatch, useSelector} from "react-redux";
 import {updateTitle} from "../../redux/actions";
 
-
 const MyCompany = (props) => {
   const dispatch = useDispatch();
   const {title} = useSelector((state) => state.title);
@@ -13,8 +12,6 @@ const MyCompany = (props) => {
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }
-
-  console.log(title);
 
   return (
     <>

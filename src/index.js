@@ -11,7 +11,6 @@ import thunk from "redux-thunk"
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-
 const store = createStore(reducers, applyMiddleware(thunk));
 
 root.render(
