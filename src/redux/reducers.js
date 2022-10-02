@@ -1,4 +1,4 @@
-import {getTitle} from "./store";
+const UPDATE_TITLE = "UPDATE_TITLE";
 
 export const reducers = (state, action) => {
 
@@ -13,6 +13,7 @@ export const reducers = (state, action) => {
     case "LAUNCH_GUIDE":
       return {
         ...state,
+        title: "Launch Guide",
         isLaunchGuide: true,
         isMyCompany: false,
         isInviteYourTeam: false,
@@ -21,6 +22,7 @@ export const reducers = (state, action) => {
     case "MY_COMPANY":
       return {
         ...state,
+        title: "ANKO Technologies Corp",
         isLaunchGuide: false,
         isMyCompany: true,
         isInviteYourTeam: false,
@@ -29,6 +31,7 @@ export const reducers = (state, action) => {
     case "INVITE_TEAM":
       return {
         ...state,
+        title: "Invite Your Team",
         isLaunchGuide: false,
         isMyCompany: false,
         isInviteYourTeam: true,
@@ -37,16 +40,19 @@ export const reducers = (state, action) => {
     case "MY_REPORTS":
       return {
         ...state,
+        title: "ANKO Technologies Corp",
         isLaunchGuide: false,
         isMyCompany: false,
         isInviteYourTeam: false,
         isMyReports: true,
       };
-    case "GET_TITLE":
-      // return {
-      //   ...state,
-      //   title:
-      // };
+    case UPDATE_TITLE || "CHANGE_TITLE":
+      const title = action.payload;
+      return {
+        ...state,
+        title: title,
+      }
+
   }
 
   return {

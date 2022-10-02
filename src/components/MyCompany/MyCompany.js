@@ -2,13 +2,19 @@ import React, {memo} from 'react';
 import styles from "./MyCompany.module.css";
 import {connect} from "react-redux";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateTitle} from "../../redux/actions";
+
 
 const MyCompany = (props) => {
   const dispatch = useDispatch();
+  const {title} = useSelector((state) => state.title);
+
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }
+
+  console.log(title);
 
   return (
     <>
@@ -29,7 +35,7 @@ const MyCompany = (props) => {
             <form action="" onClick={(e) => handleEntailmentRequest(e)}>
               <hr/>
               <label>Change company name</label>
-              <input type="text" onChange={(event) => props.getTitle(event)} />
+              <input type="text" onChange={(event) => dispatch(updateTitle(event.target.value))}/>
               <button onClick={props.changeTitle}>Save name change</button>
             </form>
           </section>
@@ -52,8 +58,7 @@ const MyCompany = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  changeTitle: () => dispatch({type: "TITLE"}),
-  getTitle: () => dispatch({type: "GET_TITLE"}),
+  changeTitle: () => dispatch({type: "CHANGE_TITLE"})
 })
 
 export default connect(null, mapDispatchToProps)(memo(MyCompany));
