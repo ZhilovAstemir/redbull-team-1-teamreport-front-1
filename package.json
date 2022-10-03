@@ -2,6 +2,7 @@
   "name": "redbull-team-1-teamreport-front",
   "version": "0.1.0",
   "private": true,
+
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -14,6 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
+    "enzyme": "^3.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.1",
@@ -22,6 +24,7 @@
     "react-router-dom": "^6.4.1",
     "react-router-redux": "^4.0.8",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
@@ -50,6 +53,11 @@
     ]
   },
   "devDependencies": {
-    "@mui/x-date-pickers": "^5.0.3"
+    "@babel/preset-env": "^7.19.3",
+    "@babel/preset-react": "^7.18.6",
+    "@mui/x-date-pickers": "^5.0.3",
+    "babel-jest": "^29.1.2",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
   }
 }

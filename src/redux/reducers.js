@@ -73,6 +73,7 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: true,
+        isTeamMembers: false,
       };
     case UPDATE_TITLE || "CHANGE_TITLE":
       const title = action.payload;

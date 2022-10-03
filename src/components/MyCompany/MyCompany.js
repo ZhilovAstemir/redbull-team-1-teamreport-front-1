@@ -3,7 +3,7 @@ import styles from "./MyCompany.module.css";
 import {connect, useDispatch, useSelector} from "react-redux";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import {updateTitle} from "../../redux/actions";
-import {store} from "../../index";
+import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
 
 const MyCompany = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const MyCompany = (props) => {
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }
-  console.log(store);
+
   return (
     <>
       <HeaderForGuide/>
@@ -46,8 +46,9 @@ const MyCompany = (props) => {
             </p>
             <a onClick={(e) => handleEntailmentRequest(e)}>
               <button
-                // onClick={props.openTeamMembers}
-              >See All Team Members
+                onClick={props.openTeamMembers}
+              >
+                See All Team Members
               </button>
             </a>
           </section>
@@ -59,7 +60,6 @@ const MyCompany = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   changeTitle: () => dispatch({type: "CHANGE_TITLE"}),
-  // openTeamMembers: () => dispatch({type: "TEAM_MEMBERS"})
 })
 
 export default connect(null, mapDispatchToProps)(memo(MyCompany));

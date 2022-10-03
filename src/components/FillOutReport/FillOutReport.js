@@ -11,8 +11,10 @@ import Box from '@mui/material/Box';
 import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DateRangePicker} from '@mui/x-date-pickers-pro';
+import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
+import {mapDispatchToPropsFactory} from "react-redux/es/connect/mapDispatchToProps";
 
-const FillOutReport = () => {
+const FillOutReport = (props) => {
   const [value, setValue] = React.useState([null, null]);
 
   return (
@@ -151,10 +153,12 @@ const FillOutReport = () => {
           <p className={styles.required}>All fields are required unless marked as optional.</p>
         </form>
         <input type="submit" value="Send Weekly Report" className={styles.sent_moral}/>
-
       </section>
     </div>
   );
 };
+
+
+
 
 export default memo(FillOutReport);

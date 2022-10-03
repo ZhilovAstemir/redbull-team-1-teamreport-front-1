@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import styles from "./TeamMembers.module.css";
+import EditMembersModal from "../EditMembersModal/EditMembersModal";
 
 const members = [
   {
@@ -32,7 +33,8 @@ const members = [
   },
 ]
 
-const TeamMembers = () => {
+const TeamMembers = (props) => {
+
   return (
     <>
       <TeamMembers/>
@@ -57,6 +59,7 @@ const TeamMembers = () => {
               </a>
             </div>
           ))}
+          <EditMembersModal />
         </section>
       </div>
     </>
