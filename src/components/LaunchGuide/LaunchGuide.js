@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styles from "./LaunchGuide.module.css";
 import circles from "../../images/circles.png";
 import profile from "../../images/profile.png";
 import mobile from "../../images/mobile.png";
 import laptop from "../../images/laptop.png";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
+import {connect} from "react-redux";
 
-const LaunchGuide = () => {
+const LaunchGuide = (props) => {
+  console.log(props.openInviteYourTeam);
+
+  function handleEntailmentRequest(e) {
+    e.preventDefault();
+  }
+
   return (
     <>
       <HeaderForGuide/>
@@ -18,8 +25,8 @@ const LaunchGuide = () => {
               <p>
                 Click on the link below and <strong>invite</strong> the team members who directly report to you.
               </p>
-              <a href="">
-                <button>Invite Your Team</button>
+              <a href="" onClick={(e) => handleEntailmentRequest(e)}>
+                <button onClick={props.openInviteYourTeam}>Invite Your Team</button>
               </a>
             </div>
             <img src={circles} alt="circles"/>
@@ -65,4 +72,9 @@ const LaunchGuide = () => {
   );
 };
 
-export default LaunchGuide;
+const mapDispatchToProps = (dispatch) => ({
+  openInviteYourTeam: () => dispatch({type: "INVITE_TEAM"}),
+});
+
+
+export default connect(null, mapDispatchToProps)(memo(LaunchGuide));
