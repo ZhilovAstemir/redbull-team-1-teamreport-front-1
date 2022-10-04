@@ -11,6 +11,7 @@ import MyCompany from "../MyCompany/MyCompany";
 import MyReports from "../MyReports/MyReports";
 import {connect} from "react-redux";
 import FillOutReport from "../FillOutReport/FillOutReport";
+import LogIn from "../LogIn/LogIn";
 
 const AsideBar = (props) => {
 
@@ -71,6 +72,7 @@ const AsideBar = (props) => {
               <button><SettingsIcon/> My Profile</button>
             </Link>
             <Link
+              onClick={props.openLogIn}
               to="">
               <button><LogoutIcon/>Sign In</button>
             </Link>
@@ -84,6 +86,7 @@ const AsideBar = (props) => {
       {props.isInviteYourTeam && <InviteTeamMember />}
       {props.isMyReports && <MyReports />}
       {props.isFillOutReport && <FillOutReport />}
+      {props.isLogIn && <LogIn />}
     </>
   );
 };
@@ -94,6 +97,7 @@ const mapStateToProps = (state) => ({
   isInviteYourTeam: state.isInviteYourTeam,
   isMyReports: state.isMyReports,
   isFillOutReport: state.isFillOutReport,
+  isLogIn: state.isLogIn
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -101,7 +105,8 @@ const mapDispatchToProps = (dispatch) => ({
   openMyCompany: () => dispatch({type: "MY_COMPANY"}),
   openInviteYourTeam: () => dispatch({type: "INVITE_TEAM"}),
   openMyReports: () => dispatch({type: "MY_REPORTS"}),
-  openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"})
+  openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"}),
+  openLogIn: () => dispatch({type: "LOG_IN"})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));
