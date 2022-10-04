@@ -19,6 +19,7 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: false,
+        isLogIn: false,
         isTeamMembers: false,
       };
     case "MY_COMPANY":
@@ -30,6 +31,7 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: false,
+        isLogIn: false,
         isTeamMembers: false,
       };
     case "INVITE_TEAM":
@@ -41,6 +43,7 @@ export const reducers = (state, action) => {
         isInviteYourTeam: true,
         isMyReports: false,
         isFillOutReport: false,
+        isLogIn: false,
         isTeamMembers: false,
       };
     case "MY_REPORTS":
@@ -52,6 +55,7 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: true,
         isFillOutReport: false,
+        isLogIn: false,
         isTeamMembers: false,
       };
     case "TEAM_MEMBERS":
@@ -64,6 +68,7 @@ export const reducers = (state, action) => {
         isMyReports: false,
         isFillOutReport: false,
         isTeamMembers: true,
+        isLogIn: false
       };
     case "FILL_OUT_REPORT":
       return {
@@ -73,6 +78,17 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: true,
+        isLogIn: false
+      };
+    case "LOG_IN":
+      return {
+        ...state,
+        isLaunchGuide: false,
+        isMyCompany: false,
+        isInviteYourTeam: false,
+        isMyReports: false,
+        isFillOutReport: false,
+        isLogIn: true,
         isTeamMembers: false,
       };
     case UPDATE_TITLE || "CHANGE_TITLE":
@@ -96,5 +112,6 @@ export const reducers = (state, action) => {
     isMyReports: false,
     isFillOutReport: false,
     isTeamMembers: false,
+    isLogIn: false
   }
 }

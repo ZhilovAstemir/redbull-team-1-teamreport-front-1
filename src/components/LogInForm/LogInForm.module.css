@@ -1,0 +1,26 @@
+.card__inputLabel {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.card__input {
+    font-size: 16px;
+    width: 345px;
+    margin: 5px 0;
+}
+
+.card__validationMessage {
+    font-size: 14px;
+    color: #ff3232;
+    margin: 5px 0;
+}
+
+.card__button {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    background: #fad114;
+    width: max-content;
+    border: 0;
+    height: max-content;
+}
