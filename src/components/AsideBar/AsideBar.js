@@ -10,6 +10,7 @@ import MyCompany from "../MyCompany/MyCompany";
 import MyReports from "../MyReports/MyReports";
 import {connect} from "react-redux";
 import FillOutReport from "../FillOutReport/FillOutReport";
+import LogIn from "../LogIn/LogIn";
 import TeamMembers from "../TeamMembers/TeamMembers";
 
 const AsideBar = (props) => {
@@ -58,7 +59,7 @@ const AsideBar = (props) => {
             <a className={styles.profile}>
               <button><SettingsIcon/> My Profile</button>
             </a>
-            <a>
+            <a onClick={props.openLogIn}>
               <button><LogoutIcon/>Sign In</button>
             </a>
           </div>
@@ -66,6 +67,12 @@ const AsideBar = (props) => {
         <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
+      {props.isLaunchGuide && <LaunchGuide />}
+      {props.isMyCompany && <MyCompany />}
+      {props.isInviteYourTeam && <InviteTeamMember />}
+      {props.isMyReports && <MyReports />}
+      {props.isFillOutReport && <FillOutReport />}
+      {props.isLogIn && <LogIn />}
       {props.isLaunchGuide && <LaunchGuide/>}
       {props.isMyCompany && <MyCompany/>}
       {props.isInviteYourTeam && <InviteTeamMember/>}
@@ -82,6 +89,7 @@ const mapStateToProps = (state) => ({
   isInviteYourTeam: state.isInviteYourTeam,
   isMyReports: state.isMyReports,
   isFillOutReport: state.isFillOutReport,
+  isLogIn: state.isLogIn,
   isTeamMembers: state.isTeamMembers,
 });
 
@@ -91,6 +99,7 @@ const mapDispatchToProps = (dispatch) => ({
   openInviteYourTeam: () => dispatch({type: "INVITE_TEAM"}),
   openMyReports: () => dispatch({type: "MY_REPORTS"}),
   openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"}),
+  openLogIn: () => dispatch({type: "LOG_IN"}),
   openTeamMembers: () => dispatch({type: "TEAM_MEMBERS"})
 });
 
