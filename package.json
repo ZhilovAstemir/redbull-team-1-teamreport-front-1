@@ -2,7 +2,6 @@
   "name": "redbull-team-1-teamreport-front",
   "version": "0.1.0",
   "private": true,
-
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@emotion/react": "^11.10.4",
@@ -14,10 +13,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.0.0",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
-    "prettier": "^2.7.1",
     "enzyme": "^3.11.0",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.1",
