@@ -53,7 +53,7 @@ const LogInForm = () => {
           </p>
         )}
 
-        <input className={styles.card__button} type="submit" value="Invite" />
+        <input className={styles.card__button} type="submit" value="Log In" />
       </form>
     </div>
   );
