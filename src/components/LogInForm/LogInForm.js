@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
+import api from "../../api/api";
 
 const LogInForm = () => {
   const {
@@ -9,7 +10,15 @@ const LogInForm = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    api.post('members/login', data)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  };
 
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
