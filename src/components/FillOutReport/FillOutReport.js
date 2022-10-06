@@ -130,7 +130,7 @@ const FillOutReport = (props) => {
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>Date range</h3>
         <form action="">
-          <label>Choose date</label>
+          <label className={styles.form__label}>Choose date</label>
           <LocalizationProvider
             className={styles.week_picker}
             dateAdapter={AdapterDayjs}

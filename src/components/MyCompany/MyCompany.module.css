@@ -35,7 +35,7 @@
   margin: 5px 0 0 0;
 }
 
-form input {
+.form__input {
   width: 450px;
   height: 25px;
   padding: 5px 10px;
@@ -50,16 +50,16 @@ hr {
   margin-bottom: 30px;
 }
 
-label {
+.label {
   font-weight: bold;
 }
 
-form input {
+.form__input {
   display: flex;
   flex-direction: column;
 }
 
-form > button {
+.form__button {
   cursor: pointer;
   height: 35px;
   padding: 0 15px;
@@ -69,7 +69,7 @@ form > button {
   border-radius: 5px;
 }
 
-form > input:hover {
+.form__input:hover {
   border: 1px solid #f4db5a;
 }
 
@@ -96,7 +96,7 @@ form > input:hover {
   border-radius: 5px;
 }
 
-button:hover {
+.form__button:hover {
   background: #F5F7F8;
 }
 

@@ -51,7 +51,7 @@ header {
   cursor: pointer;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
 }
@@ -62,7 +62,7 @@ form {
   margin-bottom: 5px;
 }
 
-input {
+.card__input {
   outline: none;
   font-size: 16px;
   padding: 5px;
