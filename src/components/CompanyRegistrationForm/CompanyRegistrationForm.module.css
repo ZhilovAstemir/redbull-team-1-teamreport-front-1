@@ -1,26 +1,53 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
 .form__inputLabel {
-    font-weight: bold;
-    font-size: 14px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form__group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input__group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  box-sizing: border-box;
 }
 
 .form__input {
-    font-size: 16px;
-    width: 345px;
-    margin: 5px 0;
+  font-size: 16px;
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .form__validationMessage {
-    font-size: 14px;
-    color: #ff3232;
-    margin: 5px 0;
+  font-size: 14px;
+  color: #ff3232;
+  margin: 5px 0;
+  box-sizing: border-box;
 }
 
 .form__button {
-    font-size: 14px;
-    font-weight: bold;
-    padding: 10px 15px;
-    background: #fad114;
-    width: max-content;
-    border: 0;
-    height: max-content;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  background: #fad114;
+  width: max-content;
+  border: 0;
+  height: max-content;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-top: 10px;
 }

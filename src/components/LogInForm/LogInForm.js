@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const LogInForm = () => {
   const {
@@ -9,15 +10,24 @@ const LogInForm = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    axios
+      .post("https://localhost:7030/api/members/login", {
+        email: data.email,
+        password: data.password,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const passwordRegexp = /^(?=.*?[A-Za-z])(?=.*?[#?!@$%^&*-]).{5,}$/;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <div className={styles.input__group}>
         <label className={styles.card__inputLabel}>Email</label>
         <input
           className={styles.card__input}
@@ -35,6 +45,8 @@ const LogInForm = () => {
             {errors.email?.message}
           </p>
         )}
+      </div>
+      <div className={styles.input__group}>
         <label className={styles.card__inputLabel}>Password</label>
         <input
           className={styles.card__input}
@@ -46,16 +58,16 @@ const LogInForm = () => {
             required: "Password is required",
           })}
           aria-invalid={errors.password ? "true" : "false"}
+          type="password"
         />
         {errors.password && (
           <p className={styles.card__validationMessage} role="alert">
             {errors.password?.message}
           </p>
         )}
-
-        <input className={styles.card__button} type="submit" value="Log In" />
-      </form>
-    </div>
+      </div>
+      <input className={styles.card__button} type="submit" value="Log In" />
+    </form>
   );
 };
 
