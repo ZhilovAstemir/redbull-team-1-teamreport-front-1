@@ -6,6 +6,10 @@
   position: fixed;
 }
 
+.container > * {
+  box-sizing: border-box;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -76,9 +80,9 @@
 
 .card_3d_wrap {
   position: relative;
-  width: 440px;
+  width: 480px;
   max-width: 100%;
-  height: 400px;
+  height: 450px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   perspective: 800px;
@@ -121,16 +125,15 @@
   position: absolute;
   width: 100%;
   padding: 0 35px;
-  top: 50%;
+  top: 46%;
   left: 0;
   transform: translate3d(0, -50%, 35px) perspective(100px);
   z-index: 20;
-  display: block;
+  box-sizing: border-box;
 }
 
 .form-group {
   position: relative;
-  display: block;
   margin: 0;
   padding: 0;
 }
