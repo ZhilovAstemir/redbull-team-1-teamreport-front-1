@@ -9,7 +9,7 @@ const LogIn = () => {
   return (
     <div className={styles.container}>
       <div className={styles.form}>
-        <h3 className="mb-0 pb-3">
+        <h3>
           <span>Log In&nbsp;&nbsp;&nbsp;</span>
           <span>Sign Up</span>
         </h3>
@@ -25,7 +25,7 @@ const LogIn = () => {
             <div className={styles.card_front}>
               <div className={styles.center_wrap}>
                 <div className={styles.section}>
-                  <h4 className="mb-4 pb-3 h4-sign">Log In</h4>
+                  <h4>Log In</h4>
                   <LogInForm />
                 </div>
               </div>
@@ -33,7 +33,7 @@ const LogIn = () => {
             <div className={styles.card_back}>
               <div className={styles.center_wrap}>
                 <div className={styles.section}>
-                  <h4 className="mb-4 pb-3 h4-sign">Sign Up</h4>
+                  <h4>Sign Up</h4>
                   <CompanyRegistration />
                 </div>
               </div>

@@ -116,7 +116,7 @@ header > p {
   margin: 0 auto;
 }
 
-form > label {
+.form__label {
   font-weight: 400;
   margin-bottom: 15px;
 }

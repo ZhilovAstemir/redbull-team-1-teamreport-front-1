@@ -110,11 +110,12 @@ const InviteTeamMember = () => {
             <div className={styles.card__text}>
               Don't worry! You'll be able to add more team members later.
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <label className={styles.card__inputLabel}>First Name</label>
               <input
                 {...register("firstName", {required: "Firstname is required"})}
                 aria-invalid={errors.firstName ? "true" : "false"}
+                className={styles.card__input}
               />
               {errors.firstName?.type === "required" && (
                 <p className={styles.card__validationMessage} role="alert">
@@ -125,6 +126,7 @@ const InviteTeamMember = () => {
               <input
                 {...register("lastname", {required: "Lastname is required"})}
                 aria-invalid={errors.lastname ? "true" : "false"}
+                className={styles.card__input}
               />
               {errors.lastname?.type === "required" && (
                 <p className={styles.card__validationMessage} role="alert">
@@ -133,18 +135,19 @@ const InviteTeamMember = () => {
               )}
               <label className={styles.card__inputLabel}>Email</label>
               <input
-                {...register("mail", {
+                {...register("email", {
                   pattern: {
                     value: emailRegexp,
                     message: "Email has invalid format",
                   },
                   required: "Email Address is required",
                 })}
-                aria-invalid={errors.mail ? "true" : "false"}
+                aria-invalid={errors.email ? "true" : "false"}
+                className={styles.card__input}
               />
               {errors.mail && (
                 <p className={styles.card__validationMessage} role="alert">
-                  {errors.mail?.message}
+                  {errors.email?.message}
                 </p>
               )}
 
