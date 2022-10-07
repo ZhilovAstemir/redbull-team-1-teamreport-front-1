@@ -9,26 +9,36 @@
     align-items: center;
 }
 
-.form__header {
+.card__header {
     font-weight: bold;
     font-size: 28px;
     margin-top: 45px;
     margin-bottom: 15px;
 }
 
-.form {
+.card {
     display: flex;
     flex-direction: column;
     background: #ffffff;
     box-shadow: 0 4px 5px 0 #e3e6e7;
     width: 450px;
+    height: 500px;
     border-radius: 4px;
     padding: 15px;
     box-sizing: border-box;
 }
 
-.form > form {
+.form {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input__group {
+    display: flex;
+    flex-direction: column;
 }
 
 .form__inputLabel {
@@ -42,14 +52,13 @@
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
-    margin-bottom: 10px;
     height: max-content;
 }
 
 .form__validationMessage {
     font-size: 14px;
     color: #ff3232;
-    margin: 5px 0;
+    margin: 0;
 }
 
 .form__button {
@@ -61,4 +70,6 @@
     border: 0;
     height: max-content;
     margin-bottom: 0;
+    border-radius: 4px;
+    cursor: pointer;
 }
