@@ -63,7 +63,7 @@ export const reducers = (state, action) => {
         ...state,
         title: "ANKO Technologies Corp",
         isLaunchGuide: false,
-        isMyCompany: false,
+        isMyCompany: true,
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: false,
