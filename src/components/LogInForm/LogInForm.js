@@ -2,8 +2,9 @@ import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import {connect} from "react-redux";
 
-const LogInForm = () => {
+const LogInForm = (props) => {
   const {
     register,
     formState: { errors },
@@ -67,8 +68,13 @@ const LogInForm = () => {
         )}
       </div>
       <input className={styles.card__button} type="submit" value="Log In" />
+      <button className={styles.back_btn} onClick={props.closeLoginPage}>Back</button>
     </form>
   );
 };
 
-export default memo(LogInForm);
+const mapDispatchToProps = (dispatch) => ({
+  closeLoginPage: () => dispatch({type: "CLOSE LOGIN"})
+})
+
+export default connect(null, mapDispatchToProps)(memo(LogInForm));

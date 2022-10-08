@@ -80,6 +80,12 @@ export const reducers = (state, action) => {
         isFillOutReport: true,
         isLogIn: false
       };
+    case "CLOSE LOGIN":
+      return {
+        ...state,
+        isLaunchGuide: true,
+        isLogIn: false,
+      };
     case "LOG_IN":
       return {
         ...state,
@@ -107,6 +113,6 @@ export const reducers = (state, action) => {
     isMyReports: false,
     isFillOutReport: false,
     isTeamMembers: false,
-    isLogIn: false
+    isLogIn: false,
   })
 }
