@@ -97,14 +97,9 @@ export const reducers = (state, action) => {
         ...state,
         title: title,
       };
-    default: {
-      return {
-        ...state,
-      }
-    }
   }
 
-  return {
+  return ({
     title: "ANKO Technologies Corp",
     isLaunchGuide: true,
     isMyCompany: false,
@@ -113,5 +108,5 @@ export const reducers = (state, action) => {
     isFillOutReport: false,
     isTeamMembers: false,
     isLogIn: false
-  }
+  })
 }
