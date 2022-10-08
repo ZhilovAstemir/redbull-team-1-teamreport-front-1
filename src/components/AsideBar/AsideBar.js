@@ -73,6 +73,7 @@ const AsideBar = (props) => {
       {props.isMyReports && <MyReports />}
       {props.isFillOutReport && <FillOutReport />}
       {props.isLogIn && <LogIn />}
+      {props.isTeamMembers && <TeamMembers />}
     </>
   );
 };

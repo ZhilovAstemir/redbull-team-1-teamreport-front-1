@@ -64,12 +64,15 @@ header > p {
 .smile_icons {
   width: 120px;
   filter: grayscale(100%);
+  transition: all 0.3s ease-in-out;
+  animation: anim 0.1s ease;
 }
 
 .icon_box:hover .smile_icons {
   filter: none;
 
 }
+
 .icon_box:hover {
   box-shadow: 2px 3px 2px 1px #e8e8e8;
   background: white;

@@ -70,7 +70,17 @@
 .btn_edit {
   background: transparent;
   align-self: center;
+  transition: all 0.3s ease-in-out;
+  animation: anim 0.1s ease;
 }
+
+.btn_edit:hover {
+  box-shadow: 1px 2px 7px 1px #cecece;
+  border-radius: 5px;
+  width: 50px;
+  padding-left: 10px;
+}
+
 
 a > button {
   background: transparent;

@@ -1,7 +1,6 @@
 import React, {memo} from 'react';
 import styles from "./TeamMembers.module.css";
-import EditMembersModal from "../EditMembersModal/EditMembersModal";
-
+import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 
 const members = [
   {
@@ -34,10 +33,10 @@ const members = [
   },
 ]
 
-const TeamMembers = (props) => {
+const TeamMembers = () => {
   return (
     <>
-      <TeamMembers/>
+      <HeaderForGuide/>
       <div className={styles.teamMembers_container}>
         <h2 className={styles.title}>TEAM MEMBERS</h2>
         <div className={styles.hr}></div>
@@ -59,7 +58,7 @@ const TeamMembers = (props) => {
               </a>
             </div>
           ))}
-          <EditMembersModal />
+          {/*<EditMembersModal />*/}
         </section>
       </div>
     </>

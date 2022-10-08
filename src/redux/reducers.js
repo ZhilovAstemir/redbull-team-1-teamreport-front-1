@@ -63,12 +63,8 @@ export const reducers = (state, action) => {
         ...state,
         title: "ANKO Technologies Corp",
         isLaunchGuide: false,
-        isMyCompany: true,
-        isInviteYourTeam: false,
-        isMyReports: false,
-        isFillOutReport: false,
+        isMyCompany: false,
         isTeamMembers: true,
-        isLogIn: false
       };
     case "FILL_OUT_REPORT":
       return {
@@ -78,7 +74,8 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: true,
-        isLogIn: false
+        isLogIn: false,
+        isTeamMembers: false,
       };
     case "CLOSE LOGIN":
       return {
