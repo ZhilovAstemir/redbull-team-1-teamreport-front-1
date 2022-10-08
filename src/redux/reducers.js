@@ -21,6 +21,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "MY_COMPANY":
       return {
@@ -33,6 +34,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "INVITE_TEAM":
       return {
@@ -45,6 +47,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "MY_REPORTS":
       return {
@@ -57,6 +60,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "TEAM_MEMBERS":
       return {
@@ -76,8 +80,9 @@ export const reducers = (state, action) => {
         isFillOutReport: true,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
-    case "CLOSE LOGIN":
+    case "CLOSE_LOGIN":
       return {
         ...state,
         isLaunchGuide: true,
@@ -93,6 +98,19 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: true,
         isTeamMembers: false,
+        isEditTeamInfo: false,
+      };
+    case "EDIT_TEAM_INFO":
+      return {
+        ...state,
+        isLaunchGuide: false,
+        isMyCompany: false,
+        isInviteYourTeam: false,
+        isMyReports: false,
+        isFillOutReport: false,
+        isLogIn: false,
+        isTeamMembers: false,
+        isEditTeamInfo: true,
       };
     case UPDATE_TITLE || "CHANGE_TITLE":
       const title = action.payload;
@@ -111,5 +129,6 @@ export const reducers = (state, action) => {
     isFillOutReport: false,
     isTeamMembers: false,
     isLogIn: false,
+    isEditTeamInfo: false,
   })
 }

@@ -1,6 +1,7 @@
 import React, {memo} from 'react';
 import styles from "./TeamMembers.module.css";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
+import {connect} from "react-redux";
 
 const members = [
   {
@@ -33,7 +34,12 @@ const members = [
   },
 ]
 
-const TeamMembers = () => {
+const TeamMembers = (props) => {
+
+  function handleEntailmentRequest(e) {
+    e.preventDefault();
+  }
+
   return (
     <>
       <HeaderForGuide/>
@@ -53,16 +59,19 @@ const TeamMembers = () => {
                   {member.name}
                 </div>
               </div>
-              <a className={styles.btn_edit} href="">
-                <button>Edit</button>
+              <a className={styles.btn_edit} href="" onClick={(e) => handleEntailmentRequest(e)}>
+                <button onClick={props.openEditTeamInfo}>Edit</button>
               </a>
             </div>
           ))}
-          {/*<EditMembersModal />*/}
         </section>
       </div>
     </>
   );
 };
 
-export default memo(TeamMembers);
+const mapDispatchToProps = (dispatch) => ({
+  openEditTeamInfo: () => dispatch({type: "EDIT_TEAM_INFO"})
+})
+
+export default connect(null, mapDispatchToProps)(memo(TeamMembers));

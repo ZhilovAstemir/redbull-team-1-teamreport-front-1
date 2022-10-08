@@ -19,8 +19,14 @@
 .first_section > h1 {
   margin: 25px 0 10px 0;
 }
+
 .first_section > p {
   font-size: 18px;
+}
+
+.input_form_flex {
+  display: flex;
+  flex-direction: column;
 }
 
 .second_section > h2 {
@@ -43,6 +49,10 @@ form > label {
 .fn_input, .ln_input, .title_input {
   padding: 10px;
   margin-bottom: 0;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #888888;
+  box-shadow: 1px 2px 7px 1px #f0f0f0;
 }
 
 .fn_input {
@@ -70,6 +80,9 @@ form > label {
   font-size: 16px;
   align-items: center;
   justify-content: center;
+  box-shadow: 1px 2px 7px 1px #f0f0f0;
+  transition: all 0.3s ease-in-out;
+  animation: anim 0.1s ease;
 }
 
 .btn_input:hover {
@@ -121,6 +134,8 @@ form > label {
   border-radius: 5px;
   box-shadow: 1px 2px 10px 2px #cacaca;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  animation: anim 0.1s ease;
 }
 
 .third_section button:hover {
@@ -142,7 +157,7 @@ form > label {
 textarea {
   height: 40px;
   width: 550px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .link_flex > button {
@@ -161,7 +176,8 @@ textarea {
   justify-content: center;
   text-decoration: none;
 }
-.link_flex > button:hover{
+
+.link_flex > button:hover {
   background: #f4db5a;
   color: #333a3d;
 }

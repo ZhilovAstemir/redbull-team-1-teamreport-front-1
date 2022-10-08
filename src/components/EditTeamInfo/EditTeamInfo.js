@@ -1,9 +1,7 @@
 import React, {memo} from 'react';
 import styles from "./EditTeamInfo.module.css";
 import {useForm} from "react-hook-form";
-import EditMembersModal from "../EditMembersModal/EditMembersModal";
-import {Box, Modal} from "@mui/material";
-import Typography from "@mui/material/Typography";
+import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 
 const leaders = [
   {
@@ -58,26 +56,13 @@ const members = [
   },
 ];
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 const EditTeamInfo = () => {
   const {register, handleSubmit, watch, formState: {errors}} = useForm();
   const onSubmit = data => console.log(data);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(false);
-  const handleClose = () => setOpen(true);
 
   return (
+    <>
+    <HeaderForGuide />
     <div className={styles.editTeam_container}>
       <section className={styles.first_section}>
         <h1>Edit Anatoliy's information</h1>
@@ -89,7 +74,7 @@ const EditTeamInfo = () => {
       <section className={styles.second_section}>
         <h2>Basic profile information</h2>
         <hr/>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.input_form_flex}>
           <label>First Name</label>
           <input
             className={styles.fn_input}
@@ -150,7 +135,6 @@ const EditTeamInfo = () => {
         </div>
         <a href="">
           <button>Edit Member(s)</button>
-          <EditMembersModal props={{open, handleOpen, handleClose}}/>
         </a>
       </section>
       <section className={styles.third_section}>
@@ -165,6 +149,7 @@ const EditTeamInfo = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

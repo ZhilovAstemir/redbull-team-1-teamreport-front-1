@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import FillOutReport from "../FillOutReport/FillOutReport";
 import LogIn from "../LogIn/LogIn";
 import TeamMembers from "../TeamMembers/TeamMembers";
+import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 
 const AsideBar = (props) => {
 
@@ -74,6 +75,7 @@ const AsideBar = (props) => {
       {props.isFillOutReport && <FillOutReport />}
       {props.isLogIn && <LogIn />}
       {props.isTeamMembers && <TeamMembers />}
+      {props.isEditTeamInfo && <EditTeamInfo />}
     </>
   );
 };
@@ -86,6 +88,7 @@ const mapStateToProps = (state) => ({
   isFillOutReport: state.isFillOutReport,
   isLogIn: state.isLogIn,
   isTeamMembers: state.isTeamMembers,
+  isEditTeamInfo:state.isEditTeamInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

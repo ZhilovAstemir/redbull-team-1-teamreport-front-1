@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import styles from "./FillOutReport.module.css";
 import clsx from "clsx";
 import TextField from '@mui/material/TextField';
@@ -15,7 +15,10 @@ const names = {
 }
 
 const FillOutReport = (props) => {
-  const [value, setValue] = React.useState([null, null]);
+  const [value, setValue] = useState([null, null]);
+  const [countForHigh, setCountForHigh] = useState(0);
+  const [countForLow, setCountForLow] = useState(0);
+  const [countElse, setCountForElse] = useState(0);
 
   return (
     <div className={styles.fill_out_container}>
@@ -31,29 +34,35 @@ const FillOutReport = (props) => {
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your high this week?</h3>
         <textarea
+          onChange={e => setCountForHigh(e.target.value.length)}
           className={styles.textarea_high}
+          maxLength={600}
           placeholder="What was your personal or professional high this week? What's the one thing you accomplished at work this week?"
         >
         </textarea>
-        <div className={styles.textarea_counter}>600</div>
+        <div className={styles.textarea_counter}>{countForHigh}/600</div>
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your low this week?</h3>
         <textarea
+          onChange={e => setCountForLow(e.target.value.length)}
           className={styles.textarea_high}
+          maxLength={600}
           placeholder="What was your personal low this week?"
         >
         </textarea>
-        <div className={styles.textarea_counter}>600</div>
+        <div className={styles.textarea_counter}>{countForLow}/600</div>
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your low this week?</h3>
         <textarea
+          onChange={e => setCountForElse(e.target.value.length)}
           className={styles.textarea_high}
+          maxLength={400}
           placeholder="Is there anything else you would like to share with your leader?"
         >
         </textarea>
-        <div className={styles.textarea_counter}>400</div>
+        <div className={styles.textarea_counter}>{countElse}/400</div>
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>Date range</h3>

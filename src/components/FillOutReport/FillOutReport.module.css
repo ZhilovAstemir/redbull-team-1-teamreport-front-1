@@ -107,7 +107,7 @@ header > p {
 
 .textarea_counter {
   position: absolute;
-  font-size: 20px;
+  font-size: 18px;
   z-index: 10;
   color: #333a3d;
   top: 320px;

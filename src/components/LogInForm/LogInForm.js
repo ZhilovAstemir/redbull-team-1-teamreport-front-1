@@ -74,7 +74,7 @@ const LogInForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  closeLoginPage: () => dispatch({type: "CLOSE LOGIN"})
+  closeLoginPage: () => dispatch({type: "CLOSE_LOGIN"})
 })
 
 export default connect(null, mapDispatchToProps)(memo(LogInForm));

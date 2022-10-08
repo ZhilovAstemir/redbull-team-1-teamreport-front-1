@@ -49,6 +49,12 @@ header {
   padding: 10px 15px;
   width: max-content;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  animation: anim 0.1s ease;
+}
+
+.card__button:hover {
+  background: #f4db5a;
 }
 
 .form {
