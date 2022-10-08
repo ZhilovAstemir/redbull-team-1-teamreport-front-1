@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./CompanyRegistrationForm.module.css";
-import axios from "axios";
+import { registerCompanyQuery } from "../../api/api";
 
 const CompanyRegistrationForm = () => {
   const {
@@ -11,18 +11,7 @@ const CompanyRegistrationForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
-      .post("https://localhost:7030/api/company/register", {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        title: data.title,
-        email: data.email,
-        company: { name: data.companyName },
-        password: data.password,
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    registerCompanyQuery(data);
   };
 
   const emailRegexp =

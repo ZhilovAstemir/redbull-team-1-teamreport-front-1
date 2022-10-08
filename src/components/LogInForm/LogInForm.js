@@ -1,9 +1,10 @@
 import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { logInQuery, getCompanyNameQuery } from "../../api/api";
+import {connect} from "react-redux";
 
-const LogInForm = () => {
+const LogInForm = (props) => {
   const {
     register,
     formState: { errors },
@@ -11,14 +12,11 @@ const LogInForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
-      .post("https://localhost:7030/api/members/login", {
-        email: data.email,
-        password: data.password,
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    logInQuery(data)
+        .then((response) => {
+            console.log(response)
+            props.setToken(response)
+        })
   };
 
   const emailRegexp =
@@ -71,4 +69,8 @@ const LogInForm = () => {
   );
 };
 
-export default memo(LogInForm);
+const mapDispatchToProps = (dispatch) => ({
+    setToken: (token) => dispatch({type: "SET_TOKEN", payload: token})
+})
+
+export default connect(null, mapDispatchToProps)(memo(LogInForm));

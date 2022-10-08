@@ -4,8 +4,6 @@ import CompanyRegistration from "../CompanyRegistrationForm/CompanyRegistrationF
 import LogInForm from "../LogInForm/LogInForm";
 
 const LogIn = () => {
-
-
   return (
     <div className={styles.container}>
       <div className={styles.form}>

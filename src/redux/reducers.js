@@ -10,6 +10,11 @@ export const reducers = (state, action) => {
   // }
 
   switch (action.type) {
+    case "SET_TOKEN":
+      return {
+        ...state,
+        token: action.payload
+      }
     case "LAUNCH_GUIDE":
       return {
         ...state,

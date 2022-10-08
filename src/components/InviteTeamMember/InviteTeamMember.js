@@ -8,6 +8,7 @@ import styles from "./InviteTeamMember.module.css";
 import {styled} from "@mui/material";
 import {ArrowForwardRounded} from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
+import {inviteTeamMemberQuery} from "../../api/api";
 
 const InviteTeamMember = () => {
   const {
@@ -81,7 +82,10 @@ const InviteTeamMember = () => {
 
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-  const onSubmit = (data) => setIsInviteSuccessful(true);
+  const onSubmit = (data) => {
+    inviteTeamMemberQuery(data)
+    setIsInviteSuccessful(true)
+  };
 
   return (
     <>
@@ -124,11 +128,11 @@ const InviteTeamMember = () => {
               )}
               <label className={styles.card__inputLabel}>Last Name</label>
               <input
-                {...register("lastname", {required: "Lastname is required"})}
+                {...register("lastName", {required: "Lastname is required"})}
                 aria-invalid={errors.lastname ? "true" : "false"}
                 className={styles.card__input}
               />
-              {errors.lastname?.type === "required" && (
+              {errors.lastName?.type === "required" && (
                 <p className={styles.card__validationMessage} role="alert">
                   Last name is required
                 </p>
