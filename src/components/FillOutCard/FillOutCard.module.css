@@ -1,0 +1,58 @@
+.moral_container {
+  margin-top: 75px;
+}
+
+.morale_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 45px;
+}
+
+.icon_box {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+  padding: 25px;
+  font-size: 20px;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px 1px #e8e8e8;
+}
+
+.icon_box > p {
+  margin: 0;
+}
+
+.smile_icons {
+  width: 120px;
+  filter: grayscale(100%);
+}
+
+.icon_box:hover .smile_icons {
+  filter: none;
+
+}
+.icon_box:hover {
+  box-shadow: 2px 3px 2px 1px #e8e8e8;
+  background: white;
+}
+
+.title_of_moral {
+  text-align: center;
+  font-size: 35px;
+  color: #333a3d;
+}
+
+.moral_container_high {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

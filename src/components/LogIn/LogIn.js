@@ -41,6 +41,7 @@ const LogIn = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
