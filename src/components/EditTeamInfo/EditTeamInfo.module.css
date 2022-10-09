@@ -1,7 +1,5 @@
 .editTeam_container {
   width: 100%;
-  height: 100%;
-  margin-left: 280px;
   box-sizing: border-box;
   background: #F5F7F8;
   padding: 50px 135px;
@@ -180,4 +178,19 @@ textarea {
 .link_flex > button:hover {
   background: #f4db5a;
   color: #333a3d;
+}
+
+.modal_btn_close {
+  background: #333a3d;
+}
+
+.modal_btn_close > Button {
+  border: 1px solid #F5F7F8;
+  color: #F5F7F8;
+  padding: 5px 10px;
+}
+
+.modal_btn_close > Button:hover {
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
 }

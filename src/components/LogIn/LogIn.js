@@ -25,7 +25,7 @@ const LogIn = () => {
             <div className={styles.card_front}>
               <div className={styles.center_wrap}>
                 <div className={styles.section}>
-                  <h4>Log In</h4>
+                  <h4>Log In </h4>
                   <LogInForm />
                 </div>
               </div>

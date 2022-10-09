@@ -1,7 +1,9 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import styles from "./TeamMembers.module.css";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import {connect} from "react-redux";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide} from "@mui/material";
+import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 
 const members = [
   {
@@ -34,7 +36,20 @@ const members = [
   },
 ]
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const TeamMembers = (props) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function handleEntailmentRequest(e) {
     e.preventDefault();
@@ -60,8 +75,14 @@ const TeamMembers = (props) => {
                 </div>
               </div>
               <a className={styles.btn_edit} href="" onClick={(e) => handleEntailmentRequest(e)}>
-                <button onClick={props.openEditTeamInfo}>Edit</button>
+                <button onClick={handleClickOpen}>Edit</button>
               </a>
+              <EditTeamInfo
+                open={open}
+                TransitionComponent={Transition}
+                onClose={handleClose}
+                close={handleClose}
+              />
             </div>
           ))}
         </section>
@@ -70,8 +91,8 @@ const TeamMembers = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  openEditTeamInfo: () => dispatch({type: "EDIT_TEAM_INFO"})
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   openEditTeamInfo: () => dispatch({type: "EDIT_TEAM_INFO"})
+// })
 
-export default connect(null, mapDispatchToProps)(memo(TeamMembers));
+export default connect(null, null)(memo(TeamMembers));
