@@ -1,7 +1,8 @@
-import React, {memo} from 'react';
+import React, {forwardRef, memo, useState} from 'react';
 import styles from "./EditTeamInfo.module.css";
 import {useForm} from "react-hook-form";
-import {Button, Dialog, DialogActions} from "@mui/material";
+import {Button, Dialog, DialogActions, Slide} from "@mui/material";
+import EditMembersModal from "../EditMembersModal/EditMembersModal";
 
 const leaders = [
   {
@@ -55,10 +56,32 @@ const members = [
     name: "Alexandr Vovchuk",
   },
 ];
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const EditTeamInfo = (props) => {
   const {register, handleSubmit, watch, formState: {errors}} = useForm();
+  const [openLeaders, setOpenLeaders] = useState(false);
+  const [openMembers, setOpenMembers] = useState(false)
+
   const onSubmit = data => console.log(data);
+
+  const handleClickOpenLeaders = () => {
+    setOpenLeaders(true);
+  };
+
+  const handleCloseLeaders = () => {
+    setOpenLeaders(false);
+  };
+
+  const handleClickOpenMembers = () => {
+    setOpenMembers(true);
+  };
+
+  const handleCloseMembers = () => {
+    setOpenMembers(false);
+  };
 
   return (
     <Dialog
@@ -132,8 +155,14 @@ const EditTeamInfo = (props) => {
             {leaders.map((leader) => <div key={leader.id}>{leader.name}</div>)}
           </div>
           <a href="">
-            <button>Edit Leader(s)</button>
+            <button onClick={handleClickOpenLeaders}>Edit Leader(s)</button>
           </a>
+          <EditMembersModal
+            title={"Leader"}
+            open={openLeaders}
+            TransitionComponent={Transition}
+            onClose={handleCloseLeaders}
+          />
         </section>
         <section className={styles.third_section}>
           <h3>The following team members report to Anatoliy:</h3>
@@ -142,8 +171,14 @@ const EditTeamInfo = (props) => {
             {members.map((member) => <div key={member.id}>{member.name}</div>)}
           </div>
           <a href="">
-            <button>Edit Member(s)</button>
+            <button onClick={handleClickOpenMembers}>Edit Member(s)</button>
           </a>
+          <EditMembersModal
+            title={"Member"}
+            open={openMembers}
+            TransitionComponent={Transition}
+            onClose={handleCloseMembers}
+          />
         </section>
         <section className={styles.third_section}>
           <h3>Anatoliy's invite link</h3>
