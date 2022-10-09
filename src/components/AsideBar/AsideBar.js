@@ -58,10 +58,10 @@ const AsideBar = (props) => {
               <button>My Company</button>
             </a>
             <a className={styles.profile}>
-              <button><SettingsIcon/> My Profile</button>
+              <button><SettingsIcon className={styles.setting_icon}/> My Profile</button>
             </a>
             <a onClick={props.openLogIn}>
-              <button><LogoutIcon/>Sign In</button>
+              <button><LogoutIcon className={styles.login_icon}/>Sign In</button>
             </a>
           </div>
         </section>

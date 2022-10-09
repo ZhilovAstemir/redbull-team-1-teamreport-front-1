@@ -118,10 +118,39 @@ export const reducers = (state, action) => {
         ...state,
         title: title,
       };
+    case "MORALE_INPUT":
+      return {
+        ...state,
+        isMoraleInput: true,
+        isStressInput: false,
+        isWorkloadInput: false,
+      };
+    case "STRESS_INPUT":
+      return {
+        ...state,
+        isMoraleInput: false,
+        isStressInput: true,
+        isWorkloadInput: false,
+      };
+    case "WORKLOAD_INPUT":
+      return {
+        ...state,
+        isMoraleInput: false,
+        isStressInput: false,
+        isWorkloadInput: true,
+      }
+    case "CLOSE_INPUT":
+      return {
+        ...state,
+        isMoraleInput: false,
+        isStressInput: false,
+        isWorkloadInput: false,
+      }
   }
 
   return ({
     title: "ANKO Technologies Corp",
+    // pages
     isLaunchGuide: true,
     isMyCompany: false,
     isInviteYourTeam: false,
@@ -130,5 +159,9 @@ export const reducers = (state, action) => {
     isTeamMembers: false,
     isLogIn: false,
     isEditTeamInfo: false,
+    // inputs
+    isMoraleInput: false,
+    isStressInput: false,
+    isWorkloadInput: false,
   })
 }

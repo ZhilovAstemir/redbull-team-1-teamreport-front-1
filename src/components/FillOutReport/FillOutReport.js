@@ -7,6 +7,7 @@ import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DateRangePicker} from '@mui/x-date-pickers-pro';
 import FillOutCard from "../FillOutCard/FillOutCard";
+import {connect, useDispatch} from "react-redux";
 
 const names = {
   morale: "morale",
@@ -15,10 +16,11 @@ const names = {
 }
 
 const FillOutReport = (props) => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState([null, null]);
-  const [countForHigh, setCountForHigh] = useState(0);
-  const [countForLow, setCountForLow] = useState(0);
-  const [countElse, setCountForElse] = useState(0);
+  const [countForHigh, setCountForHigh] = useState(600);
+  const [countForLow, setCountForLow] = useState(600);
+  const [countElse, setCountForElse] = useState(400);
 
   return (
     <div className={styles.fill_out_container}>
@@ -28,41 +30,62 @@ const FillOutReport = (props) => {
           Let your leader know where you're winning and struggling this week – in less than 10 minutes.
         </p>
       </header>
-      <FillOutCard name={names.morale} />
+      <FillOutCard name={names.morale}/>
+      {props.isMoraleInput &&
+        <textarea
+          onBlur={() => dispatch({type: "CLOSE_INPUT"})}
+          className={clsx(styles.textarea_high, styles.comments)}
+          placeholder="your comments . . ."
+        />
+      }
       <FillOutCard name={names.stress}/>
+      {props.isStressInput &&
+        <textarea
+          onBlur={() => dispatch({type: "CLOSE_INPUT"})}
+          className={clsx(styles.textarea_high, styles.comments)}
+          placeholder="your comments . . ."
+        />
+      }
       <FillOutCard name={names.workload}/>
+      {props.isWorkloadInput &&
+        <textarea
+          onBlur={() => dispatch({type: "CLOSE_INPUT"})}
+          className={clsx(styles.textarea_high, styles.comments)}
+          placeholder="your comments . . ."
+        />
+      }
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your high this week?</h3>
         <textarea
-          onChange={e => setCountForHigh(e.target.value.length)}
+          onChange={e => setCountForHigh(600 - e.target.value.length)}
           className={styles.textarea_high}
           maxLength={600}
           placeholder="What was your personal or professional high this week? What's the one thing you accomplished at work this week?"
         >
         </textarea>
-        <div className={styles.textarea_counter}>{countForHigh}/600</div>
+        <div className={styles.textarea_counter}>{countForHigh}</div>
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your low this week?</h3>
         <textarea
-          onChange={e => setCountForLow(e.target.value.length)}
+          onChange={e => setCountForLow(600 - e.target.value.length)}
           className={styles.textarea_high}
           maxLength={600}
           placeholder="What was your personal low this week?"
         >
         </textarea>
-        <div className={styles.textarea_counter}>{countForLow}/600</div>
+        <div className={styles.textarea_counter}>{countForLow}</div>
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your low this week?</h3>
         <textarea
-          onChange={e => setCountForElse(e.target.value.length)}
+          onChange={e => setCountForElse(400 - e.target.value.length)}
           className={styles.textarea_high}
           maxLength={400}
           placeholder="Is there anything else you would like to share with your leader?"
         >
         </textarea>
-        <div className={styles.textarea_counter}>{countElse}/400</div>
+        <div className={styles.textarea_counter}>{countElse}</div>
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>Date range</h3>
@@ -71,7 +94,7 @@ const FillOutReport = (props) => {
           <LocalizationProvider
             className={styles.week_picker}
             dateAdapter={AdapterDayjs}
-            localeText={{ start: 'start', end: 'end' }}
+            localeText={{start: 'start', end: 'end'}}
           >
             <DateRangePicker
               value={value}
@@ -81,7 +104,7 @@ const FillOutReport = (props) => {
               renderInput={(startProps, endProps) => (
                 <React.Fragment>
                   <TextField {...startProps} />
-                  <Box sx={{ mx: 2 }}> to </Box>
+                  <Box sx={{mx: 2}}> to </Box>
                   <TextField {...endProps} />
                 </React.Fragment>
               )}
@@ -95,7 +118,10 @@ const FillOutReport = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isMoraleInput: state.isMoraleInput,
+  isStressInput: state.isStressInput,
+  isWorkloadInput: state.isWorkloadInput,
+})
 
-
-
-export default memo(FillOutReport);
+export default connect(mapStateToProps, null)(memo(FillOutReport));
