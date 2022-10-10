@@ -2,7 +2,13 @@
   width: 100%;
 }
 
-[aria-labelledby=":r17:"] {
+[aria-labelledby=":r17:"], [aria-labelledby=":r19:"] {
+  width: 100%;
+  max-width: 900px !important;
+  padding: 30px 45px;
+}
+
+[aria-describedby="alert-dialog-slide-description"] {
   width: 100%;
   max-width: 900px !important;
   padding: 30px 45px;

@@ -2,7 +2,7 @@ import React, {memo, useState} from 'react';
 import styles from "./TeamMembers.module.css";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import {connect} from "react-redux";
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide} from "@mui/material";
+import {Slide} from "@mui/material";
 import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 
 const members = [
@@ -93,8 +93,5 @@ const TeamMembers = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   openEditTeamInfo: () => dispatch({type: "EDIT_TEAM_INFO"})
-// })
 
 export default connect(null, null)(memo(TeamMembers));

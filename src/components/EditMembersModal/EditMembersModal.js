@@ -1,13 +1,10 @@
 import React, {memo} from 'react';
-import {Button, Dialog, DialogActions} from "@mui/material";
+import {Dialog} from "@mui/material";
 import styles from "./EditMembersModal.module.css";
-import {useSelector} from "react-redux";
 import CloseIcon from '@mui/icons-material/Close';
 
 
 const EditMembersModal = (props) => {
-  const leaders = useSelector((state) => state.leaders);
-  console.log(leaders);
 
   return (
     <Dialog
@@ -16,7 +13,6 @@ const EditMembersModal = (props) => {
       keepMounted
       onClose={props.onClose}
       aria-describedby="alert-dialog-slide-description"
-      about={"modal"}
       className={styles.modal_main}
     >
       <div className={styles.modal_container}>
@@ -28,7 +24,7 @@ const EditMembersModal = (props) => {
           person you report to directly as an additional leader.</p>
         <p>Pro Tip: You can change who sees your report in your profile settings.</p>
         <div className={styles.modal_flex}>
-          {leaders.map((leader) => (
+          {props.people.map((leader) => (
             <div className={styles.box_flex} key={leader.id}>
               <button className={styles.modal_btn}>{leader.name}</button>
               <CloseIcon className={styles.modal_icon}/>
