@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./TeamMemberRegistration.module.css";
-import axios from "axios";
+import { registerTeamMemberQuery } from "../../api/api";
 
 const TeamMemberRegistration = () => {
   const {
@@ -11,17 +11,7 @@ const TeamMemberRegistration = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
-      .post("https://localhost:7030/api/members/register", {
-        firstName: data.firstname,
-        lastName: data.lastname,
-        title: data.title,
-        email: data.email,
-        password: data.password,
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    registerTeamMemberQuery(data);
   };
 
   const emailRegexp =
