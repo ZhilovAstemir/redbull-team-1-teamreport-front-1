@@ -63,7 +63,9 @@ const TeamMembers = (props) => {
         <div className={styles.hr}></div>
         <section className={styles.members_box}>
           {members.map((member) => (
-            <div key={member.id} className={styles.members_flex}>
+            <div key={member.id} className={styles.members_flex}
+                 onClick={(e) => handleEntailmentRequest(e)}
+            >
               <div className={styles.members_flex_little}>
                 <div
                   className={styles.circle}>
@@ -74,8 +76,8 @@ const TeamMembers = (props) => {
                   {member.name}
                 </div>
               </div>
-              <a className={styles.btn_edit} href="" onClick={(e) => handleEntailmentRequest(e)}>
-                <button onClick={handleClickOpen}>Edit</button>
+              <a className={styles.btn_edit} href="" onClick={handleClickOpen}>
+                <button>Edit</button>
               </a>
               <EditTeamInfo
                 open={open}
