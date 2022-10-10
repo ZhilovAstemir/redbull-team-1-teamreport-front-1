@@ -12,11 +12,11 @@ const LogInForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    logInQuery(data)
-        .then((response) => {
-            console.log(response)
-            props.setToken(response)
-        })
+    props.authService.logIn(data)
+      .then((response) => {
+        console.log(response)
+        props.setToken(response)
+      })
   };
 
   const emailRegexp =

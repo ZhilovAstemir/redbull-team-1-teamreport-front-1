@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import styles from "./CompanyRegistrationForm.module.css";
 import { registerCompanyQuery } from "../../api/api";
 
-const CompanyRegistrationForm = () => {
+const CompanyRegistrationForm = (props) => {
   const {
     register,
     formState: { errors },
@@ -11,7 +11,7 @@ const CompanyRegistrationForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    registerCompanyQuery(data);
+    props.authService.registerCompany(data);
   };
 
   const emailRegexp =

@@ -8,7 +8,7 @@ import styles from "./InviteTeamMember.module.css";
 import {styled} from "@mui/material";
 import {ArrowForwardRounded} from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import {inviteTeamMemberQuery} from "../../api/api";
+import inviteService from "../../services/inviteService";
 
 const InviteTeamMember = () => {
   const {
@@ -83,8 +83,8 @@ const InviteTeamMember = () => {
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const onSubmit = (data) => {
-    inviteTeamMemberQuery(data)
-    setIsInviteSuccessful(true)
+    inviteService.invite(data);
+    setIsInviteSuccessful(true);
   };
 
   return (

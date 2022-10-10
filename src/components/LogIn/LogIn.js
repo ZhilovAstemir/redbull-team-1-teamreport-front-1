@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import styles from "./LogIn.module.css";
-import CompanyRegistration from "../CompanyRegistrationForm/CompanyRegistrationForm";
+import CompanyRegistrationForm from "../CompanyRegistrationForm/CompanyRegistrationForm";
 import LogInForm from "../LogInForm/LogInForm";
+import authService from "../../services/authService";
 
 const LogIn = () => {
   return (
@@ -24,7 +25,7 @@ const LogIn = () => {
               <div className={styles.center_wrap}>
                 <div className={styles.section}>
                   <h4>Log In</h4>
-                  <LogInForm />
+                  <LogInForm authService={authService}/>
                 </div>
               </div>
             </div>
@@ -32,7 +33,7 @@ const LogIn = () => {
               <div className={styles.center_wrap}>
                 <div className={styles.section}>
                   <h4>Sign Up</h4>
-                  <CompanyRegistration />
+                  <CompanyRegistrationForm authService={authService}/>
                 </div>
               </div>
             </div>
