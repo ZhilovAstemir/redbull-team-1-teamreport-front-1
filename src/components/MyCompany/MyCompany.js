@@ -30,7 +30,7 @@ const MyCompany = (props) => {
                     the list of team members.
                   </p>
                 </section>
-                <section className={styles.second_flex}>
+                <section className={styles.second_flex} >
                   <h3>RENAME ANKO TECHNOLOGIES CORP</h3>
                   <form action="" onClick={(e) => handleEntailmentRequest(e)}>
                     <hr/>

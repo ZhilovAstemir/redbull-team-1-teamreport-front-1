@@ -8,7 +8,7 @@ import LaunchGuide from "../LaunchGuide/LaunchGuide";
 import InviteTeamMember from "../InviteTeamMember/InviteTeamMember";
 import MyCompany from "../MyCompany/MyCompany";
 import MyReports from "../MyReports/MyReports";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import FillOutReport from "../FillOutReport/FillOutReport";
 import LogIn from "../LogIn/LogIn";
 import TeamMembers from "../TeamMembers/TeamMembers";
@@ -21,6 +21,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const AsideBar = (props) => {
   const [open, setOpen] = useState(false);
+  const myData = useSelector((state) => state.myProfile);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,6 +34,8 @@ const AsideBar = (props) => {
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }
+
+  console.log("render");
 
   return (
     <>
@@ -91,6 +94,7 @@ const AsideBar = (props) => {
         TransitionComponent={Transition}
         onClose={handleClose}
         close={handleClose}
+        myData={myData}
       />
       {props.isLaunchGuide && <LaunchGuide/>}
       {props.isMyCompany && <MyCompany/>}

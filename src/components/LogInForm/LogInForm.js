@@ -70,7 +70,7 @@ const LogInForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token})
+  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token}),
   closeLoginPage: () => dispatch({type: "CLOSE LOGIN"})
 })
 

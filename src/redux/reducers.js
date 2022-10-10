@@ -168,6 +168,12 @@ export const reducers = (state, action) => {
     isMoraleInput: false,
     isStressInput: false,
     isWorkloadInput: false,
+    // data
+    myProfile: {
+      myName: "Alex",
+      myLastName: "Marlin",
+      myPosition: "CEO",
+    },
     leaders: [
       {
         id: Math.random(),
