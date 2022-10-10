@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import {connect} from "react-redux";
 
 const LogInForm = (props) => {
@@ -12,14 +11,11 @@ const LogInForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
-      .post("https://localhost:7030/api/members/login", {
-        email: data.email,
-        password: data.password,
-      })
+    props.authService.logIn(data)
       .then((response) => {
-        console.log(response);
-      });
+        console.log(response)
+        props.setToken(response)
+      })
   };
 
   const emailRegexp =
@@ -74,6 +70,7 @@ const LogInForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token})
   closeLoginPage: () => dispatch({type: "CLOSE LOGIN"})
 })
 
