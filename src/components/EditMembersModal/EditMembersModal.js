@@ -1,37 +1,49 @@
 import React, {memo} from 'react';
-import {Box, Modal} from "@mui/material";
-import Typography from "@mui/material/Typography";
+import {Button, Dialog, DialogActions} from "@mui/material";
+import styles from "./EditMembersModal.module.css";
+import {useSelector} from "react-redux";
+import CloseIcon from '@mui/icons-material/Close';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
-const EditMembersModal = ({props}) => {
+const EditMembersModal = (props) => {
+  const leaders = useSelector((state) => state.leaders);
+  console.log(leaders);
 
   return (
-    <Modal
+    <Dialog
       open={props.open}
-      onClose={props.handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      TransitionComponent={props.TransitionComponent}
+      keepMounted
+      onClose={props.onClose}
+      aria-describedby="alert-dialog-slide-description"
+      about={"modal"}
+      className={styles.modal_main}
     >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
-      </Box>
-    </Modal>
+      <div className={styles.modal_container}>
+        <div className={styles.title_flex}>
+          <h1>Edit {props.title}(s).</h1>
+          <CloseIcon className={styles.modal_icon_close} onClick={props.onClose}/>
+        </div>
+        <p>By default, the person who sent you the invite will receive your weekly report. You may also select the
+          person you report to directly as an additional leader.</p>
+        <p>Pro Tip: You can change who sees your report in your profile settings.</p>
+        <div className={styles.modal_flex}>
+          {leaders.map((leader) => (
+            <div className={styles.box_flex} key={leader.id}>
+              <button className={styles.modal_btn}>{leader.name}</button>
+              <CloseIcon className={styles.modal_icon}/>
+            </div>)
+          )}
+        </div>
+        <textarea
+          placeholder=". . ."
+          maxLength={200}
+          className={styles.modal_textarea}
+        >
+        </textarea>
+        <button className={styles.modal_save_btn}>Save Changes</button>
+      </div>
+    </Dialog>
   );
 };
 

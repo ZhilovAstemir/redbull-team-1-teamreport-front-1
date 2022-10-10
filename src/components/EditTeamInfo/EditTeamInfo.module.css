@@ -5,7 +5,7 @@
   padding: 50px 135px;
   display: flex;
   flex-direction: column;
-  gap: 25px
+  gap: 25px;
 }
 
 .card__validationMessage {
@@ -187,10 +187,12 @@ textarea {
 .modal_btn_close > Button {
   border: 1px solid #F5F7F8;
   color: #F5F7F8;
-  padding: 5px 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .modal_btn_close > Button:hover {
-  border: 1px solid #0d6efd;
-  color: #0d6efd;
+  border: 1px solid #2f83ff;
+  color: #3181ff;
 }
