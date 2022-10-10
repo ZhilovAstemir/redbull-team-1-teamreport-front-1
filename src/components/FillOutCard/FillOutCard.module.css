@@ -37,8 +37,13 @@
 
 .icon_box:hover .smile_icons {
   filter: none;
-
 }
+
+
+.smile_icons:active{
+  filter:none;
+}
+
 .icon_box:hover {
   box-shadow: 2px 3px 2px 1px #e8e8e8;
   background: white;

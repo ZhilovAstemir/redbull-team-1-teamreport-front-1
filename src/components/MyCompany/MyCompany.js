@@ -3,7 +3,6 @@ import styles from "./MyCompany.module.css";
 import {connect, useDispatch, useSelector} from "react-redux";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import {updateTitle} from "../../redux/actions";
-import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
 import TeamMembers from "../TeamMembers/TeamMembers";
 
 const MyCompany = (props) => {

@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import FillOutReport from "../FillOutReport/FillOutReport";
 import LogIn from "../LogIn/LogIn";
 import TeamMembers from "../TeamMembers/TeamMembers";
+import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 
 const AsideBar = (props) => {
 
@@ -57,10 +58,10 @@ const AsideBar = (props) => {
               <button>My Company</button>
             </a>
             <a className={styles.profile}>
-              <button><SettingsIcon/> My Profile</button>
+              <button><SettingsIcon className={styles.setting_icon}/> My Profile</button>
             </a>
             <a onClick={props.openLogIn}>
-              <button><LogoutIcon/>Sign In</button>
+              <button><LogoutIcon className={styles.login_icon}/>Sign In</button>
             </a>
           </div>
         </section>
@@ -73,6 +74,8 @@ const AsideBar = (props) => {
       {props.isMyReports && <MyReports />}
       {props.isFillOutReport && <FillOutReport />}
       {props.isLogIn && <LogIn />}
+      {props.isTeamMembers && <TeamMembers />}
+      {props.isEditTeamInfo && <EditTeamInfo />}
     </>
   );
 };
@@ -85,6 +88,7 @@ const mapStateToProps = (state) => ({
   isFillOutReport: state.isFillOutReport,
   isLogIn: state.isLogIn,
   isTeamMembers: state.isTeamMembers,
+  isEditTeamInfo:state.isEditTeamInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

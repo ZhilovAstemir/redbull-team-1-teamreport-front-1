@@ -26,6 +26,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "MY_COMPANY":
       return {
@@ -38,6 +39,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "INVITE_TEAM":
       return {
@@ -50,6 +52,7 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "MY_REPORTS":
       return {
@@ -62,18 +65,15 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: false,
         isTeamMembers: false,
+        isEditTeamInfo: false,
       };
     case "TEAM_MEMBERS":
       return {
         ...state,
         title: "ANKO Technologies Corp",
         isLaunchGuide: false,
-        isMyCompany: true,
-        isInviteYourTeam: false,
-        isMyReports: false,
-        isFillOutReport: false,
+        isMyCompany: false,
         isTeamMembers: true,
-        isLogIn: false
       };
     case "FILL_OUT_REPORT":
       return {
@@ -83,9 +83,11 @@ export const reducers = (state, action) => {
         isInviteYourTeam: false,
         isMyReports: false,
         isFillOutReport: true,
-        isLogIn: false
+        isLogIn: false,
+        isTeamMembers: false,
+        isEditTeamInfo: false,
       };
-    case "CLOSE LOGIN":
+    case "CLOSE_LOGIN":
       return {
         ...state,
         isLaunchGuide: true,
@@ -101,6 +103,19 @@ export const reducers = (state, action) => {
         isFillOutReport: false,
         isLogIn: true,
         isTeamMembers: false,
+        isEditTeamInfo: false,
+      };
+    case "EDIT_TEAM_INFO":
+      return {
+        ...state,
+        isLaunchGuide: false,
+        isMyCompany: false,
+        isInviteYourTeam: false,
+        isMyReports: false,
+        isFillOutReport: false,
+        isLogIn: false,
+        isTeamMembers: false,
+        isEditTeamInfo: true,
       };
     case UPDATE_TITLE || "CHANGE_TITLE":
       const title = action.payload;
@@ -108,10 +123,39 @@ export const reducers = (state, action) => {
         ...state,
         title: title,
       };
+    case "MORALE_INPUT":
+      return {
+        ...state,
+        isMoraleInput: true,
+        isStressInput: false,
+        isWorkloadInput: false,
+      };
+    case "STRESS_INPUT":
+      return {
+        ...state,
+        isMoraleInput: false,
+        isStressInput: true,
+        isWorkloadInput: false,
+      };
+    case "WORKLOAD_INPUT":
+      return {
+        ...state,
+        isMoraleInput: false,
+        isStressInput: false,
+        isWorkloadInput: true,
+      }
+    case "CLOSE_INPUT":
+      return {
+        ...state,
+        isMoraleInput: false,
+        isStressInput: false,
+        isWorkloadInput: false,
+      }
   }
 
   return ({
     title: "ANKO Technologies Corp",
+    // pages
     isLaunchGuide: true,
     isMyCompany: false,
     isInviteYourTeam: false,
@@ -119,5 +163,10 @@ export const reducers = (state, action) => {
     isFillOutReport: false,
     isTeamMembers: false,
     isLogIn: false,
+    isEditTeamInfo: false,
+    // inputs
+    isMoraleInput: false,
+    isStressInput: false,
+    isWorkloadInput: false,
   })
 }
