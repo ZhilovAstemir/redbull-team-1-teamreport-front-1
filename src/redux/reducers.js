@@ -189,6 +189,36 @@ export const reducers = (state, action) => {
         id: Math.random(),
         name: "Anton Tarkhanov",
       },
+    ],
+    members: [
+      {
+        id: Math.random(),
+        name: "Aleksandr Evseev",
+      },
+      {
+        id: Math.random(),
+        name: "Nikolai Kapustin",
+      },
+      {
+        id: Math.random(),
+        name: "Anna Kotova",
+      },
+      {
+        id: Math.random(),
+        name: "Nina Mammadova",
+      },
+      {
+        id: Math.random(),
+        name: "Natalia Starkova",
+      },
+      {
+        id: Math.random(),
+        name: "Anton Tarkhanov",
+      },
+      {
+        id: Math.random(),
+        name: "Alexandr Vovchuk",
+      },
     ]
   })
 }

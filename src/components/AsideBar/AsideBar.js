@@ -1,4 +1,4 @@
-import {memo} from "react";
+import React, {memo, useState} from "react";
 import styles from './AsideBar.module.css';
 import logo from "../../images/main_logo.png";
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -13,8 +13,26 @@ import FillOutReport from "../FillOutReport/FillOutReport";
 import LogIn from "../LogIn/LogIn";
 import TeamMembers from "../TeamMembers/TeamMembers";
 import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
+import {Slide} from "@mui/material";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props}/>;
+});
 
 const AsideBar = (props) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  function handleEntailmentRequest(e) {
+    e.preventDefault();
+  }
 
   return (
     <>
@@ -25,7 +43,7 @@ const AsideBar = (props) => {
           alt="logo"
           onClick={props.openLaunchGuide}
         />
-        <section className={styles.menu}>
+        <section className={styles.menu} onClick={e => handleEntailmentRequest(e)}>
           <div className={styles.first_menu}>
             <a onClick={props.openLaunchGuide}>
               <button>Launch Guide</button>
@@ -57,7 +75,7 @@ const AsideBar = (props) => {
             <a onClick={props.openMyCompany}>
               <button>My Company</button>
             </a>
-            <a className={styles.profile}>
+            <a className={styles.profile} onClick={handleClickOpen}>
               <button><SettingsIcon className={styles.setting_icon}/> My Profile</button>
             </a>
             <a onClick={props.openLogIn}>
@@ -68,14 +86,20 @@ const AsideBar = (props) => {
         <button type="button" className={styles.feed_btn}><QuestionMarkIcon className={styles.question}/>Help</button>
         <button type="button" className={styles.help_btn}>Feedback</button>
       </div>
-      {props.isLaunchGuide && <LaunchGuide />}
-      {props.isMyCompany && <MyCompany />}
-      {props.isInviteYourTeam && <InviteTeamMember />}
-      {props.isMyReports && <MyReports />}
-      {props.isFillOutReport && <FillOutReport />}
-      {props.isLogIn && <LogIn />}
-      {props.isTeamMembers && <TeamMembers />}
-      {props.isEditTeamInfo && <EditTeamInfo />}
+      <EditTeamInfo
+        open={open}
+        TransitionComponent={Transition}
+        onClose={handleClose}
+        close={handleClose}
+      />
+      {props.isLaunchGuide && <LaunchGuide/>}
+      {props.isMyCompany && <MyCompany/>}
+      {props.isInviteYourTeam && <InviteTeamMember/>}
+      {props.isMyReports && <MyReports/>}
+      {props.isFillOutReport && <FillOutReport/>}
+      {props.isLogIn && <LogIn/>}
+      {props.isTeamMembers && <TeamMembers/>}
+      {props.isEditTeamInfo && <EditTeamInfo/>}
     </>
   );
 };
@@ -88,7 +112,7 @@ const mapStateToProps = (state) => ({
   isFillOutReport: state.isFillOutReport,
   isLogIn: state.isLogIn,
   isTeamMembers: state.isTeamMembers,
-  isEditTeamInfo:state.isEditTeamInfo,
+  isEditTeamInfo: state.isEditTeamInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
