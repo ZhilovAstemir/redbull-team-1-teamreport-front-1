@@ -3,59 +3,8 @@ import styles from "./EditTeamInfo.module.css";
 import {useForm} from "react-hook-form";
 import {Button, Dialog, DialogActions, Slide} from "@mui/material";
 import EditMembersModal from "../EditMembersModal/EditMembersModal";
+import {useSelector} from "react-redux";
 
-const leaders = [
-  {
-    id: Math.random(),
-    name: "Nikolai Kapustin",
-  },
-  {
-    id: Math.random(),
-    name: "Nina Mammadova",
-  },
-  {
-    id: Math.random(),
-    name: "Natalia Starkova",
-  },
-  {
-    id: Math.random(),
-    name: "Anton Tarkhanov",
-  },
-  {
-    id: Math.random(),
-    name: "Alexandr Vovchuk",
-  },
-];
-const members = [
-  {
-    id: Math.random(),
-    name: "Aleksandr Evseev",
-  },
-  {
-    id: Math.random(),
-    name: "Nikolai Kapustin",
-  },
-  {
-    id: Math.random(),
-    name: "Anna Kotova",
-  },
-  {
-    id: Math.random(),
-    name: "Nina Mammadova",
-  },
-  {
-    id: Math.random(),
-    name: "Natalia Starkova",
-  },
-  {
-    id: Math.random(),
-    name: "Anton Tarkhanov",
-  },
-  {
-    id: Math.random(),
-    name: "Alexandr Vovchuk",
-  },
-];
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -66,6 +15,12 @@ const EditTeamInfo = (props) => {
   const [openMembers, setOpenMembers] = useState(false)
 
   const onSubmit = data => console.log(data);
+  const leaders = useSelector((state) => state.leaders);
+  const members = useSelector((state) => state.members);
+
+  function handleEntailmentRequest(e) {
+    e.preventDefault();
+  }
 
   const handleClickOpenLeaders = () => {
     setOpenLeaders(true);
@@ -85,6 +40,7 @@ const EditTeamInfo = (props) => {
 
   return (
     <Dialog
+      onClick={e => handleEntailmentRequest(e)}
       open={props.open}
       TransitionComponent={props.TransitionComponent}
       keepMounted
@@ -105,7 +61,10 @@ const EditTeamInfo = (props) => {
         <section className={styles.second_section}>
           <h2>Basic profile information</h2>
           <hr/>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.input_form_flex}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.input_form_flex}
+          >
             <label>First Name</label>
             <input
               className={styles.fn_input}
@@ -158,6 +117,7 @@ const EditTeamInfo = (props) => {
             <button onClick={handleClickOpenLeaders}>Edit Leader(s)</button>
           </a>
           <EditMembersModal
+            people={leaders}
             title={"Leader"}
             open={openLeaders}
             TransitionComponent={Transition}
@@ -174,6 +134,7 @@ const EditTeamInfo = (props) => {
             <button onClick={handleClickOpenMembers}>Edit Member(s)</button>
           </a>
           <EditMembersModal
+            people={members}
             title={"Member"}
             open={openMembers}
             TransitionComponent={Transition}
@@ -186,7 +147,8 @@ const EditTeamInfo = (props) => {
           <p className={styles.text}>Share the following link to invite team members on Anatoliy's behalf.</p>
           <div className={styles.link_flex}>
         <textarea
-          readOnly>https://github.com/codemakeracademy/weekly-team-report-html
+          defaultValue={"https://github.com/codemakeracademy/weekly-team-report-html"}
+          readOnly>
         </textarea>
             <button>Copy Link</button>
           </div>
