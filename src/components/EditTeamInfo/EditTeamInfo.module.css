@@ -5,7 +5,7 @@
   padding: 50px 135px;
   display: flex;
   flex-direction: column;
-  gap: 25px
+  gap: 25px;
 }
 
 .card__validationMessage {
