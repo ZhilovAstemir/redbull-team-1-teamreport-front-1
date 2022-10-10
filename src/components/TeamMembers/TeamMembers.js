@@ -2,6 +2,7 @@ import React, {memo} from 'react';
 import styles from "./TeamMembers.module.css";
 import EditMembersModal from "../EditMembersModal/EditMembersModal";
 
+
 const members = [
   {
     id: Math.random(),
@@ -34,7 +35,6 @@ const members = [
 ]
 
 const TeamMembers = (props) => {
-
   return (
     <>
       <TeamMembers/>
@@ -43,7 +43,7 @@ const TeamMembers = (props) => {
         <div className={styles.hr}></div>
         <section className={styles.members_box}>
           {members.map((member) => (
-            <div className={styles.members_flex}>
+            <div key={member.id} className={styles.members_flex}>
               <div className={styles.members_flex_little}>
                 <div
                   className={styles.circle}>

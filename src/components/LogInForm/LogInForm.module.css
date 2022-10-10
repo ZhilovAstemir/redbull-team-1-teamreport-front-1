@@ -1,11 +1,12 @@
 .form {
   display: flex;
   flex-direction: column;
+  font-weight: 400;
 }
 
 .card__inputLabel {
-  font-weight: bold;
   font-size: 14px;
+  font-weight: 400;
 }
 
 .card__input {
@@ -33,14 +34,35 @@
 
 .card__button {
   font-size: 14px;
-  font-weight: bold;
   padding: 10px 15px;
-  background: #fad114;
-  width: max-content;
+  background: #f4db5a;
   border: 0;
-  height: max-content;
   border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
   margin-top: 10px;
+  font-weight: 500;
+}
+
+.card__button:hover {
+  background: #fad114;
+}
+
+.back_btn {
+  background: #0d65e5;
+  opacity: 0.6;
+  z-index: 100;
+  border: none;
+  outline: none;
+  color: #F5F7F8;
+  height: 38px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px 2px 15px 1px #d7d7d7;
+}
+
+.back_btn:hover {
+  opacity: 0.8;
+  box-shadow: none;
 }

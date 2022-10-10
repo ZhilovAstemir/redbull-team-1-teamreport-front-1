@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
-import { logInQuery, getCompanyNameQuery } from "../../api/api";
 import {connect} from "react-redux";
 
 const LogInForm = (props) => {
@@ -65,12 +64,14 @@ const LogInForm = (props) => {
         )}
       </div>
       <input className={styles.card__button} type="submit" value="Log In" />
+      <button className={styles.back_btn} onClick={props.closeLoginPage}>Back</button>
     </form>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    setToken: (token) => dispatch({type: "SET_TOKEN", payload: token})
+  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token})
+  closeLoginPage: () => dispatch({type: "CLOSE LOGIN"})
 })
 
 export default connect(null, mapDispatchToProps)(memo(LogInForm));

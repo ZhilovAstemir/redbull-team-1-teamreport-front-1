@@ -73,12 +73,6 @@ const AsideBar = (props) => {
       {props.isMyReports && <MyReports />}
       {props.isFillOutReport && <FillOutReport />}
       {props.isLogIn && <LogIn />}
-      {props.isLaunchGuide && <LaunchGuide/>}
-      {props.isMyCompany && <MyCompany/>}
-      {props.isInviteYourTeam && <InviteTeamMember/>}
-      {props.isMyReports && <MyReports/>}
-      {props.isFillOutReport && <FillOutReport/>}
-      {props.isTeamMembers && <TeamMembers/>}
     </>
   );
 };
@@ -100,7 +94,6 @@ const mapDispatchToProps = (dispatch) => ({
   openMyReports: () => dispatch({type: "MY_REPORTS"}),
   openFillOutReport: () => dispatch({type: "FILL_OUT_REPORT"}),
   openLogIn: () => dispatch({type: "LOG_IN"}),
-  openTeamMembers: () => dispatch({type: "TEAM_MEMBERS"})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));

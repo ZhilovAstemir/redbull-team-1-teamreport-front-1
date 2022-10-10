@@ -1,18 +1,18 @@
 import React, {memo} from 'react';
 import styles from "./FillOutReport.module.css";
-import veryLow from "../../images/very-sad.svg";
-import low from "../../images/sad.svg";
-import okay from "../../images/neutral.svg";
-import happy from "../../images/happy.svg";
-import veryHappy from "../../images/very-happy.svg";
 import clsx from "clsx";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DateRangePicker} from '@mui/x-date-pickers-pro';
-import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
-import {mapDispatchToPropsFactory} from "react-redux/es/connect/mapDispatchToProps";
+import FillOutCard from "../FillOutCard/FillOutCard";
+
+const names = {
+  morale: "morale",
+  stress: "stress",
+  workload: "workload"
+}
 
 const FillOutReport = (props) => {
   const [value, setValue] = React.useState([null, null]);
@@ -25,81 +25,9 @@ const FillOutReport = (props) => {
           Let your leader know where you're winning and struggling this week – in less than 10 minutes.
         </p>
       </header>
-      <section className={styles.moral_container}>
-        <h3 className={styles.title_of_moral}>How was your morale this week?</h3>
-        <div className={styles.morale_box}>
-          <div className={styles.icon_box}>
-            <img src={veryLow} alt="sad emotion" className={styles.smile_icons}/>
-            <p>Very Low</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={low} alt="low emotion" className={styles.smile_icons}/>
-            <p>Low</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={okay} alt="okay emotion" className={styles.smile_icons}/>
-            <p>Okay</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={happy} alt="good emotion" className={styles.smile_icons}/>
-            <p>Good</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={veryHappy} alt="great emotion" className={styles.smile_icons}/>
-            <p>Great</p>
-          </div>
-        </div>
-      </section>
-      <section className={styles.moral_container}>
-        <h3 className={styles.title_of_moral}>How was your stress this week?</h3>
-        <div className={styles.morale_box}>
-          <div className={styles.icon_box}>
-            <img src={veryLow} alt="sad" className={styles.smile_icons}/>
-            <p>Too High</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={low} alt="low emotion" className={styles.smile_icons}/>
-            <p>High</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={okay} alt="okay emotion" className={styles.smile_icons}/>
-            <p>Okay</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={happy} alt="good emotion" className={styles.smile_icons}/>
-            <p>Low</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={veryHappy} alt="great emotion" className={styles.smile_icons}/>
-            <p>Healthy</p>
-          </div>
-        </div>
-      </section>
-      <section className={styles.moral_container}>
-        <h3 className={styles.title_of_moral}>How was your workload this week?</h3>
-        <div className={styles.morale_box}>
-          <div className={styles.icon_box}>
-            <img src={veryLow} alt="sad emotion" className={styles.smile_icons}/>
-            <p>Overwhelming</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={low} alt="low" className={styles.smile_icons}/>
-            <p>Heavy</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={okay} alt="okay emotion" className={styles.smile_icons}/>
-            <p>Okay</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={happy} alt="good emotion" className={styles.smile_icons}/>
-            <p>Good</p>
-          </div>
-          <div className={styles.icon_box}>
-            <img src={veryHappy} alt="great emotion" className={styles.smile_icons}/>
-            <p>Great</p>
-          </div>
-        </div>
-      </section>
+      <FillOutCard name={names.morale} />
+      <FillOutCard name={names.stress}/>
+      <FillOutCard name={names.workload}/>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your high this week?</h3>
         <textarea
