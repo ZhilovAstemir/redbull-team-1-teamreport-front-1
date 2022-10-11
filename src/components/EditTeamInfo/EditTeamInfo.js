@@ -18,9 +18,9 @@ const EditTeamInfo = (props) => {
   const leaders = useSelector((state) => state.leaders);
   const members = useSelector((state) => state.members);
   const title = useSelector((state) => state.title)
-  const [firstName, setFirstName] = useState(props.myData ? props.myData.myName : "");
-  const [lastName, setLastName] = useState(props.myData ? props.myData.myLastName : "");
-  const [position, setposition] = useState(props.myData ? props.myData.myPosition : "");
+  const [firstName, setFirstName] = useState(props.myData ? props.myData.myName : props.name);
+  const [lastName, setLastName] = useState(props.myData ? props.myData.myLastName : props.lastName);
+  const [position, setposition] = useState(props.myData ? props.myData.myPosition : props.title);
 
 
   function handleEntailmentRequest(e) {
@@ -42,6 +42,7 @@ const EditTeamInfo = (props) => {
   const handleCloseMembers = () => {
     setOpenMembers(false);
   };
+
 
   return (
     <Dialog

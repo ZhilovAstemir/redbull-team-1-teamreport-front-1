@@ -200,31 +200,38 @@ export const reducers = (state, action) => {
       {
         id: Math.random(),
         name: "Aleksandr Evseev",
+        title: "CEO"
       },
       {
         id: Math.random(),
         name: "Nikolai Kapustin",
+        title: "Software developer"
       },
       {
         id: Math.random(),
         name: "Anna Kotova",
+        title: "Computer systems analyst"
       },
       {
         id: Math.random(),
         name: "Nina Mammadova",
+        title: "Database administrators and architect"
       },
       {
         id: Math.random(),
         name: "Natalia Starkova",
+        title: "IT project manager"
       },
       {
         id: Math.random(),
         name: "Anton Tarkhanov",
+        title: "Software developer"
       },
       {
         id: Math.random(),
         name: "Alexandr Vovchuk",
+        title: "CEO"
       },
-    ]
+    ],
   })
 }
