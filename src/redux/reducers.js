@@ -1,7 +1,6 @@
 const UPDATE_TITLE = "UPDATE_TITLE";
 
 export const reducers = (state, action) => {
-
   // if (action.type === "TITLE") {
   //   return {
   //     ...state,
@@ -13,8 +12,8 @@ export const reducers = (state, action) => {
     case "SET_TOKEN":
       return {
         ...state,
-        token: action.payload
-      }
+        token: action.payload,
+      };
     case "LAUNCH_GUIDE":
       return {
         ...state,
@@ -27,6 +26,7 @@ export const reducers = (state, action) => {
         isLogIn: false,
         isTeamMembers: false,
         isEditTeamInfo: false,
+        isTeamReports: false,
       };
     case "MY_COMPANY":
       return {
@@ -40,6 +40,7 @@ export const reducers = (state, action) => {
         isLogIn: false,
         isTeamMembers: false,
         isEditTeamInfo: false,
+        isTeamReports: false,
       };
     case "INVITE_TEAM":
       return {
@@ -53,6 +54,7 @@ export const reducers = (state, action) => {
         isLogIn: false,
         isTeamMembers: false,
         isEditTeamInfo: false,
+        isTeamReports: false,
       };
     case "MY_REPORTS":
       return {
@@ -66,6 +68,21 @@ export const reducers = (state, action) => {
         isLogIn: false,
         isTeamMembers: false,
         isEditTeamInfo: false,
+        isTeamReports: false,
+      };
+    case "TEAM_REPORTS":
+      return {
+        ...state,
+        title: "ANKO Technologies Corp",
+        isLaunchGuide: false,
+        isMyCompany: false,
+        isInviteYourTeam: false,
+        isMyReports: false,
+        isFillOutReport: false,
+        isLogIn: false,
+        isTeamMembers: false,
+        isEditTeamInfo: false,
+        isTeamReports: true,
       };
     case "TEAM_MEMBERS":
       return {
@@ -86,6 +103,7 @@ export const reducers = (state, action) => {
         isLogIn: false,
         isTeamMembers: false,
         isEditTeamInfo: false,
+        isTeamReports: false,
       };
     case "CLOSE_LOGIN":
       return {
@@ -104,6 +122,7 @@ export const reducers = (state, action) => {
         isLogIn: true,
         isTeamMembers: false,
         isEditTeamInfo: false,
+        isTeamReports: false,
       };
     case "EDIT_TEAM_INFO":
       return {
@@ -116,6 +135,7 @@ export const reducers = (state, action) => {
         isLogIn: false,
         isTeamMembers: false,
         isEditTeamInfo: true,
+        isTeamReports: false,
       };
     case UPDATE_TITLE || "CHANGE_TITLE":
       const title = action.payload;
@@ -143,17 +163,17 @@ export const reducers = (state, action) => {
         isMoraleInput: false,
         isStressInput: false,
         isWorkloadInput: true,
-      }
+      };
     case "CLOSE_INPUT":
       return {
         ...state,
         isMoraleInput: false,
         isStressInput: false,
         isWorkloadInput: false,
-      }
+      };
   }
 
-  return ({
+  return {
     title: "ANKO Technologies Corp",
     // pages
     isLaunchGuide: true,
@@ -164,10 +184,12 @@ export const reducers = (state, action) => {
     isTeamMembers: false,
     isLogIn: false,
     isEditTeamInfo: false,
+    isTeamReports: false,
     // inputs
     isMoraleInput: false,
     isStressInput: false,
     isWorkloadInput: false,
+
     leaders: [
       {
         id: Math.random(),
@@ -220,5 +242,5 @@ export const reducers = (state, action) => {
         name: "Alexandr Vovchuk",
       },
     ]
-  })
+  }
 }

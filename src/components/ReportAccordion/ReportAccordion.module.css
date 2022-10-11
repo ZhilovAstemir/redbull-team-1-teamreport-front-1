@@ -1,0 +1,62 @@
+.accordion__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.accordion__date {
+
+}
+
+.accordion__group {
+    display: flex;
+    padding-right: 50px;
+}
+
+.group__item {
+    padding: 0 18px;
+}
+
+.accordionDetails__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge__group {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.badge {
+    display: flex;
+    background: #90e0a1;
+    border-radius: 4px;
+    padding: 10px 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge__title {
+    font-weight: bold;
+    color: #ffffff;
+    width: 90px;
+    margin-left: 10px;
+}
+
+.badge__comment {
+    opacity: 0.7;
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+.comment__group {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+.comment__text {
+    font-size: 14px;
+}
