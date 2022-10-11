@@ -13,8 +13,7 @@ const LogInForm = (props) => {
   const onSubmit = (data) => {
     props.authService.logIn(data)
       .then((response) => {
-        console.log(response)
-        props.setToken(response)
+        props.setToken(response.data)
       })
   };
 
@@ -70,8 +69,8 @@ const LogInForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token})
-  closeLoginPage: () => dispatch({type: "CLOSE LOGIN"})
+  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token}),
+  closeLoginPage: () => dispatch({type: "CLOSE_LOGIN"})
 })
 
 export default connect(null, mapDispatchToProps)(memo(LogInForm));
