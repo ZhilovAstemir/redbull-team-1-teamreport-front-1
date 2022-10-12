@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useRef, useState} from 'react';
 import styles from "./FillOutReport.module.css";
 import clsx from "clsx";
 import TextField from '@mui/material/TextField';
@@ -7,7 +7,8 @@ import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DateRangePicker} from '@mui/x-date-pickers-pro';
 import FillOutCard from "../FillOutCard/FillOutCard";
-import {connect, useDispatch} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
+import reportService from "../../services/reportService";
 
 const names = {
   morale: "morale",
@@ -21,6 +22,37 @@ const FillOutReport = (props) => {
   const [countForHigh, setCountForHigh] = useState(600);
   const [countForLow, setCountForLow] = useState(600);
   const [countElse, setCountForElse] = useState(400);
+  const [morale, setMorale] = useState(0);
+  const [stress, setStress] = useState(0);
+  const [workload, setWorkload] = useState(0);
+  const [moraleComment, setMoraleComment] = useState('');
+  const [stressComment, setStressComment] = useState('');
+  const [workloadComment, setWorkloadComment] = useState('');
+  const [highComment, setHighComment] = useState('');
+  const [lowComment, setLowComment] = useState('');
+  const [elseComment, setElseComment] = useState('');
+  const token = useSelector((state) => state.token);
+
+  const sendReport = (e) => {
+    e.preventDefault();
+    console.log(morale, stress, workload)
+    let data = {
+      morale,
+      moraleComment,
+      stress,
+      stressComment,
+      workload,
+      workloadComment,
+      highComment,
+      lowComment,
+      elseComment,
+      week: {
+        dateStart: new Date(value[0].$d),
+        dateEnd: new Date(value[1].$d)
+      }
+    }
+    reportService.sendReport(data, token)
+  }
 
   return (
     <div className={styles.fill_out_container}>
@@ -30,25 +62,31 @@ const FillOutReport = (props) => {
           Let your leader know where you're winning and struggling this week – in less than 10 minutes.
         </p>
       </header>
-      <FillOutCard name={names.morale}/>
+      <FillOutCard name={names.morale} setEmotion={setMorale} value={morale}/>
       {props.isMoraleInput &&
         <textarea
+          value={moraleComment}
+          onChange={(e) => setMoraleComment(e.target.value)}
           onBlur={() => dispatch({type: "CLOSE_INPUT"})}
           className={clsx(styles.textarea_high, styles.comments)}
           placeholder="your comments . . ."
         />
       }
-      <FillOutCard name={names.stress}/>
+      <FillOutCard name={names.stress} setEmotion={setStress} value={stress}/>
       {props.isStressInput &&
         <textarea
+          value={stressComment}
+          onChange={(e) => setStressComment(e.target.value)}
           onBlur={() => dispatch({type: "CLOSE_INPUT"})}
           className={clsx(styles.textarea_high, styles.comments)}
           placeholder="your comments . . ."
         />
       }
-      <FillOutCard name={names.workload}/>
+      <FillOutCard name={names.workload} setEmotion={setWorkload} value={workload}/>
       {props.isWorkloadInput &&
         <textarea
+          value={workloadComment}
+          onChange={(e) => setWorkloadComment(e.target.value)}
           onBlur={() => dispatch({type: "CLOSE_INPUT"})}
           className={clsx(styles.textarea_high, styles.comments)}
           placeholder="your comments . . ."
@@ -57,7 +95,11 @@ const FillOutReport = (props) => {
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your high this week?</h3>
         <textarea
-          onChange={e => setCountForHigh(600 - e.target.value.length)}
+          value={highComment}
+          onChange={e => {
+            setHighComment(e.target.value);
+            setCountForHigh(600 - e.target.value.length);
+          }}
           className={styles.textarea_high}
           maxLength={600}
           placeholder="What was your personal or professional high this week? What's the one thing you accomplished at work this week?"
@@ -68,7 +110,11 @@ const FillOutReport = (props) => {
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your low this week?</h3>
         <textarea
-          onChange={e => setCountForLow(600 - e.target.value.length)}
+          value={lowComment}
+          onChange={e => {
+            setLowComment(e.target.value);
+            setCountForLow(600 - e.target.value.length);
+          }}
           className={styles.textarea_high}
           maxLength={600}
           placeholder="What was your personal low this week?"
@@ -79,7 +125,11 @@ const FillOutReport = (props) => {
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>What was your low this week?</h3>
         <textarea
-          onChange={e => setCountForElse(400 - e.target.value.length)}
+          value={elseComment}
+          onChange={e => {
+            setElseComment(e.target.value);
+            setCountForElse(400 - e.target.value.length);
+          }}
           className={styles.textarea_high}
           maxLength={400}
           placeholder="Is there anything else you would like to share with your leader?"
@@ -89,7 +139,7 @@ const FillOutReport = (props) => {
       </section>
       <section className={clsx(styles.moral_container, styles.moral_container_high)}>
         <h3 className={styles.title_of_moral}>Date range</h3>
-        <form action="">
+        <form onSubmit={(e) => sendReport(e)}>
           <label className={styles.form__label}>Choose date</label>
           <LocalizationProvider
             className={styles.week_picker}
@@ -111,8 +161,8 @@ const FillOutReport = (props) => {
             />
           </LocalizationProvider>
           <p className={styles.required}>All fields are required unless marked as optional.</p>
+          <input type="submit" value="Send Weekly Report" className={styles.sent_moral}/>
         </form>
-        <input type="submit" value="Send Weekly Report" className={styles.sent_moral}/>
       </section>
     </div>
   );

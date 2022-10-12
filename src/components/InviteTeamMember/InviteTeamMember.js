@@ -8,7 +8,6 @@ import styles from "./InviteTeamMember.module.css";
 import { styled } from "@mui/material";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import { connect } from "react-redux";
 import inviteService from "../../services/inviteService";
 
 const InviteTeamMember = (props) => {
@@ -84,7 +83,6 @@ const InviteTeamMember = (props) => {
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const onSubmit = (data) => {
-    inviteService.setToken(props.token);
     inviteService.invite(data);
     setIsInviteSuccessful(true);
   };
@@ -133,7 +131,7 @@ const InviteTeamMember = (props) => {
               <label className={styles.card__inputLabel}>Last Name</label>
               <input
                 {...register("lastName", { required: "Lastname is required" })}
-                aria-invalid={errors.lastname ? "true" : "false"}
+                aria-invalid={errors.lastName ? "true" : "false"}
                 className={styles.card__input}
               />
               {errors.lastName?.type === "required" && (
@@ -153,7 +151,7 @@ const InviteTeamMember = (props) => {
                 aria-invalid={errors.email ? "true" : "false"}
                 className={styles.card__input}
               />
-              {errors.mail && (
+              {errors.email && (
                 <p className={styles.card__validationMessage} role="alert">
                   {errors.email?.message}
                 </p>

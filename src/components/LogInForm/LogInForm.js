@@ -73,24 +73,14 @@ const LogInForm = (props) => {
         )}
       </div>
       <input className={styles.card__button} type="submit" value="Log In" />
-      <button className={styles.back_btn} onClick={props.closeLoginPage}>
-        Back
-      </button>
+      <button className={styles.back_btn} onClick={props.closeLoginPage}>Back</button>
     </form>
   );
 };
 
-const mapStateToProps = (state) => ({
-  member: state.member,
-  token: state.token,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
-  setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
-  openLaunchGuide: () => dispatch({ type: "LAUNCH_GUIDE" }),
-  openContinueRegistration: () =>
-    dispatch({ type: "OPEN_CONTINUE_REGISTRATION" }),
-});
+  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token}),
+  closeLoginPage: () => dispatch({type: "CLOSE_LOGIN"})
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(LogInForm));
+export default connect(null, mapDispatchToProps)(memo(LogInForm));

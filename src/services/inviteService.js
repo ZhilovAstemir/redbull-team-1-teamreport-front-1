@@ -4,12 +4,18 @@ class InviteService extends AxiosService {
   constructor() {
     super();
   }
-  invite = (data) => {
-    this.post("/members/invite", {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-    })
+  invite = (data, token) => {
+    this.post(
+      "/members/invite",
+      {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+      },
+      {
+        headers: token,
+      }
+    )
       .then((response) => {
         console.log(response);
       })
