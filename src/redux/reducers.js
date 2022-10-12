@@ -1,13 +1,4 @@
-const UPDATE_TITLE = "UPDATE_TITLE";
-
 export const reducers = (state, action) => {
-  // if (action.type === "TITLE") {
-  //   return {
-  //     ...state,
-  //     title: "newTitle",
-  //   }
-  // }
-
   switch (action.type) {
     case "SET_TOKEN":
       return {
@@ -111,7 +102,8 @@ export const reducers = (state, action) => {
         isLaunchGuide: true,
         isLogIn: false,
       };
-    case "LOG_IN":
+    case "LOG_IN": {
+      console.log(state);
       return {
         ...state,
         isLaunchGuide: false,
@@ -124,6 +116,7 @@ export const reducers = (state, action) => {
         isEditTeamInfo: false,
         isTeamReports: false,
       };
+    }
     case "EDIT_TEAM_INFO":
       return {
         ...state,
@@ -137,11 +130,10 @@ export const reducers = (state, action) => {
         isEditTeamInfo: true,
         isTeamReports: false,
       };
-    case UPDATE_TITLE || "CHANGE_TITLE":
-      const title = action.payload;
+    case "CHANGE_TITLE":
       return {
         ...state,
-        title: title,
+        title: action.payload,
       };
     case "MORALE_INPUT":
       return {
@@ -171,6 +163,11 @@ export const reducers = (state, action) => {
         isStressInput: false,
         isWorkloadInput: false,
       };
+    case "SET_MEMBER":
+      return {
+        ...state,
+        member: action.payload,
+      };
   }
 
   return {
@@ -184,12 +181,14 @@ export const reducers = (state, action) => {
     isTeamMembers: false,
     isLogIn: false,
     isEditTeamInfo: false,
+    isContinueRegistration: false,
     isTeamReports: false,
     // inputs
     isMoraleInput: false,
     isStressInput: false,
     isWorkloadInput: false,
-
+    token: null,
+    member: null,
     leaders: [
       {
         id: Math.random(),
@@ -241,6 +240,6 @@ export const reducers = (state, action) => {
         id: Math.random(),
         name: "Alexandr Vovchuk",
       },
-    ]
-  }
-}
+    ],
+  };
+};

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 const LogInForm = (props) => {
   const {
@@ -11,11 +11,15 @@ const LogInForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    props.authService.logIn(data)
-      .then((response) => {
-        props.setToken(response.data)
-      })
+    props.authService.logIn(data, props.setToken);
   };
+
+  if (props.token) {
+    props.authService.getMemberInformation(props.setMember);
+  }
+  if (props.member) {
+    props.closeLoginPage();
+  }
 
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -63,14 +67,22 @@ const LogInForm = (props) => {
         )}
       </div>
       <input className={styles.card__button} type="submit" value="Log In" />
-      <button className={styles.back_btn} onClick={props.closeLoginPage}>Back</button>
+      <button className={styles.back_btn} onClick={props.closeLoginPage}>
+        Back
+      </button>
     </form>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setToken: (token) => dispatch({type: "SET_TOKEN", payload: token}),
-  closeLoginPage: () => dispatch({type: "CLOSE_LOGIN"})
-})
+const mapStateToProps = (state) => ({
+  member: state.member,
+  token: state.token,
+});
 
-export default connect(null, mapDispatchToProps)(memo(LogInForm));
+const mapDispatchToProps = (dispatch) => ({
+  setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
+  setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
+  closeLoginPage: () => dispatch({ type: "CLOSE_LOGIN" }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(LogInForm));

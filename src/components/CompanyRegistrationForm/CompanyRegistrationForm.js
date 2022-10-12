@@ -1,7 +1,7 @@
-import React, {memo} from "react";
-import {useForm} from "react-hook-form";
+import React, { memo } from "react";
+import { useForm } from "react-hook-form";
 import styles from "./CompanyRegistrationForm.module.css";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 const CompanyRegistrationForm = (props) => {
   const {
@@ -159,13 +159,12 @@ const CompanyRegistrationForm = (props) => {
         </div>
       </div>
       <input className={styles.form__button} type="submit" value="Sign Up" />
-      <button className={styles.back_btn} onClick={props.closeLoginPage}>Back</button>
     </form>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  closeLoginPage: () => dispatch({type: "CLOSE_LOGIN"})
-})
+  closeLoginPage: () => dispatch({ type: "CLOSE_LOGIN" }),
+});
 
 export default connect(null, mapDispatchToProps)(memo(CompanyRegistrationForm));
