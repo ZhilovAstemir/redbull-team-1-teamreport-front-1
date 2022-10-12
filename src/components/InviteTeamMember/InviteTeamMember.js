@@ -9,6 +9,7 @@ import { styled } from "@mui/material";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import inviteService from "../../services/inviteService";
+import { connect } from "react-redux";
 
 const InviteTeamMember = (props) => {
   const {
@@ -83,6 +84,7 @@ const InviteTeamMember = (props) => {
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const onSubmit = (data) => {
+    inviteService.setToken(props.token);
     inviteService.invite(data);
     setIsInviteSuccessful(true);
   };
