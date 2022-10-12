@@ -1,7 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./CompanyRegistrationForm.module.css";
 import { connect } from "react-redux";
+import authService from "../../services/authService";
 
 const CompanyRegistrationForm = (props) => {
   const {
@@ -11,8 +12,26 @@ const CompanyRegistrationForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    props.authService.registerCompany(data);
+    console.log(data);
+    authService.registerCompany(data);
+    authService.logIn(
+      { email: data.email, password: data.password },
+      props.setToken
+    );
   };
+
+  useEffect(() => {
+    if (props.token) {
+      props.authService.getMemberInformation(props.setMember);
+    }
+  }, [props.token]);
+
+  useEffect(() => {
+    if (props.member) {
+      if (!props.member.password) props.openContinueRegistration();
+      else props.openLaunchGuide();
+    }
+  }, [props.member]);
 
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -163,8 +182,19 @@ const CompanyRegistrationForm = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  closeLoginPage: () => dispatch({ type: "CLOSE_LOGIN" }),
+const mapStateToProps = (state) => ({
+  token: state.token,
+  member: state.member,
 });
 
-export default connect(null, mapDispatchToProps)(memo(CompanyRegistrationForm));
+const mapDispatchToProps = (dispatch) => ({
+  setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
+  setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
+  openLaunchGuide: () => dispatch({ type: "LAUNCH_GUIDE" }),
+  openContinueRegistration: () => dispatch({ type: "CONTINUE_REGISTRATION" }),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(memo(CompanyRegistrationForm));
