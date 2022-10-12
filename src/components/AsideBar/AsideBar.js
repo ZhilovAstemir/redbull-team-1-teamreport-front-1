@@ -140,6 +140,8 @@ const mapStateToProps = (state) => ({
   isLogIn: state.isLogIn,
   isTeamMembers: state.isTeamMembers,
   isEditTeamInfo: state.isEditTeamInfo,
+  isContinueRegistration: state.isContinueRegistration,
+  member: state.member,
 });
 
 const mapDispatchToProps = (dispatch) => ({
