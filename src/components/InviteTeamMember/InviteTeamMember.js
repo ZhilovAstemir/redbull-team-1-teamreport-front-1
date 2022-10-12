@@ -9,8 +9,9 @@ import { styled } from "@mui/material";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import inviteService from "../../services/inviteService";
+import { connect } from "react-redux";
 
-const InviteTeamMember = () => {
+const InviteTeamMember = (props) => {
   const {
     register,
     formState: { errors },
@@ -83,6 +84,7 @@ const InviteTeamMember = () => {
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const onSubmit = (data) => {
+    inviteService.setToken(props.token);
     inviteService.invite(data);
     setIsInviteSuccessful(true);
   };
@@ -170,4 +172,14 @@ const InviteTeamMember = () => {
   );
 };
 
-export default memo(InviteTeamMember);
+const mapStateToProps = (state) => ({
+  token: state.token,
+  member: state.member,
+});
+
+const mapDispatchToProps = () => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(memo(InviteTeamMember));

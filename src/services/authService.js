@@ -4,18 +4,26 @@ class AuthService extends AxiosService {
   constructor() {
     super();
   }
-  logIn = (data) => {
-    return this.post("/members/login", {
+  logIn = (data, setToken) => {
+    this.post("/members/login", {
       email: data.email,
       password: data.password,
     })
       .then((response) => {
-        return response;
+        console.log(response.data);
+        setToken(response.data);
+        this.defaults.headers.common["Authorization"] = response.data;
       })
       .catch((error) => {
         console.log(error);
+        setToken(null);
       });
   };
+
+  logOut = (setToken) => {
+    setToken(null);
+  };
+
   registerCompany = (data) => {
     this.post("/company/register", {
       firstName: data.firstName,
@@ -32,6 +40,32 @@ class AuthService extends AxiosService {
         console.log(error);
       });
   };
+
+  getMemberInformation = (setMember) => {
+    this.get("/members/info")
+      .then((response) => {
+        setMember(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  continueRegistration = (data, setToken) => {
+    this.post("/members/continue-registration", data)
+      .then((response) => {
+        setToken(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  setToken = (token) => {
+    console.log(token);
+    this.defaults.headers.common["Authorization"] = token;
+  };
+
   registerTeamMember = (data) => {
     this.post("/members/register", {
       firstName: data.firstName,

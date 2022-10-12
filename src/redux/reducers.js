@@ -1,19 +1,13 @@
-const UPDATE_TITLE = "UPDATE_TITLE";
-
 export const reducers = (state, action) => {
-  // if (action.type === "TITLE") {
-  //   return {
-  //     ...state,
-  //     title: "newTitle",
-  //   }
-  // }
-
   switch (action.type) {
-    case "SET_TOKEN":
+    case "SET_TOKEN": {
+      console.log(action);
+      console.log(state);
       return {
         ...state,
         token: action.payload,
       };
+    }
     case "LAUNCH_GUIDE":
       return {
         ...state,
@@ -27,6 +21,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "MY_COMPANY":
       return {
@@ -41,6 +36,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "INVITE_TEAM":
       return {
@@ -55,6 +51,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "MY_REPORTS":
       return {
@@ -69,6 +66,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "TEAM_REPORTS":
       return {
@@ -83,6 +81,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: true,
+        isContinueRegistration: false,
       };
     case "TEAM_MEMBERS":
       return {
@@ -104,6 +103,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "CLOSE_LOGIN":
       return {
@@ -123,6 +123,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "EDIT_TEAM_INFO":
       return {
@@ -136,12 +137,12 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: true,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
-    case UPDATE_TITLE || "CHANGE_TITLE":
-      const title = action.payload;
+    case "CHANGE_TITLE":
       return {
         ...state,
-        title: title,
+        title: action.payload,
       };
     case "MORALE_INPUT":
       return {
@@ -171,6 +172,25 @@ export const reducers = (state, action) => {
         isStressInput: false,
         isWorkloadInput: false,
       };
+    case "SET_MEMBER":
+      return {
+        ...state,
+        member: action.payload,
+      };
+    case "CONTINUE_REGISTRATION":
+      return {
+        ...state,
+        isLaunchGuide: false,
+        isMyCompany: false,
+        isInviteYourTeam: false,
+        isMyReports: false,
+        isFillOutReport: false,
+        isLogIn: false,
+        isTeamMembers: false,
+        isEditTeamInfo: false,
+        isTeamReports: false,
+        isContinueRegistration: true,
+      };
   }
 
   return {
@@ -184,12 +204,14 @@ export const reducers = (state, action) => {
     isTeamMembers: false,
     isLogIn: false,
     isEditTeamInfo: false,
+    isContinueRegistration: false,
     isTeamReports: false,
     // inputs
     isMoraleInput: false,
     isStressInput: false,
     isWorkloadInput: false,
-
+    token: null,
+    member: null,
     leaders: [
       {
         id: Math.random(),
@@ -241,6 +263,6 @@ export const reducers = (state, action) => {
         id: Math.random(),
         name: "Alexandr Vovchuk",
       },
-    ]
-  }
-}
+    ],
+  };
+};
