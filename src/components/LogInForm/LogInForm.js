@@ -13,7 +13,8 @@ const LogInForm = (props) => {
   const onSubmit = (data) => {
     props.authService.logIn(data)
       .then((response) => {
-        props.setToken(response.data)
+        props.setToken(response.data);
+        props.closeLoginPage();
       })
   };
 
