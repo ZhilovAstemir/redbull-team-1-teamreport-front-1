@@ -48,6 +48,7 @@ const MyCompany = (props) => {
                   <input
                     className={styles.form__input}
                     type="text"
+                    value={companyName}
                     onChange={(event) => setCompanyName(event.target.value)}
                   />
                   <button

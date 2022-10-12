@@ -1,10 +1,13 @@
 export const reducers = (state, action) => {
   switch (action.type) {
-    case "SET_TOKEN":
+    case "SET_TOKEN": {
+      console.log(action);
+      console.log(state);
       return {
         ...state,
         token: action.payload,
       };
+    }
     case "LAUNCH_GUIDE":
       return {
         ...state,
@@ -18,6 +21,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "MY_COMPANY":
       return {
@@ -32,6 +36,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "INVITE_TEAM":
       return {
@@ -46,6 +51,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "MY_REPORTS":
       return {
@@ -60,6 +66,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "TEAM_REPORTS":
       return {
@@ -74,6 +81,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: true,
+        isContinueRegistration: false,
       };
     case "TEAM_MEMBERS":
       return {
@@ -95,6 +103,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "CLOSE_LOGIN":
       return {
@@ -102,8 +111,7 @@ export const reducers = (state, action) => {
         isLaunchGuide: true,
         isLogIn: false,
       };
-    case "LOG_IN": {
-      console.log(state);
+    case "LOG_IN":
       return {
         ...state,
         isLaunchGuide: false,
@@ -115,8 +123,8 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: false,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
-    }
     case "EDIT_TEAM_INFO":
       return {
         ...state,
@@ -129,6 +137,7 @@ export const reducers = (state, action) => {
         isTeamMembers: false,
         isEditTeamInfo: true,
         isTeamReports: false,
+        isContinueRegistration: false,
       };
     case "CHANGE_TITLE":
       return {
@@ -167,6 +176,20 @@ export const reducers = (state, action) => {
       return {
         ...state,
         member: action.payload,
+      };
+    case "CONTINUE_REGISTRATION":
+      return {
+        ...state,
+        isLaunchGuide: false,
+        isMyCompany: false,
+        isInviteYourTeam: false,
+        isMyReports: false,
+        isFillOutReport: false,
+        isLogIn: false,
+        isTeamMembers: false,
+        isEditTeamInfo: false,
+        isTeamReports: false,
+        isContinueRegistration: true,
       };
   }
 

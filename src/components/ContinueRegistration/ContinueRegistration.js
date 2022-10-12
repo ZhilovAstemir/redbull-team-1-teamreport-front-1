@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import styles from "./ContinueRegistration.module.css";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -14,9 +14,13 @@ const ContinueRegistration = (props) => {
   const onSubmit = (data) => {
     authService.continueRegistration(data);
     authService.getMemberInformation(props.setMember);
-    console.log(props.member);
-    if (props.member) props.openLaunchGuide();
   };
+
+  useEffect(() => {
+    if (props.member && props.member.password) {
+      props.openLaunchGuide();
+    }
+  }, [props.member]);
 
   const passwordRegexp = /^(?=.*?[A-Za-z])(?=.*?[#?!@$%^&*-]).{5,}$/;
 

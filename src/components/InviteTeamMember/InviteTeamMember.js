@@ -1,25 +1,26 @@
-import React, {memo, useState} from "react";
-import {useForm} from "react-hook-form";
+import React, { memo, useState } from "react";
+import { useForm } from "react-hook-form";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import styles from "./InviteTeamMember.module.css";
-import {styled} from "@mui/material";
-import {ArrowForwardRounded} from "@mui/icons-material";
+import { styled } from "@mui/material";
+import { ArrowForwardRounded } from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
+import { connect } from "react-redux";
 import inviteService from "../../services/inviteService";
 
-const InviteTeamMember = () => {
+const InviteTeamMember = (props) => {
   const {
     register,
-    formState: {errors},
+    formState: { errors },
     handleSubmit,
   } = useForm();
 
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
-  ))(({theme}) => ({
+  ))(({ theme }) => ({
     width: "50%",
     margin: "0 auto",
     border: "none",
@@ -33,10 +34,10 @@ const InviteTeamMember = () => {
 
   const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
-      expandIcon={<ArrowForwardRounded sx={{fontSize: "1rem"}}/>}
+      expandIcon={<ArrowForwardRounded sx={{ fontSize: "1rem" }} />}
       {...props}
     />
-  ))(({theme}) => ({
+  ))(({ theme }) => ({
     backgroundColor: "#f5f7f8",
     color: "#000000",
     flexDirection: "row-reverse",
@@ -48,7 +49,7 @@ const InviteTeamMember = () => {
     },
   }));
 
-  const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
+  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     padding: theme.spacing(2),
     borderTop: "none",
     background: "#f5f7f8",
@@ -83,28 +84,29 @@ const InviteTeamMember = () => {
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   const onSubmit = (data) => {
+    inviteService.setToken(props.token);
     inviteService.invite(data);
     setIsInviteSuccessful(true);
   };
 
   return (
     <>
-      <HeaderForGuide/>
+      <HeaderForGuide />
       <div className={styles.content}>
         <div className={styles.container}>
           {isInviteSuccessful && (
             <div>
               <div className={styles.card}>
                 <div className={styles.card__header}>
-                  Success! Your team member has been invited to the Weekly Report
-                  Tool.
+                  Success! Your team member has been invited to the Weekly
+                  Report Tool.
                 </div>
                 <div className={styles.card__text}>
                   Once they accept your invitation, they'll be able to create
                   their reports.
                 </div>
               </div>
-              <CustomizedAccordion/>
+              <CustomizedAccordion />
             </div>
           )}
           <div className={styles.card}>
@@ -117,7 +119,9 @@ const InviteTeamMember = () => {
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <label className={styles.card__inputLabel}>First Name</label>
               <input
-                {...register("firstName", {required: "Firstname is required"})}
+                {...register("firstName", {
+                  required: "Firstname is required",
+                })}
                 aria-invalid={errors.firstName ? "true" : "false"}
                 className={styles.card__input}
               />
@@ -128,7 +132,7 @@ const InviteTeamMember = () => {
               )}
               <label className={styles.card__inputLabel}>Last Name</label>
               <input
-                {...register("lastName", {required: "Lastname is required"})}
+                {...register("lastName", { required: "Lastname is required" })}
                 aria-invalid={errors.lastname ? "true" : "false"}
                 className={styles.card__input}
               />
@@ -168,4 +172,14 @@ const InviteTeamMember = () => {
   );
 };
 
-export default memo(InviteTeamMember);
+const mapStateToProps = (state) => ({
+  token: state.token,
+  member: state.member,
+});
+
+const mapDispatchToProps = () => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(memo(InviteTeamMember));

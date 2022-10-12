@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import styles from "./LogInForm.module.css";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
@@ -14,12 +14,18 @@ const LogInForm = (props) => {
     props.authService.logIn(data, props.setToken);
   };
 
-  if (props.token) {
-    props.authService.getMemberInformation(props.setMember);
-  }
-  if (props.member) {
-    props.closeLoginPage();
-  }
+  useEffect(() => {
+    if (props.token) {
+      props.authService.getMemberInformation(props.setMember);
+    }
+  }, [props.token]);
+
+  useEffect(() => {
+    if (props.member) {
+      if (!props.member.password) props.openContinueRegistration();
+      else props.openLaunchGuide();
+    }
+  }, [props.member]);
 
   const emailRegexp =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -82,7 +88,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
   setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
-  closeLoginPage: () => dispatch({ type: "CLOSE_LOGIN" }),
+  openLaunchGuide: () => dispatch({ type: "LAUNCH_GUIDE" }),
+  openContinueRegistration: () =>
+    dispatch({ type: "OPEN_CONTINUE_REGISTRATION" }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(LogInForm));

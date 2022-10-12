@@ -15,6 +15,7 @@ import TeamMembers from "../TeamMembers/TeamMembers";
 import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 import { Slide } from "@mui/material";
 import authService from "../../services/authService";
+import ContinueRegistration from "../ContinueRegistration/ContinueRegistration";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -127,6 +128,7 @@ const AsideBar = (props) => {
       {props.isLogIn && <LogIn />}
       {props.isTeamMembers && <TeamMembers />}
       {props.isEditTeamInfo && <EditTeamInfo />}
+      {props.isContinueRegistration && <ContinueRegistration />}
     </>
   );
 };

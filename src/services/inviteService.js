@@ -1,8 +1,8 @@
 import AxiosService from "./axiosService";
 
 class InviteService extends AxiosService {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
   invite = (data) => {
     this.post("/members/invite", {
@@ -16,6 +16,10 @@ class InviteService extends AxiosService {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  setToken = (token) => {
+    this.defaults.headers.common["Authorization"] = token;
   };
 }
 

@@ -61,6 +61,11 @@ class AuthService extends AxiosService {
       });
   };
 
+  setToken = (token) => {
+    console.log(token);
+    this.defaults.headers.common["Authorization"] = token;
+  };
+
   registerTeamMember = (data) => {
     this.post("/members/register", {
       firstName: data.firstName,
