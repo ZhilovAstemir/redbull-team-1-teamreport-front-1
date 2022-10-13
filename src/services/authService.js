@@ -12,11 +12,12 @@ class AuthService extends AxiosService {
       .then((response) => {
         console.log(response.data);
         setToken(response.data);
-        this.defaults.headers.common["Authorization"] = response.data;
+        this.setToken(response.data);
       })
       .catch((error) => {
         console.log(error);
         setToken(null);
+        this.setToken(null);
       });
   };
 
@@ -59,10 +60,6 @@ class AuthService extends AxiosService {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  setToken = (token) => {
-    this.defaults.headers.common["Authorization"] = token;
   };
 
   registerTeamMember = (data) => {

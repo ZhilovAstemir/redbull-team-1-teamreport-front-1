@@ -266,4 +266,3 @@ export const reducers = (state, action) => {
     ],
   };
 };
-
