@@ -2,12 +2,13 @@ import React, {memo, useEffect, useState} from "react";
 import styles from "./MyReports.module.css";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import ReportAccordion from "../ReportAccordion/ReportAccordion";
-import reportService from "../../services/reportService";
+import ReportService from "../../services/reportService";
 import {connect, useSelector} from "react-redux";
 
 const MyReports = (props) => {
   const [reports, setReports] = useState([]);
   const token = useSelector((state) => state.token);
+  const reportService = new ReportService(token);
 
   useEffect(() => {
     if(token.length) {
