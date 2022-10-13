@@ -74,7 +74,6 @@ const EditTeamInfo = (props) => {
       onClose={props.onClose}
     >
       <DialogActions className={styles.modal_btn_close}>
-        <p className={styles.modal_title}>{title}.</p>
         <Button onClick={props.close}>Close</Button>
       </DialogActions>
       <div className={styles.editTeam_container}>
@@ -98,7 +97,6 @@ const EditTeamInfo = (props) => {
           >
             <label>First Name</label>
             <input
-              defaultValue={firstName}
               className={styles.fn_input}
               {...register("firstName", { required: "Firstname is required" })}
               aria-invalid={errors.firstName ? "true" : "false"}
@@ -110,7 +108,6 @@ const EditTeamInfo = (props) => {
             )}
             <label>Last Name</label>
             <input
-              defaultValue={lastName}
               className={styles.ln_input}
               {...register("lastname", { required: "Lastname is required" })}
               aria-invalid={errors.lastname ? "true" : "false"}
@@ -122,7 +119,6 @@ const EditTeamInfo = (props) => {
             )}
             <label>Title</label>
             <input
-              defaultValue={position}
               className={styles.title_input}
               {...register("mail", {
                 required: "Title is required",

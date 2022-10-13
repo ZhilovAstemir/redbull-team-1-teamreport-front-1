@@ -37,8 +37,6 @@ const AsideBar = (props) => {
     e.preventDefault();
   }
 
-  console.log("render");
-
   return (
     <>
       <div className={styles.asideBar_container}>
@@ -128,7 +126,6 @@ const AsideBar = (props) => {
         TransitionComponent={Transition}
         onClose={handleClose}
         close={handleClose}
-        myData={myData}
       />
       {props.isLaunchGuide && <LaunchGuide/>}
       {props.isMyCompany && <MyCompany/>}
