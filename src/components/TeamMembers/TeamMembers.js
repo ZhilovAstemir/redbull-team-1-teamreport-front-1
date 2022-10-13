@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import styles from "./TeamMembers.module.css";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Slide } from "@mui/material";
 import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 import teamService from "../../services/teamService";
@@ -67,6 +67,12 @@ const TeamMembers = (props) => {
               >
                 <button>Edit</button>
               </a>
+                <EditTeamInfo
+                    open={open}
+                    TransitionComponent={Transition}
+                    onClose={handleClose}
+                    close={handleClose}
+                />
             </div>
           ))}
         </section>

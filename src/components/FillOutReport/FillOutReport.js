@@ -106,7 +106,7 @@ const FillOutReport = (props) => {
           placeholder="your comments . . ."
         />
       )}
-      {(isReported && morale === 0) && <p className={styles.required}>Morale is required</p>}
+      {(isReported && morale === 0) && <p className={styles.required__message}>Morale is required</p>}
       <FillOutCard name={names.stress} setEmotion={setStress} value={stress} />
       {props.isStressInput && (
         <textarea
@@ -117,7 +117,7 @@ const FillOutReport = (props) => {
           placeholder="your comments . . ."
         />
       )}
-      {(isReported && stress === 0) && <p className={styles.required}>Stress is required</p>}
+      {(isReported && stress === 0) && <p className={styles.required__message}>Stress is required</p>}
       <FillOutCard
         name={names.workload}
         setEmotion={setWorkload}
@@ -132,7 +132,7 @@ const FillOutReport = (props) => {
           placeholder="your comments . . ."
         />
       )}
-      {(isReported && workload === 0) && <p className={styles.required}>Workload is required</p>}
+        {(isReported && workload === 0) && <p className={styles.required__message}>Workload is required</p>}
       <section
         className={clsx(styles.moral_container, styles.moral_container_high)}
       >
@@ -148,7 +148,7 @@ const FillOutReport = (props) => {
           placeholder="What was your personal or professional high this week? What's the one thing you accomplished at work this week?"
         ></textarea>
         <div className={styles.textarea_counter}>{countForHigh}</div>
-        {(isReported && highComment.length === 0) && <p className={styles.required}>Fill out your high</p>}
+          {(isReported && highComment.length === 0) && <p className={styles.required__message}>Fill out your high</p>}
       </section>
       <section
         className={clsx(styles.moral_container, styles.moral_container_high)}
@@ -165,12 +165,12 @@ const FillOutReport = (props) => {
           placeholder="What was your personal low this week?"
         ></textarea>
         <div className={styles.textarea_counter}>{countForLow}</div>
-        {(isReported && lowComment.length === 0) && <p className={styles.required}>Fill out your high</p>}
+          {(isReported && lowComment.length === 0) && <p className={styles.required__message}>Fill out your high</p>}
       </section>
       <section
         className={clsx(styles.moral_container, styles.moral_container_high)}
       >
-        <h3 className={styles.title_of_moral}>What was your low this week?</h3>
+        <h3 className={styles.title_of_moral}>Anything else?</h3>
         <textarea
           value={elseComment}
           onChange={(e) => {
@@ -179,7 +179,7 @@ const FillOutReport = (props) => {
           }}
           className={styles.textarea_high}
           maxLength={400}
-          placeholder="Is there anything else you would like to share with your leader?"
+          placeholder="Is there anything else you would like to share with your leader? *Optional"
         ></textarea>
         <div className={styles.textarea_counter}>{countElse}</div>
       </section>
@@ -208,9 +208,7 @@ const FillOutReport = (props) => {
               )}
             />
           </LocalizationProvider>
-          <p className={styles.required}>
             {(isReported && value.includes(null)) && <p className={styles.required__message}>Set date range</p>}
-          </p>
           <p className={styles.required}>
             All fields are required unless marked as optional.
           </p>
