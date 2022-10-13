@@ -23,6 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const AsideBar = (props) => {
   const [open, setOpen] = useState(false);
+  const myData = useSelector((state) => state.myProfile);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,6 +36,8 @@ const AsideBar = (props) => {
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }
+
+  console.log("render");
 
   return (
     <>
@@ -125,6 +128,7 @@ const AsideBar = (props) => {
         TransitionComponent={Transition}
         onClose={handleClose}
         close={handleClose}
+        myData={myData}
       />
       {props.isLaunchGuide && <LaunchGuide />}
       {props.isMyCompany && <MyCompany />}

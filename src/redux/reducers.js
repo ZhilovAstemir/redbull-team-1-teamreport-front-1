@@ -251,15 +251,19 @@ export const reducers = (state, action) => {
       {
         id: Math.random(),
         name: "Aleksandr Evseev",
+        title: "CEO"
       },
       {
         id: Math.random(),
         name: "Nikolai Kapustin",
+        title: "Software developer"
       },
       {
         id: Math.random(),
         name: "Anna Kotova",
+        title: "Computer systems analyst"
       },
     ],
   };
 };
+

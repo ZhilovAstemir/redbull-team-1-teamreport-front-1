@@ -8,6 +8,7 @@ import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
 import { connect } from "react-redux";
 
 const LaunchGuide = (props) => {
+
   function handleEntailmentRequest(e) {
     e.preventDefault();
   }

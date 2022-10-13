@@ -11,6 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const TeamMembers = (props) => {
+  const members = useSelector((state) => state.members);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -54,6 +55,7 @@ const TeamMembers = (props) => {
                   {member.firstName ?? "firstName"}{" "}
                   {member.lastName ?? "lastName"}
                 </div>
+
               </div>
               <a
                 className={styles.btn_edit}
@@ -65,12 +67,6 @@ const TeamMembers = (props) => {
               >
                 <button>Edit</button>
               </a>
-              <EditTeamInfo
-                open={open}
-                TransitionComponent={Transition}
-                onClose={handleClose}
-                close={handleClose}
-              />
             </div>
           ))}
         </section>
