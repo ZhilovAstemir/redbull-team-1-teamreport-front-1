@@ -173,13 +173,15 @@ const EditTeamInfo = (props) => {
           </h3>
           <hr />
           <div className={styles.leader_flex}>
-            {selectedReporters && selectedReporters.length
-              ? selectedReporters.map((reporter) => (
-                  <div key={reporter.id}>
-                    {reporter.firstName} {reporter.lastName}
-                  </div>
-                ))
-              : "No reporters founded"}
+            {selectedReporters && selectedReporters.length ? (
+              selectedReporters.map((reporter) => (
+                <div key={reporter.id}>
+                  {reporter.firstName} {reporter.lastName}
+                </div>
+              ))
+            ) : (
+              <div>No reporters founded</div>
+            )}
           </div>
           <a href="">
             <button onClick={handleClickOpenMembers}>Edit Member(s)</button>

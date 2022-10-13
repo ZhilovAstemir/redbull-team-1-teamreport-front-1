@@ -70,7 +70,7 @@ const EditMembersModal = (props) => {
                     if (props.selected) {
                     }
                     props.setSelected(
-                      props.selected.filter((x) => x.id !== member.id)
+                      props.selected.filter((x) => x.id != member.id)
                     );
                   }}
                 >
@@ -92,7 +92,7 @@ const EditMembersModal = (props) => {
             props.setSelected(
               [].concat(
                 props.selected,
-                props.members.filter((x) => x.id === event.target.value)
+                props.members.filter((x) => x.id == event.target.value)
               )
             );
           }}
@@ -102,7 +102,7 @@ const EditMembersModal = (props) => {
             ? props.members
                 .filter(
                   (member) =>
-                    !props.selected.find((x) => x.id === member.id) &&
+                    !props.selected.find((x) => x.id == member.id) &&
                     member.id !== props.selectedMemberId
                 )
                 .map((member) => (
