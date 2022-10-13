@@ -7,16 +7,6 @@
   height: 100vh;
 }
 
-header {
-  width: 100%;
-  font-weight: bold;
-  font-size: 32px;
-  text-align: center;
-  background: #333a3d;
-  padding: 50px;
-  color: #ffffff;
-}
-
 .container {
   max-width: 100%;
 }
