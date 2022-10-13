@@ -1,0 +1,85 @@
+.teamReports__header {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  background: #333a3d;
+  width: 100%;
+  margin-left: 280px;
+  height: 250px;
+  box-sizing: border-box;
+}
+
+.header__switch {
+  display: flex;
+  background: #1f2426;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.switch__item {
+  padding: 5px 10px;
+}
+
+.header__teamMembers {
+  display: flex;
+}
+
+.teamMembers__item {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #d4d8da;
+  padding: 10px;
+  text-align: center;
+  border: 3px solid #ffffff;
+  margin-right: -12px;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  background: #f3f5f7;
+  height: 100vh;
+  padding: 25px 35px;
+}
+
+.periodSwitch {
+  display: flex;
+  background: #1f2426;
+  border-radius: 4px;
+  color: #7f989d;
+  font-size: 14px;
+  height: 35px;
+}
+
+.periodSwitch__item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.content__header {
+  display: flex;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 3px 5px 0 #e3e6e7;
+  border-radius: 4px;
+  padding: 10px 90px 10px 10px;
+  box-sizing: border-box;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.header__group {
+  display: flex;
+}
+
+.header__item {
+  width: 80px;
+  text-align: center;
+}
