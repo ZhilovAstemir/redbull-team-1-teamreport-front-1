@@ -23,10 +23,6 @@ function App(props) {
   }, []);
 
   useEffect(() => {
-    authService.getMemberInformation(props.setMember);
-  }, []);
-
-  useEffect(() => {
     if (!props.member) {
       props.openLogIn();
     }
