@@ -1,8 +1,6 @@
 export const reducers = (state, action) => {
   switch (action.type) {
     case "SET_TOKEN": {
-      console.log(action);
-      console.log(state);
       return {
         ...state,
         token: action.payload,
@@ -177,6 +175,27 @@ export const reducers = (state, action) => {
         ...state,
         member: action.payload,
       };
+    case "SET_MEMBERS":
+      return {
+        ...state,
+        members: action.payload,
+      };
+    case "SET_LEADERS":
+      return {
+        ...state,
+        leaders: action.payload,
+      };
+    case "SET_REPORTERS":
+      return {
+        ...state,
+        reporters: action.payload,
+      };
+
+    case "SELECT_MEMBER":
+      return {
+        ...state,
+        selectedMemberId: action.payload,
+      };
     case "CONTINUE_REGISTRATION":
       return {
         ...state,
@@ -212,6 +231,8 @@ export const reducers = (state, action) => {
     isWorkloadInput: false,
     token: null,
     member: null,
+    selectedMemberId: null,
+    members: [],
     leaders: [
       {
         id: Math.random(),
@@ -225,16 +246,8 @@ export const reducers = (state, action) => {
         id: Math.random(),
         name: "Nina Mammadova",
       },
-      {
-        id: Math.random(),
-        name: "Natalia Starkova",
-      },
-      {
-        id: Math.random(),
-        name: "Anton Tarkhanov",
-      },
     ],
-    members: [
+    reporters: [
       {
         id: Math.random(),
         name: "Aleksandr Evseev",
@@ -246,22 +259,6 @@ export const reducers = (state, action) => {
       {
         id: Math.random(),
         name: "Anna Kotova",
-      },
-      {
-        id: Math.random(),
-        name: "Nina Mammadova",
-      },
-      {
-        id: Math.random(),
-        name: "Natalia Starkova",
-      },
-      {
-        id: Math.random(),
-        name: "Anton Tarkhanov",
-      },
-      {
-        id: Math.random(),
-        name: "Alexandr Vovchuk",
       },
     ],
   };

@@ -78,7 +78,13 @@ const AsideBar = (props) => {
             <a onClick={props.openMyCompany}>
               <button>My Company</button>
             </a>
-            <a className={styles.profile} onClick={handleClickOpen}>
+            <a
+              className={styles.profile}
+              onClick={() => {
+                props.selectMember(props.member.id);
+                handleClickOpen();
+              }}
+            >
               <button>
                 <SettingsIcon className={styles.setting_icon} /> My Profile
               </button>
@@ -155,6 +161,8 @@ const mapDispatchToProps = (dispatch) => ({
   openLogIn: () => dispatch({ type: "LOG_IN" }),
   setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
   setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
+  selectMember: (memberId) =>
+    dispatch({ type: "SELECT_MEMBER", payload: memberId }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));

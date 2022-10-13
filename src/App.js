@@ -16,11 +16,13 @@ function App(props) {
 
   useEffect(() => {
     handleTokenFromQueryParams(props.setToken);
-    authService.getMemberInformation(props.setMember);
+    if (props.token) {
+      authService.setToken(props.token);
+      authService.getMemberInformation(props.setMember);
+    }
   }, []);
 
   useEffect(() => {
-    console.log(props.member);
     if (!props.member) {
       props.openLogIn();
     }
@@ -45,7 +47,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
   setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
-  closeLoginPage: () => dispatch({ type: "CLOSE_LOGIN" }),
   openContinueRegistration: () => dispatch({ type: "CONTINUE_REGISTRATION" }),
   openLogIn: () => dispatch({ type: "LOG_IN" }),
 });
