@@ -20,6 +20,7 @@ const EditTeamInfo = (props) => {
 
   const [openLeaders, setOpenLeaders] = useState(false);
   const [openMembers, setOpenMembers] = useState(false);
+
   const onSubmit = (data) => console.log(data);
 
   function handleEntailmentRequest(e) {
@@ -46,7 +47,6 @@ const EditTeamInfo = (props) => {
     setOpenMembers(false);
   };
 
-
   const [selectedMember, setSelectedMember] = useState([]);
   const [selectedLeaders, setSelectedLeaders] = useState([]);
   const [selectedReporters, setSelectedReporters] = useState([]);
@@ -66,6 +66,7 @@ const EditTeamInfo = (props) => {
   return (
     <Dialog
       onSubmit={handleSubmit(onSubmit)}
+      onClick={(e) => handleEntailmentRequest(e)}
       open={props.open}
       TransitionComponent={props.TransitionComponent}
       keepMounted

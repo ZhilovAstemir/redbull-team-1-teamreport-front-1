@@ -12,4 +12,8 @@ export default class AxiosService extends Axios {
     this.defaults.baseURL = process.env.REACT_APP_BASE_URL;
     this.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
   }
+
+  setToken = (token) => {
+    this.defaults.headers.common["Authorization"] = token;
+  };
 }

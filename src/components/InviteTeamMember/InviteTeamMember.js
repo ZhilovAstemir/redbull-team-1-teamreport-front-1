@@ -8,8 +8,8 @@ import styles from "./InviteTeamMember.module.css";
 import { styled } from "@mui/material";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import inviteService from "../../services/inviteService";
-import { connect } from "react-redux";
+import InviteService from "../../services/inviteService";
+import {connect, useSelector} from "react-redux";
 
 const InviteTeamMember = (props) => {
   const {
@@ -17,6 +17,8 @@ const InviteTeamMember = (props) => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const token = useSelector((state) => state.token);
+  const inviteService = new InviteService(token);
 
   const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />

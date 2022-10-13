@@ -3,7 +3,7 @@ import AxiosService from "./axiosService";
 class CompanyService extends AxiosService {
   constructor(token) {
     super();
-    this.defaults.headers.common["Authorization"] = token;
+    this.setToken(token);
   }
 
   changeName = (name) => {

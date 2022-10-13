@@ -13,6 +13,7 @@ import FillOutReport from "../FillOutReport/FillOutReport";
 import LogIn from "../LogIn/LogIn";
 import TeamMembers from "../TeamMembers/TeamMembers";
 import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
+import TeamReports from "../TeamReports/TeamReports";
 import { Slide } from "@mui/material";
 import authService from "../../services/authService";
 import ContinueRegistration from "../ContinueRegistration/ContinueRegistration";
@@ -23,7 +24,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const AsideBar = (props) => {
   const [open, setOpen] = useState(false);
-  const myData = useSelector((state) => state.myProfile);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,7 +59,7 @@ const AsideBar = (props) => {
             <a onClick={props.openInviteYourTeam}>
               <button>Invite Your Team</button>
             </a>
-            <a>
+            <a onClick={props.openTeamReports}>
               <button>Team Reports</button>
             </a>
             <a onClick={props.openMyReports}>
@@ -130,14 +130,15 @@ const AsideBar = (props) => {
         close={handleClose}
         myData={myData}
       />
-      {props.isLaunchGuide && <LaunchGuide />}
-      {props.isMyCompany && <MyCompany />}
-      {props.isInviteYourTeam && <InviteTeamMember />}
-      {props.isMyReports && <MyReports />}
-      {props.isFillOutReport && <FillOutReport />}
-      {props.isLogIn && <LogIn />}
-      {props.isTeamMembers && <TeamMembers />}
-      {props.isEditTeamInfo && <EditTeamInfo />}
+      {props.isLaunchGuide && <LaunchGuide/>}
+      {props.isMyCompany && <MyCompany/>}
+      {props.isInviteYourTeam && <InviteTeamMember/>}
+      {props.isMyReports && <MyReports/>}
+      {props.isFillOutReport && <FillOutReport/>}
+      {props.isLogIn && <LogIn/>}
+      {props.isTeamMembers && <TeamMembers/>}
+      {props.isEditTeamInfo && <EditTeamInfo/>}
+      {props.isTeamReports && <TeamReports />}
       {props.isContinueRegistration && <ContinueRegistration />}
     </>
   );
@@ -152,6 +153,7 @@ const mapStateToProps = (state) => ({
   isLogIn: state.isLogIn,
   isTeamMembers: state.isTeamMembers,
   isEditTeamInfo: state.isEditTeamInfo,
+  isTeamReports: state.isTeamReports,
   isContinueRegistration: state.isContinueRegistration,
   member: state.member,
 });
@@ -163,6 +165,7 @@ const mapDispatchToProps = (dispatch) => ({
   openMyReports: () => dispatch({ type: "MY_REPORTS" }),
   openFillOutReport: () => dispatch({ type: "FILL_OUT_REPORT" }),
   openLogIn: () => dispatch({ type: "LOG_IN" }),
+  openTeamReports: () => dispatch({type: "TEAM_REPORTS"}),
   setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
   setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
   selectMember: (memberId) =>

@@ -129,6 +129,14 @@ header > p {
   margin-bottom: 15px;
 }
 
+.required__message {
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  color: #ca0b0b;
+  margin-top: 15px;
+}
+
 .required {
   font-weight: 500;
   font-size: 18px;

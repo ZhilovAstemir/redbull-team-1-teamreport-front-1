@@ -1,21 +1,16 @@
 import AxiosService from "./axiosService";
 
 class InviteService extends AxiosService {
-  constructor() {
+  constructor(token) {
     super();
+    this.setToken(token);
   }
-  invite = (data, token) => {
-    this.post(
-      "/members/invite",
-      {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-      },
-      {
-        headers: token,
-      }
-    )
+  invite = (data) => {
+    this.post("/members/invite", {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+    })
       .then((response) => {
         console.log(response);
       })
@@ -23,12 +18,6 @@ class InviteService extends AxiosService {
         console.log(error);
       });
   };
-
-  setToken = (token) => {
-    this.defaults.headers.common["Authorization"] = token;
-  };
 }
 
-const inviteService = new InviteService();
-
-export default inviteService;
+export default InviteService;

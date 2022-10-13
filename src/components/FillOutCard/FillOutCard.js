@@ -47,6 +47,9 @@ const FillOutCard = (props) => {
             }}
           >
             <img
+              style={{
+                filter: props.value === 1 && "none",
+              }}
               src={veryLow}
               alt="sad emotion"
               className={styles.smile_icons}
@@ -66,7 +69,14 @@ const FillOutCard = (props) => {
               props.setEmotion(2);
             }}
           >
-            <img src={low} alt="low emotion" className={styles.smile_icons} />
+            <img
+              style={{
+                filter: props.value === 2 && "none",
+              }}
+              src={low}
+              alt="low emotion"
+              className={styles.smile_icons}
+            />
             {props.name === "morale" ? (
               <p>Low</p>
             ) : props.name === "stress" ? (
@@ -82,7 +92,14 @@ const FillOutCard = (props) => {
               props.setEmotion(3);
             }}
           >
-            <img src={okay} alt="okay emotion" className={styles.smile_icons} />
+            <img
+              style={{
+                filter: props.value === 3 && "none",
+              }}
+              src={okay}
+              alt="okay emotion"
+              className={styles.smile_icons}
+            />
             {props.name === "morale" ? (
               <p>Okay</p>
             ) : props.name === "stress" ? (
@@ -99,6 +116,9 @@ const FillOutCard = (props) => {
             }}
           >
             <img
+              style={{
+                filter: props.value === 4 && "none"
+              }}
               src={happy}
               alt="good emotion"
               className={styles.smile_icons}
@@ -119,6 +139,9 @@ const FillOutCard = (props) => {
             }}
           >
             <img
+              style={{
+                filter: props.value === 5 && "none"
+              }}
               src={veryHappy}
               alt="great emotion"
               className={styles.smile_icons}

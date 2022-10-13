@@ -59,8 +59,8 @@ const ReportAccordion = (props) => {
     setIsExpanded(!isExpanded);
   };
 
-  const formatDate = (date) => {
-    let dateToFormat = new Date(date);
+  const formatDate = (dateStr) => {
+    let dateToFormat = new Date(dateStr);
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     return `${monthNames[dateToFormat.getMonth()]} ${dateToFormat.getDay()}`
   }
