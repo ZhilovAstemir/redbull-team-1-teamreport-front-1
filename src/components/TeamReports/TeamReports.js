@@ -1,5 +1,7 @@
 import React, { memo, useState } from "react";
 import styles from "./TeamReports.module.css";
+import ImmediateTeam from "../ImmediateTeam/ImmediateTeam";
+import ExtendedTeam from "../ExtendedTeam/ExtendedTeam";
 
 const TeamReports = () => {
   const [isImmediateTeam, setIsImmediateTeam] = useState(true);
@@ -104,14 +106,8 @@ const TeamReports = () => {
             Older Periods
           </div>
         </div>
-        <div className={styles.content__header}>
-          <div></div>
-          <div className={styles.header__group}>
-            <div className={styles.header__item}>Morale</div>
-            <div className={styles.header__item}>Stress</div>
-            <div className={styles.header__item}>Workload</div>
-          </div>
-        </div>
+        {isImmediateTeam && <ImmediateTeam />}
+        {!isImmediateTeam && <ExtendedTeam />}
       </div>
     </>
   );
