@@ -1,0 +1,12 @@
+.filter {
+    display: flex;
+    background: #1f2426;
+    font-size: 14px;
+    color: #7f989d;
+    border-radius: 4px;
+  }
+  
+  .filter__item {
+    padding: 5px;
+  }
+  
