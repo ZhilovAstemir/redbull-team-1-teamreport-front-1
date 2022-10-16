@@ -1,0 +1,17 @@
+version: "2"
+services:
+  nginx-react:
+    container_name: redbull-team-1-teamreport-front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      NODE_ENV: production
+    networks:
+      - front
+networks:
+  front:
+    name: redbull-team-1-teamreport-back_front
