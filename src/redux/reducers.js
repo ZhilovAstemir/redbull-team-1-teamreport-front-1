@@ -210,6 +210,26 @@ export const reducers = (state, action) => {
         isTeamReports: false,
         isContinueRegistration: true,
       };
+    case "SET_CURRENT_IMMEDIATE_REPORTS":
+      return {
+        ...state,
+        currentImmediateReports: action.payload,
+      };
+    case "SET_PREVIOUS_IMMEDIATE_REPORTS":
+      return {
+        ...state,
+        previousImmediateReports: action.payload,
+      };
+    case "SET_CURRENT_EXTENDED_REPORTS":
+      return {
+        ...state,
+        currentExtendedReports: action.payload,
+      };
+    case "SET_PREVIOUS_EXTENDED_REPORTS":
+      return {
+        ...state,
+        previousExtendedReports: action.payload,
+      };
   }
 
   return {
@@ -233,36 +253,11 @@ export const reducers = (state, action) => {
     member: null,
     selectedMemberId: null,
     members: [],
-    leaders: [
-      {
-        id: Math.random(),
-        name: "Alexandr Vovchuk",
-      },
-      {
-        id: Math.random(),
-        name: "Anna Kotova",
-      },
-      {
-        id: Math.random(),
-        name: "Nina Mammadova",
-      },
-    ],
-    reporters: [
-      {
-        id: Math.random(),
-        name: "Aleksandr Evseev",
-        title: "CEO"
-      },
-      {
-        id: Math.random(),
-        name: "Nikolai Kapustin",
-        title: "Software developer"
-      },
-      {
-        id: Math.random(),
-        name: "Anna Kotova",
-        title: "Computer systems analyst"
-      },
-    ],
+    leaders: [],
+    reporters: [],
+    currentImmediateReports: [[], []],
+    previousImmediateReports: [[], []],
+    currentExtendedReports: [[], []],
+    previousExtendedReports: [[], []],
   };
 };

@@ -8,13 +8,18 @@
     box-sizing: border-box;
     align-items: end;
     justify-content: space-between;
-  }
+    margin-bottom: 10px;
+}
   
-  .header__group {
+.header__group {
     display: flex;
-  }
+}
   
-  .header__item {
+.header__item {
     width: 80px;
     text-align: center;
-  }
+}
+
+.content__container{
+    width: 100%;
+}
