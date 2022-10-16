@@ -1,12 +1,25 @@
-.filter {
+.content__header {
     display: flex;
-    background: #1f2426;
-    font-size: 14px;
-    color: #7f989d;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 3px 5px 0 #e3e6e7;
     border-radius: 4px;
-  }
-  
-  .filter__item {
-    padding: 5px;
-  }
-  
+    padding: 10px 90px 10px 10px;
+    box-sizing: border-box;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.header__group {
+    display: flex;
+}
+
+.header__item {
+    width: 80px;
+    text-align: center;
+}
+
+.content__container{
+    width: 100%;
+}

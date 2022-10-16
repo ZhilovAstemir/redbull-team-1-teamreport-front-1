@@ -10,6 +10,7 @@
 }
 
 .header__switch {
+  cursor: pointer;
   display: flex;
   background: #1f2426;
   border-radius: 4px;
@@ -24,6 +25,12 @@
 
 .header__teamMembers {
   display: flex;
+}
+
+.header__title{
+  color: white;
+  font-size: 24px;
+  padding-top: 45px;
 }
 
 .teamMembers__item {
@@ -45,7 +52,7 @@
   flex-direction: column;
   background: #f3f5f7;
   height: 100vh;
-  padding: 25px 35px;
+  padding: 25px 55px;
   align-items: center;
   box-sizing: border-box;
 }
@@ -61,6 +68,7 @@
 }
 
 .periodSwitch__item {
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 5px;
