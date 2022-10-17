@@ -1,8 +1,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 300px);
-  margin-left: 300px;
+  width: 100%;
   background: #f5f7f8;
   height: 100vh;
 }

@@ -15,6 +15,16 @@ class MemberService extends AxiosService {
       });
   };
 
+  editMember = (memberId, firstName, lastName, title) => {
+    this.post("/members/edit", { id: memberId, firstName, lastName, title })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   setToken = (token) => {
     this.defaults.headers.common["Authorization"] = token;
   };

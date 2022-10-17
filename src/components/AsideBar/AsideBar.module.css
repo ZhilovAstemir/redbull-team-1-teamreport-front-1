@@ -4,9 +4,14 @@
   flex-direction: column;
   position: fixed;
   background: #333A3D;
-  width: 250px;
-  padding: 15px;
+  width: 15%;
+  padding: 2%;
   justify-content: center;
+}
+
+.content__container{
+  width:81%;
+  margin-left: 19%;
 }
 
 .logo {
