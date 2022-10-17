@@ -1,8 +1,7 @@
 .header {
   background: #333A3D;
-  width: 1620px;
+  width: 100%;
   height: 250px;
-  margin-left: 280px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -15,6 +14,7 @@
 }
 
 .header h1 {
+  text-align: center;
   font-weight: 400;
 }
 

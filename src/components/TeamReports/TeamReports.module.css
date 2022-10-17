@@ -4,7 +4,6 @@
   padding: 15px 0;
   background: #333a3d;
   width: 100%;
-  margin-left: 280px;
   height: 250px;
   box-sizing: border-box;
 }
@@ -47,12 +46,10 @@
 
 .container {
   width: 100%;
-  margin-left: 280px;
   display: flex;
   flex-direction: column;
   background: #f3f5f7;
-  height: 100vh;
-  padding: 25px 55px;
+  padding: 25px 150px 50px;
   align-items: center;
   box-sizing: border-box;
 }

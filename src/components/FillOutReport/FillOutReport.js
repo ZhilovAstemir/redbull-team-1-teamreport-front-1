@@ -1,11 +1,6 @@
-import React, { memo, useRef, useState } from "react";
+import React, { memo, useState } from "react";
 import styles from "./FillOutReport.module.css";
 import clsx from "clsx";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateRangePicker } from "@mui/x-date-pickers-pro";
 import FillOutCard from "../FillOutCard/FillOutCard";
 import { connect, useDispatch, useSelector } from "react-redux";
 import ReportService from "../../services/reportService";
@@ -18,7 +13,6 @@ const names = {
 
 const FillOutReport = (props) => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState([null, null]);
   const [countForHigh, setCountForHigh] = useState(600);
   const [countForLow, setCountForLow] = useState(600);
   const [countElse, setCountForElse] = useState(400);
@@ -31,6 +25,7 @@ const FillOutReport = (props) => {
   const [highComment, setHighComment] = useState("");
   const [lowComment, setLowComment] = useState("");
   const [elseComment, setElseComment] = useState("");
+  const [period, setPeriod] = useState(0);
   const token = useSelector((state) => state.token);
   const reportService = new ReportService(token);
   const [isReported, setIsReported] = useState(false);
@@ -41,8 +36,6 @@ const FillOutReport = (props) => {
     workload: false,
     highComment: false,
     lowComment: false,
-    dateStart: false,
-    dateEnd: false,
   };
 
   const checkReport = () => {
@@ -64,10 +57,73 @@ const FillOutReport = (props) => {
     return !Object.values(reportErrors).includes(true);
   };
 
+  const date = new Date();
+
+  const currentDateStart = new Date(
+    date.setDate(date.getDate() - ((date.getDay() + 6) % 7))
+  );
+  const currentDateEnd = new Date(currentDateStart);
+  currentDateEnd.setDate(currentDateStart.getDate() + 6);
+
+  const previousDateStart = new Date(currentDateStart);
+  previousDateStart.setDate(previousDateStart.getDate() - 7);
+  const previousDateEnd = new Date(currentDateEnd);
+  previousDateEnd.setDate(previousDateEnd.getDate() - 7);
+
+  const formatDate = (dateStr) => {
+    let dateToFormat = new Date(dateStr);
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return `${monthNames[dateToFormat.getMonth()]} ${dateToFormat.getDate()}`;
+  };
+
+  const getWeek = (period) => {
+    if (period == 0) {
+      return {
+        dateStart: currentDateStart,
+        dateEnd: currentDateEnd,
+      };
+    } else {
+      return {
+        dateStart: previousDateStart,
+        dateEnd: previousDateEnd,
+      };
+    }
+  };
+
+  function clearFields() {
+    setCountForHigh(600);
+    setCountForLow(600);
+    setCountForElse(400);
+    setMorale(0);
+    setStress(0);
+    setWorkload(0);
+    setMoraleComment("");
+    setStressComment("");
+    setWorkloadComment("");
+    setHighComment("");
+    setLowComment("");
+    setElseComment("");
+    setPeriod(0);
+    setIsReported(false);
+  }
+
   const sendReport = (e) => {
     e.preventDefault();
     setIsReported(true);
-    if(checkReport()) {
+    if (checkReport()) {
       let report = {
         morale,
         moraleComment,
@@ -78,26 +134,27 @@ const FillOutReport = (props) => {
         highComment,
         lowComment,
         elseComment,
-        week: {
-          dateStart: new Date(value[0].$d),
-          dateEnd: new Date(value[1].$d),
-        },
+        week: getWeek(period),
       };
       reportService.sendReport(report);
+
+      clearFields();
     }
   };
 
   return (
     <div className={styles.fill_out_container}>
       <header>
-        <h1 className={styles.title_name}>Welcome back, Anatoliy.</h1>
+        <h1 className={styles.title_name}>
+          Welcome back, {props.member?.firstName ?? "User"}
+        </h1>
         <p className="p-4">
           Let your leader know where you're winning and struggling this week –
           in less than 10 minutes.
         </p>
       </header>
       <FillOutCard name={names.morale} setEmotion={setMorale} value={morale} />
-      {props.isMoraleInput && (
+      {(props.isMoraleInput || moraleComment) && (
         <textarea
           value={moraleComment}
           onChange={(e) => setMoraleComment(e.target.value)}
@@ -106,9 +163,11 @@ const FillOutReport = (props) => {
           placeholder="your comments . . ."
         />
       )}
-      {(isReported && morale === 0) && <p className={styles.required__message}>Morale is required</p>}
+      {isReported && morale === 0 && (
+        <p className={styles.required__message}>Morale is required</p>
+      )}
       <FillOutCard name={names.stress} setEmotion={setStress} value={stress} />
-      {props.isStressInput && (
+      {(props.isStressInput || stressComment) && (
         <textarea
           value={stressComment}
           onChange={(e) => setStressComment(e.target.value)}
@@ -117,13 +176,15 @@ const FillOutReport = (props) => {
           placeholder="your comments . . ."
         />
       )}
-      {(isReported && stress === 0) && <p className={styles.required__message}>Stress is required</p>}
+      {isReported && stress === 0 && (
+        <p className={styles.required__message}>Stress is required</p>
+      )}
       <FillOutCard
         name={names.workload}
         setEmotion={setWorkload}
         value={workload}
       />
-      {props.isWorkloadInput && (
+      {(props.isWorkloadInput || workloadComment) && (
         <textarea
           value={workloadComment}
           onChange={(e) => setWorkloadComment(e.target.value)}
@@ -132,7 +193,9 @@ const FillOutReport = (props) => {
           placeholder="your comments . . ."
         />
       )}
-        {(isReported && workload === 0) && <p className={styles.required__message}>Workload is required</p>}
+      {isReported && workload === 0 && (
+        <p className={styles.required__message}>Workload is required</p>
+      )}
       <section
         className={clsx(styles.moral_container, styles.moral_container_high)}
       >
@@ -148,7 +211,9 @@ const FillOutReport = (props) => {
           placeholder="What was your personal or professional high this week? What's the one thing you accomplished at work this week?"
         ></textarea>
         <div className={styles.textarea_counter}>{countForHigh}</div>
-          {(isReported && highComment.length === 0) && <p className={styles.required__message}>Fill out your high</p>}
+        {isReported && highComment.length === 0 && (
+          <p className={styles.required__message}>Fill out your high</p>
+        )}
       </section>
       <section
         className={clsx(styles.moral_container, styles.moral_container_high)}
@@ -165,7 +230,9 @@ const FillOutReport = (props) => {
           placeholder="What was your personal low this week?"
         ></textarea>
         <div className={styles.textarea_counter}>{countForLow}</div>
-          {(isReported && lowComment.length === 0) && <p className={styles.required__message}>Fill out your high</p>}
+        {isReported && lowComment.length === 0 && (
+          <p className={styles.required__message}>Fill out your high</p>
+        )}
       </section>
       <section
         className={clsx(styles.moral_container, styles.moral_container_high)}
@@ -188,30 +255,35 @@ const FillOutReport = (props) => {
       >
         <h3 className={styles.title_of_moral}>Date range</h3>
         <form onSubmit={(e) => sendReport(e)}>
-          <label className={styles.form__label}>Choose date</label>
-          <LocalizationProvider
+          <label className={styles.form__label}>Choose period</label>
+          <select
             className={styles.week_picker}
-            dateAdapter={AdapterDayjs}
-            localeText={{ start: "start", end: "end" }}
+            defaultValue={period}
+            onChange={(event) => setPeriod(+event.target.value)}
           >
-            <DateRangePicker
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(startProps, endProps) => (
-                <React.Fragment>
-                  <TextField {...startProps} />
-                  <Box sx={{ mx: 2 }}> to </Box>
-                  <TextField {...endProps} />
-                </React.Fragment>
-              )}
-            />
-          </LocalizationProvider>
-            {(isReported && value.includes(null)) && <p className={styles.required__message}>Set date range</p>}
-          <p className={styles.required}>
-            All fields are required unless marked as optional.
-          </p>
+            <option value={0}>
+              Current period (
+              {formatDate(currentDateStart) +
+                " - " +
+                formatDate(currentDateEnd)}
+              )
+            </option>
+            <option value={1}>
+              Previous period (
+              {formatDate(previousDateStart) +
+                " - " +
+                formatDate(previousDateEnd)}
+              )
+            </option>
+          </select>
+          {isReported ? (
+            <p className={styles.required}>
+              All fields are required unless marked as optional.
+            </p>
+          ) : (
+            ""
+          )}
+
           <input
             type="submit"
             value="Send Weekly Report"
@@ -227,6 +299,7 @@ const mapStateToProps = (state) => ({
   isMoraleInput: state.isMoraleInput,
   isStressInput: state.isStressInput,
   isWorkloadInput: state.isWorkloadInput,
+  member: state.member,
 });
 
 export default connect(mapStateToProps, null)(memo(FillOutReport));

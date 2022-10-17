@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import styles from "./AsideBar.module.css";
 import logo from "../../images/main_logo.png";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -23,14 +23,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const AsideBar = (props) => {
-  const [open, setOpen] = useState(false);
-
   const handleClickOpen = () => {
-    setOpen(true);
+    props.setEditMemberOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    props.setEditMemberOpen(false);
   };
 
   function handleEntailmentRequest(e) {
@@ -38,7 +36,7 @@ const AsideBar = (props) => {
   }
 
   return (
-    <>
+    <div>
       <div className={styles.asideBar_container}>
         <img
           className={styles.logo}
@@ -122,22 +120,24 @@ const AsideBar = (props) => {
         </button>
       </div>
       <EditTeamInfo
-        open={open}
+        open={props.isMemberEditOpen}
         TransitionComponent={Transition}
         onClose={handleClose}
         close={handleClose}
       />
-      {props.isLaunchGuide && <LaunchGuide/>}
-      {props.isMyCompany && <MyCompany/>}
-      {props.isInviteYourTeam && <InviteTeamMember/>}
-      {props.isMyReports && <MyReports/>}
-      {props.isFillOutReport && <FillOutReport/>}
-      {props.isLogIn && <LogIn/>}
-      {props.isTeamMembers && <TeamMembers/>}
-      {props.isEditTeamInfo && <EditTeamInfo/>}
-      {props.isTeamReports && <TeamReports />}
-      {props.isContinueRegistration && <ContinueRegistration />}
-    </>
+      <div className={styles.content__container}>
+        {props.isLaunchGuide && <LaunchGuide />}
+        {props.isMyCompany && <MyCompany />}
+        {props.isInviteYourTeam && <InviteTeamMember />}
+        {props.isMyReports && <MyReports />}
+        {props.isFillOutReport && <FillOutReport />}
+        {props.isLogIn && <LogIn />}
+        {props.isTeamMembers && <TeamMembers />}
+        {props.isEditTeamInfo && <EditTeamInfo />}
+        {props.isTeamReports && <TeamReports />}
+        {props.isContinueRegistration && <ContinueRegistration />}
+      </div>
+    </div>
   );
 };
 
@@ -153,6 +153,7 @@ const mapStateToProps = (state) => ({
   isTeamReports: state.isTeamReports,
   isContinueRegistration: state.isContinueRegistration,
   member: state.member,
+  isMemberEditOpen: state.isMemberEditOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -162,11 +163,13 @@ const mapDispatchToProps = (dispatch) => ({
   openMyReports: () => dispatch({ type: "MY_REPORTS" }),
   openFillOutReport: () => dispatch({ type: "FILL_OUT_REPORT" }),
   openLogIn: () => dispatch({ type: "LOG_IN" }),
-  openTeamReports: () => dispatch({type: "TEAM_REPORTS"}),
+  openTeamReports: () => dispatch({ type: "TEAM_REPORTS" }),
   setToken: (token) => dispatch({ type: "SET_TOKEN", payload: token }),
   setMember: (member) => dispatch({ type: "SET_MEMBER", payload: member }),
   selectMember: (memberId) =>
     dispatch({ type: "SELECT_MEMBER", payload: memberId }),
+  setEditMemberOpen: (state) =>
+    dispatch({ type: "SET_EDIT_MEMBER_OPEN", payload: state }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(AsideBar));

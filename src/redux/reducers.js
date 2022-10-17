@@ -230,10 +230,17 @@ export const reducers = (state, action) => {
         ...state,
         previousExtendedReports: action.payload,
       };
+
+    case "SET_EDIT_MEMBER_OPEN": {
+      console.log(action.payload);
+      return {
+        ...state,
+        isMemberEditOpen: action.payload,
+      };
+    }
   }
 
   return {
-    title: "ANKO Technologies Corp",
     // pages
     isLaunchGuide: true,
     isMyCompany: false,
@@ -249,9 +256,12 @@ export const reducers = (state, action) => {
     isMoraleInput: false,
     isStressInput: false,
     isWorkloadInput: false,
+    // data
+    title: "Company Name",
     token: null,
     member: null,
     selectedMemberId: null,
+    isMemberEditOpen: false,
     members: [],
     leaders: [],
     reporters: [],

@@ -1,6 +1,5 @@
 import React, { forwardRef, memo, useEffect, useState } from "react";
 import styles from "./EditTeamInfo.module.css";
-import { useForm } from "react-hook-form";
 import { Button, Dialog, DialogActions, Slide } from "@mui/material";
 import EditMembersModal from "../EditMembersModal/EditMembersModal";
 import { connect } from "react-redux";
@@ -12,16 +11,8 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const EditTeamInfo = (props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   const [openLeaders, setOpenLeaders] = useState(false);
   const [openMembers, setOpenMembers] = useState(false);
-
-  const onSubmit = (data) => console.log(data);
 
   function handleEntailmentRequest(e) {
     e.preventDefault();
@@ -51,8 +42,26 @@ const EditTeamInfo = (props) => {
   const [selectedLeaders, setSelectedLeaders] = useState([]);
   const [selectedReporters, setSelectedReporters] = useState([]);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [title, setTitle] = useState("");
+
+  const [errors, setErrors] = useState({ firstName: 0, lastName: 0, title: 0 });
+
   const [cloneLeaders, setCloneLeaders] = useState([]);
   const [cloneReporters, setCloneReporters] = useState([]);
+
+  function handleMemberEdit() {
+    if (!errors.firstName && !errors.lastName && !errors.title) {
+      memberService.setToken(props.token);
+      memberService.editMember(
+        props.selectedMemberId,
+        firstName,
+        lastName,
+        title
+      );
+    }
+  }
 
   useEffect(() => {
     if (props.selectedMemberId) {
@@ -63,9 +72,22 @@ const EditTeamInfo = (props) => {
     }
   }, [props.selectedMemberId]);
 
+  useEffect(() => {
+    setFirstName(selectedMember.firstName);
+    setLastName(selectedMember.lastName);
+    setTitle(selectedMember.title);
+  }, [selectedMember]);
+
+  useEffect(() => {
+    setErrors({
+      firstName: firstName?.length == 0,
+      lastName: lastName?.length == 0,
+      title: title?.length == 0,
+    });
+  }, [firstName, lastName, title]);
+
   return (
     <Dialog
-      onSubmit={handleSubmit(onSubmit)}
       onClick={(e) => handleEntailmentRequest(e)}
       open={props.open}
       TransitionComponent={props.TransitionComponent}
@@ -91,46 +113,71 @@ const EditTeamInfo = (props) => {
         <section className={styles.second_section}>
           <h2>Basic profile information</h2>
           <hr />
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className={styles.input_form_flex}
-          >
+          <form className={styles.input_form_flex}>
             <label>First Name</label>
             <input
               className={styles.fn_input}
-              {...register("firstName", { required: "Firstname is required" })}
+              value={firstName}
+              onChange={(event) => {
+                setFirstName(event.target.value);
+                if (firstName) {
+                  setErrors({ ...errors, firstName: 0 });
+                }
+              }}
               aria-invalid={errors.firstName ? "true" : "false"}
             />
-            {errors.firstName?.type === "required" && (
+            {errors.firstName ? (
               <p className={styles.card__validationMessage} role="alert">
                 First name is required
               </p>
+            ) : (
+              ""
             )}
             <label>Last Name</label>
             <input
               className={styles.ln_input}
-              {...register("lastname", { required: "Lastname is required" })}
-              aria-invalid={errors.lastname ? "true" : "false"}
+              value={lastName}
+              onChange={(event) => {
+                setLastName(event.target.value);
+                if (lastName) {
+                  setErrors({ ...errors, lastName: 0 });
+                }
+              }}
+              aria-invalid={errors.lastName ? "true" : "false"}
             />
-            {errors.lastname?.type === "required" && (
+            {errors.lastName ? (
               <p className={styles.card__validationMessage} role="alert">
                 Last name is required
               </p>
+            ) : (
+              ""
             )}
             <label>Title</label>
             <input
               className={styles.title_input}
-              {...register("mail", {
-                required: "Title is required",
-              })}
-              aria-invalid={errors.mail ? "true" : "false"}
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+                if (title) {
+                  setErrors({ ...errors, title: 0 });
+                }
+              }}
+              aria-invalid={errors.title ? "true" : "false"}
             />
-            {errors.mail && (
+            {errors.title ? (
               <p className={styles.card__validationMessage} role="alert">
-                {errors.mail?.message}
+                Title is required
               </p>
+            ) : (
+              ""
             )}
-            <input className={styles.btn_input} type="submit" value="Save" />
+            <input
+              className={styles.btn_input}
+              onClick={handleMemberEdit}
+              onSubmit={(e) => handleEntailmentRequest(e)}
+              type="submit"
+              value="Save"
+            />
           </form>
         </section>
         <section className={styles.third_section}>

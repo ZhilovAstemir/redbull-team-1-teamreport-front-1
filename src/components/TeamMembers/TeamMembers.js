@@ -1,9 +1,8 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect } from "react";
 import styles from "./TeamMembers.module.css";
 import HeaderForGuide from "../HeaderForGuide/HeaderForGuide";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Slide } from "@mui/material";
-import EditTeamInfo from "../EditTeamInfo/EditTeamInfo";
 import teamService from "../../services/teamService";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -11,15 +10,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const TeamMembers = (props) => {
-  const members = useSelector((state) => state.members);
-  const [open, setOpen] = useState(false);
-
   const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+    props.setEditMemberOpen(true);
   };
 
   function handleEntailmentRequest(e) {
@@ -55,7 +47,6 @@ const TeamMembers = (props) => {
                   {member.firstName ?? "firstName"}{" "}
                   {member.lastName ?? "lastName"}
                 </div>
-
               </div>
               <a
                 className={styles.btn_edit}
@@ -67,12 +58,6 @@ const TeamMembers = (props) => {
               >
                 <button>Edit</button>
               </a>
-                <EditTeamInfo
-                    open={open}
-                    TransitionComponent={Transition}
-                    onClose={handleClose}
-                    close={handleClose}
-                />
             </div>
           ))}
         </section>
@@ -91,6 +76,8 @@ const mapDispatchToProps = (dispatch) => ({
   setMembers: (members) => dispatch({ type: "SET_MEMBERS", payload: members }),
   selectMember: (memberId) =>
     dispatch({ type: "SELECT_MEMBER", payload: memberId }),
+  setEditMemberOpen: (state) =>
+    dispatch({ type: "SET_EDIT_MEMBER_OPEN", payload: state }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(TeamMembers));
