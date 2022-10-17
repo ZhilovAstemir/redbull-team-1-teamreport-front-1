@@ -14,4 +14,5 @@ services:
       - front
 networks:
   front:
-    name: redbull-team-1-teamreport-back_front
+    external:
+      name: redbull-team-1-teamreport-back_front
